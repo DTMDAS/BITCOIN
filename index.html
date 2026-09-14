@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BitCap - Crypto & P2P Ecosystem</title>
+    <title>BITCAP - P2P & Ad Investment Platform</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,750 +12,908 @@
             theme: {
                 extend: {
                     colors: {
-                        btc: '#F7931A',
-                        darkBg: '#0b0e11',
-                        cardBg: '#181a20',
-                        borderClr: '#23262f'
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        borderClr: '#334155',
+                        btc: '#f59e0b'
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-darkBg text-gray-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-darkBg text-white min-h-screen flex flex-col font-sans selection:bg-btc selection:text-darkBg">
 
-    <!-- Top Navigation / Header -->
-    <header class="bg-cardBg border-b border-borderClr sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="router('home')">
-                <div class="w-10 h-10 bg-btc rounded-full flex items-center justify-center shadow-lg shadow-btc/20">
-                    <i class="fa-brands fa-bitcoin text-white text-2xl"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-bold tracking-wider text-btc">BIT<span class="text-white">CAP</span></span>
-                    <span class="block text-[10px] text-gray-400">P2P & AD INVESTMENT PLATFORM</span>
-                </div>
+<!-- Top Navigation / Header -->
+<header class="bg-cardBg border-b border-borderClr sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="router('home')">
+            <!-- Custom Bitcoin Logo SVG -->
+            <div class="w-10 h-10 bg-btc rounded-full flex items-center justify-center shadow-lg shadow-btc/20">
+                <i class="fa-brands fa-bitcoin text-white text-2xl"></i>
             </div>
-            <div id="nav-auth-buttons" class="flex items-center space-x-3">
-                <button onclick="router('login')" class="px-4 py-2 text-sm font-semibold text-btc border border-btc rounded-lg hover:bg-btc/10 transition">Login</button>
-                <button onclick="router('register')" class="px-4 py-2 text-sm font-semibold bg-btc text-darkBg rounded-lg hover:bg-btc/90 transition">Register</button>
-            </div>
-            <div id="nav-user-info" class="hidden flex items-center space-x-4">
-                <span id="nav-username" class="text-sm font-medium text-gray-300"></span>
-                <button onclick="logout()" class="px-3 py-1.5 text-xs bg-red-600/20 text-red-400 border border-red-500/30 rounded-md hover:bg-red-600/30 transition">Logout</button>
+            <div>
+                <span class="text-xl font-bold tracking-wider text-btc">BIT<span class="text-white">CAP</span></span>
+                <span class="block text-[10px] text-gray-400">P2P & AD INVESTMENT PLATFORM</span>
             </div>
         </div>
-    </header>
+        <div id="nav-auth-buttons" class="flex items-center space-x-3">
+            <button onclick="router('login')" class="px-4 py-2 text-sm font-semibold text-btc border border-btc rounded-lg hover:bg-btc/10 transition">Login</button>
+            <button onclick="router('register')" class="px-4 py-2 text-sm font-semibold bg-btc text-darkBg rounded-lg hover:bg-btc/90 transition">Register</button>
+        </div>
+        <div id="nav-user-info" class="hidden flex items-center space-x-4">
+            <span id="nav-username" class="text-sm font-medium text-gray-300"></span>
+            <button onclick="logout()" class="px-3 py-1.5 text-xs bg-red-600/20 text-red-400 border border-red-500/30 rounded-md hover:bg-red-600/30 transition">Logout</button>
+        </div>
+    </div>
+</header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+<!-- Main Container -->
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
 
-        <!-- HOME / LANDING PAGE -->
-        <section id="page-home" class="view-page space-y-8">
-            <div class="text-center py-12 space-y-4">
-                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Earn Daily With <span class="text-btc">Bitcoin</span> P2P Ads</h1>
-                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Join the ultimate decentralized ecosystem. Watch daily advertisements, build your referral network, and trade securely via P2P.</p>
-                <div class="flex justify-center space-x-4 pt-4">
-                    <button onclick="router('register')" class="px-6 py-3 bg-btc text-darkBg font-bold rounded-xl shadow-lg shadow-btc/30 hover:scale-105 transition">Get Started Now</button>
-                    <button onclick="router('login')" class="px-6 py-3 bg-cardBg border border-borderClr font-bold rounded-xl hover:bg-borderClr transition">Sign In</button>
-                </div>
-                <div class="pt-6 text-xs text-gray-500">
-                    Default Admin ID: <strong class="text-btc">BTC1001</strong> | Password: <strong class="text-btc">admin123</strong> (Or type <a href="#admin" onclick="router('admin')" class="text-btc underline">#admin</a> in URL)
+    <!-- HOME / LANDING PAGE -->
+    <section id="page-home" class="view-page space-y-8">
+        <div class="text-center py-12 space-y-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Earn Daily With <span class="text-btc">Bitcoin</span> P2P Ads</h1>
+            <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Join the ultimate decentralized ecosystem. Watch daily advertisements, build your referral network, and trade securely via P2P.</p>
+            <div class="flex justify-center space-x-4 pt-4">
+                <button onclick="router('register')" class="px-6 py-3 bg-btc text-darkBg font-bold rounded-xl shadow-lg shadow-btc/30 hover:scale-105 transition">Get Started Now</button>
+                <button onclick="router('login')" class="px-6 py-3 bg-cardBg border border-borderClr font-bold rounded-xl hover:bg-borderClr transition">Sign In</button>
+            </div>
+            <div class="pt-6 text-xs text-gray-500">
+                <p>Default Admin ID: <strong class="text-btc">BTC1001</strong> | Password: <strong class="text-btc">admin123</strong> (Or type <code class="text-btc">#admin</code> in URL)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGIN PAGE -->
+    <section id="page-login" class="view-page hidden max-w-md mx-auto bg-cardBg border border-borderClr p-8 rounded-2xl shadow-2xl">
+        <h2 class="text-2xl font-bold text-btc mb-2">Welcome Back</h2>
+        <p class="text-xs text-gray-400 mb-6">Enter your credentials to access your dashboard.</p>
+        <form onsubmit="handleLogin(event)" class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Mobile Number, Gmail, or User ID</label>
+                <input type="text" id="login-identifier" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2.5 text-sm focus:border-btc focus:outline-none" placeholder="e.g. BTC1001 or 9999999999">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Password</label>
+                <input type="password" id="login-password" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2.5 text-sm focus:border-btc focus:outline-none">
+            </div>
+            <button type="submit" class="w-full py-3 bg-btc text-darkBg font-bold rounded-lg hover:bg-btc/90 transition mt-2">Login to Account</button>
+        </form>
+        <p class="text-xs text-center text-gray-400 mt-6">Don't have an account? <span onclick="router('register')" class="text-btc cursor-pointer font-semibold">Register here</span></p>
+    </section>
+
+    <!-- REGISTER PAGE -->
+    <section id="page-register" class="view-page hidden max-w-md mx-auto bg-cardBg border border-borderClr p-8 rounded-2xl shadow-2xl">
+        <h2 class="text-2xl font-bold text-btc mb-2">Create Account</h2>
+        <p class="text-xs text-gray-400 mb-6">Register to start earning Bitcoin rewards.</p>
+        <form onsubmit="handleRegister(event)" class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Full Name</label>
+                <input type="text" id="reg-name" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Mobile Number</label>
+                <input type="tel" id="reg-phone" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Gmail Address</label>
+                <input type="email" id="reg-email" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Password</label>
+                <input type="password" id="reg-pass" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-400 mb-1">Upline Referral Code (Optional)</label>
+                <input type="text" id="reg-ref" placeholder="e.g. BTC1001" class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
+            </div>
+            <button type="submit" class="w-full py-3 bg-btc text-darkBg font-bold rounded-lg hover:bg-btc/90 transition mt-2">Register Now</button>
+        </form>
+        <p class="text-xs text-center text-gray-400 mt-6">Already registered? <span onclick="router('login')" class="text-btc cursor-pointer font-semibold">Login here</span></p>
+    </section>
+
+    <!-- USER DASHBOARD -->
+    <section id="page-dashboard" class="view-page hidden space-y-6">
+        <!-- Account Overview Bar -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+                <span class="text-xs text-gray-400">User ID & Status</span>
+                <div class="flex items-center justify-between mt-1">
+                    <span id="dash-uid" class="font-bold text-btc">--</span>
+                    <span id="dash-status" class="px-2 py-0.5 text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 rounded uppercase font-bold">Inactive Plan</span>
                 </div>
             </div>
-        </section>
-
-        <!-- LOGIN PAGE -->
-        <section id="page-login" class="view-page hidden max-w-md mx-auto bg-cardBg border border-borderClr p-8 rounded-2xl shadow-2xl">
-            <h2 class="text-2xl font-bold text-btc mb-2">Welcome Back</h2>
-            <p class="text-xs text-gray-400 mb-6">Enter your credentials to access your dashboard.</p>
-            <form onsubmit="handleLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">Mobile Number, Gmail, or User ID</label>
-                    <input type="text" id="login-identifier" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2.5 text-sm focus:border-btc focus:outline-none" placeholder="e.g. BTC1001 or 9999999999">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">Password</label>
-                    <input type="password" id="login-password" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2.5 text-sm focus:border-btc focus:outline-none">
-                </div>
-                <button type="submit" class="w-full py-3 bg-btc text-darkBg font-bold rounded-lg hover:bg-btc/90 transition mt-2">Login to Account</button>
-            </form>
-            <p class="text-xs text-center text-gray-400 mt-6">Don't have an account? <span onclick="router('register')" class="text-btc cursor-pointer font-semibold">Register here</span></p>
-        </section>
-
-        <!-- REGISTER PAGE -->
-        <section id="page-register" class="view-page hidden max-w-md mx-auto bg-cardBg border border-borderClr p-8 rounded-2xl shadow-2xl">
-            <h2 class="text-2xl font-bold text-btc mb-2">Create Account</h2>
-            <p class="text-xs text-gray-400 mb-6">Register to start earning Bitcoin rewards.</p>
-            <form onsubmit="handleRegister(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">Full Name</label>
-                    <input type="text" id="reg-name" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">Mobile Number</label>
-                    <input type="tel" id="reg-phone" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">Gmail Address</label>
-                    <input type="email" id="reg-email" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">Password</label>
-                    <input type="password" id="reg-pass" required class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-1">Upline Referral Code (Optional)</label>
-                    <input type="text" id="reg-ref" placeholder="e.g. BTC1001" class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm focus:border-btc focus:outline-none">
-                </div>
-                <button type="submit" class="w-full py-3 bg-btc text-darkBg font-bold rounded-lg hover:bg-btc/90 transition mt-2">Register Now</button>
-            </form>
-            <p class="text-xs text-center text-gray-400 mt-6">Already registered? <span onclick="router('login')" class="text-btc cursor-pointer font-semibold">Login here</span></p>
-        </section>
-
-        <!-- USER DASHBOARD -->
-        <section id="page-dashboard" class="view-page hidden space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-                    <span class="text-xs text-gray-400">User ID & Status</span>
-                    <div class="flex items-center justify-between mt-1">
-                        <span id="dash-uid" class="font-bold text-btc">--</span>
-                        <span id="dash-status" class="px-2 py-0.5 text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 rounded uppercase font-bold">Inactive Plan</span>
-                    </div>
-                </div>
-                <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-                    <span class="text-xs text-gray-400">Main Balance</span>
-                    <h3 id="dash-balance" class="text-xl font-bold text-white mt-1">₹0.00</h3>
-                </div>
-                <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-                    <span class="text-xs text-gray-400">Referral Link</span>
-                    <div class="flex items-center mt-1 space-x-2">
-                        <input type="text" id="dash-ref-link" readonly class="w-full bg-darkBg border border-borderClr rounded px-2 py-1 text-xs text-gray-300" />
-                        <button onclick="copyRefLink()" class="bg-btc text-darkBg px-2 py-1 rounded text-xs font-bold"><i class="fa-solid fa-copy"></i></button>
-                    </div>
-                </div>
-                <div class="bg-cardBg border border-borderClr p-4 rounded-xl flex flex-col justify-center space-y-2">
-                    <button onclick="openModal('deposit-modal')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition"><i class="fa-solid fa-wallet mr-1"></i> Add Money (Min ₹100)</button>
-                    <button onclick="openModal('p2p-modal')" class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-lg transition"><i class="fa-solid fa-right-left mr-1"></i> P2P Transfer</button>
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+                <span class="text-xs text-gray-400">Main Balance</span>
+                <h3 id="dash-balance" class="text-xl font-bold text-white mt-1">₹0.00</h3>
+            </div>
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+                <span class="text-xs text-gray-400">Referral Link</span>
+                <div class="flex items-center mt-1 space-x-2">
+                    <input type="text" id="dash-ref-link" readonly class="w-full bg-darkBg border border-borderClr rounded px-2 py-1 text-xs text-gray-300" />
+                    <button onclick="copyRefLink()" class="bg-btc text-darkBg px-2 py-1 rounded text-xs font-bold"><i class="fa-solid fa-copy"></i></button>
                 </div>
             </div>
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl flex flex-col justify-center space-y-2">
+                <button onclick="openModal('deposit-modal')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition"><i class="fa-solid fa-wallet mr-1"></i> Add Money (Min ₹100)</button>
+                <button onclick="openModal('p2p-modal')" class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-lg transition"><i class="fa-solid fa-right-left mr-1"></i> P2P Transfer</button>
+            </div>
+        </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl relative overflow-hidden">
-                        <h3 class="text-lg font-bold text-btc mb-2">Exclusive Bitcoin Ad-Mining Plan</h3>
-                        <p class="text-xs text-gray-400 mb-4">Price: <span class="text-white font-bold">₹250</span> | Duration: <span class="text-white font-bold">7 Days</span> | Daily Return: <span class="text-white font-bold">₹50 / day</span></p>
-                        <div id="plan-action-container">
-                            <button onclick="activatePlan()" class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">Activate Plan (₹250)</button>
-                        </div>
+        <!-- Tabs/Sections within Dashboard -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Left Column: Plans & Ads -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Active Investment Plan Box -->
+                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-5 text-btc text-9xl">
+                        <i class="fa-brands fa-bitcoin"></i>
                     </div>
-
-                    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-2">Daily Task (Watch 1 Ad)</h3>
-                        <p class="text-xs text-gray-400 mb-4">Watch the assigned advertisement for 1 minute and submit to claim your daily ₹50 reward.</p>
-                        <div id="ad-box" class="bg-darkBg border border-borderClr p-4 rounded-xl text-center space-y-3">
-                            <div id="ad-status-text" class="text-sm font-semibold text-yellow-500">Status: Task Available</div>
-                            <button id="watch-ad-btn" onclick="startAdTask()" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition">Watch 1 Min Ad</button>
-                            <div id="ad-timer" class="hidden text-xl font-mono text-btc font-bold">01:00</div>
-                        </div>
+                    <h3 class="text-lg font-bold text-btc mb-2">Exclusive Ad-Mining Plan</h3>
+                    <p class="text-xs text-gray-400 mb-4">Price: <span class="text-white font-bold">₹250</span> | Duration: <span class="text-white font-bold">7 Days</span> | Daily Return: <span class="text-white font-bold">₹50 / day</span></p>
+                    
+                    <div id="plan-action-container">
+                        <button onclick="activatePlan()" class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">Activate Plan (₹250)</button>
                     </div>
                 </div>
 
-                <div class="space-y-6">
-                    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
-                        <h3 class="text-sm font-bold text-gray-300 mb-3 flex items-center justify-between">
-                            <span>My Referral Downline</span>
-                            <span id="downline-count" class="text-btc text-xs">0 Users</span>
-                        </h3>
-                        <div id="downline-list" class="space-y-2 max-h-60 overflow-y-auto text-xs">
-                            <p class="text-gray-500 text-center py-4">No referrals found under your code.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
-                        <h3 class="text-sm font-bold text-gray-300 mb-3">Withdrawal Settings & Request</h3>
-                        <div id="withdrawal-setup-box" class="space-y-3">
-                            <p class="text-[11px] text-yellow-500">Note: UPI / QR Details can only be set once! Future changes require admin approval.</p>
-                            <input type="text" id="withdraw-upi" placeholder="Enter UPI ID / Address" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
-                            <input type="file" id="withdraw-qr" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-btc file:text-darkBg">
-                            <button onclick="saveWithdrawalInfo()" class="w-full py-2 bg-btc text-darkBg text-xs font-bold rounded-lg">Save & Request Withdrawal</button>
-                        </div>
-                        <div id="withdrawal-request-box" class="hidden space-y-3 mt-4 pt-4 border-t border-borderClr">
-                            <div class="flex justify-between text-xs text-gray-400">
-                                <span>Saved UPI: <strong id="lbl-upi" class="text-white"></strong></span>
-                            </div>
-                            <input type="number" id="withdraw-amt" placeholder="Enter Amount to Withdraw" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
-                            <button onclick="submitWithdrawal()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg">Submit Withdrawal Request</button>
-                        </div>
-                    </div>
-
-                    <!-- Support Ticket Widget -->
-                    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
-                        <h3 class="text-sm font-bold text-btc mb-3"><i class="fa-solid fa-headset mr-1"></i> Customer Support</h3>
-                        <div class="space-y-3 text-xs">
-                            <textarea id="support-msg" placeholder="Describe your problem or issue here..." class="w-full bg-darkBg border border-borderClr rounded p-2 text-xs h-20"></textarea>
-                            <div>
-                                <label class="text-[10px] text-gray-400 block mb-1">Upload Screenshot Proof</label>
-                                <input type="file" id="support-file" class="w-full text-xs text-gray-400">
-                            </div>
-                            <button onclick="sendSupportTicket()" class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg">Submit Ticket to Telegram</button>
-                        </div>
+                <!-- Daily Ad Watch Section -->
+                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-white mb-2">Daily Task (Watch 1 Ad)</h3>
+                    <p class="text-xs text-gray-400 mb-4">Watch the assigned advertisement for 1 minute and submit to claim your daily ₹50 reward.</p>
+                    <div id="ad-box" class="bg-darkBg border border-borderClr p-4 rounded-xl text-center space-y-3">
+                        <div id="ad-status-text" class="text-sm font-semibold text-yellow-500">Status: Task Available</div>
+                        <button id="watch-ad-btn" onclick="startAdTask()" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition">Watch 1 Min Ad</button>
+                        <div id="ad-timer" class="hidden text-xl font-mono text-btc font-bold">01:00</div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- ADMIN PANEL SECTION -->
-        <section id="page-admin" class="view-page hidden space-y-6">
-            <div class="flex justify-between items-center bg-cardBg border border-borderClr p-4 rounded-xl">
-                <div>
-                    <h2 class="text-xl font-bold text-btc"><i class="fa-solid fa-shield-halved mr-2"></i>Admin Control Panel</h2>
-                    <p class="text-xs text-gray-400">Manage users, approve/reject deposits & withdrawals globally.</p>
-                </div>
-                <button onclick="router('home')" class="px-4 py-2 bg-red-600/20 text-red-400 text-xs font-bold rounded-lg border border-red-500/30">Exit Admin</button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-                    <span class="text-xs text-gray-400">Total System Users</span>
-                    <h3 id="admin-total-users" class="text-2xl font-bold text-white mt-1">0</h3>
-                </div>
-                <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-                    <span class="text-xs text-gray-400">Pending Deposits</span>
-                    <h3 id="admin-pending-deps" class="text-2xl font-bold text-yellow-500 mt-1">0</h3>
-                </div>
-                <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-                    <span class="text-xs text-gray-400">Pending Withdrawals</span>
-                    <h3 id="admin-pending-wds" class="text-2xl font-bold text-btc mt-1">0</h3>
-                </div>
-            </div>
-
+            <!-- Right Column: Downline List & Support & Withdrawal -->
             <div class="space-y-6">
-                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl overflow-x-auto">
-                    <h3 class="text-sm font-bold text-white mb-4">All Registered Users & Controls</h3>
-                    <table class="w-full text-left text-xs text-gray-300">
-                        <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
-                            <tr>
-                                <th class="p-3">UID</th>
-                                <th class="p-3">Name / Gmail</th>
-                                <th class="p-3">Balance</th>
-                                <th class="p-3">Upline</th>
-                                <th class="p-3">Status</th>
-                                <th class="p-3">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-users-tbody"></tbody>
-                    </table>
+                <!-- Downline Members List -->
+                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
+                    <h3 class="text-sm font-bold text-gray-300 mb-3 flex items-center justify-between">
+                        <span>My Referral Downline</span>
+                        <span id="downline-count" class="text-btc text-xs">0 Users</span>
+                    </h3>
+                    <div id="downline-list" class="space-y-2 max-h-60 overflow-y-auto text-xs">
+                        <p class="text-gray-500 text-center py-4">No referrals found under your code.</p>
+                    </div>
                 </div>
 
-                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl overflow-x-auto">
-                    <h3 class="text-sm font-bold text-white mb-4">Deposit Verification Requests (UTR / Screenshot)</h3>
-                    <table class="w-full text-left text-xs text-gray-300">
-                        <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
-                            <tr>
-                                <th class="p-3">UID</th>
-                                <th class="p-3">Amount</th>
-                                <th class="p-3">UTR ID</th>
-                                <th class="p-3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-deposits-tbody"></tbody>
-                    </table>
+                <!-- Support Ticket Option -->
+                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
+                    <h3 class="text-sm font-bold text-gray-300 mb-3"><i class="fa-solid fa-headset mr-1 text-btc"></i> Help & Support</h3>
+                    <p class="text-[11px] text-gray-400 mb-3">Facing any problem with deposits, withdrawals or activation? Raise a support ticket.</p>
+                    <button onclick="openModal('support-modal')" class="w-full py-2 bg-borderClr hover:bg-gray-700 text-white text-xs font-bold rounded-lg transition">Create Support Ticket</button>
                 </div>
 
-                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl overflow-x-auto">
-                    <h3 class="text-sm font-bold text-white mb-4">Withdrawal Requests</h3>
-                    <table class="w-full text-left text-xs text-gray-300">
-                        <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
-                            <tr>
-                                <th class="p-3">UID</th>
-                                <th class="p-3">Amount</th>
-                                <th class="p-3">Destination UPI</th>
-                                <th class="p-3">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-withdrawals-tbody"></tbody>
-                    </table>
+                <!-- Withdrawal Config & Request -->
+                <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
+                    <h3 class="text-sm font-bold text-gray-300 mb-3">Withdrawal Settings & Request</h3>
+                    <div id="withdrawal-setup-box" class="space-y-3">
+                        <p class="text-[11px] text-yellow-500">Note: UPI / QR Details can only be set once! Future changes require admin approval.</p>
+                        <input type="text" id="withdraw-upi" placeholder="Enter UPI ID (e.g. user@okhdfc)" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+                        <input type="text" id="withdraw-addr" placeholder="Enter Crypto/Wallet Address" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+                        <input type="file" id="withdraw-qr" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-btc file:text-darkBg hover:file:bg-btc/80">
+                        <button onclick="saveWithdrawalInfo()" class="w-full py-2 bg-btc text-darkBg text-xs font-bold rounded-lg">Save & Request Withdrawal</button>
+                    </div>
+                    <div id="withdrawal-request-box" class="hidden space-y-3 mt-4 pt-4 border-t border-borderClr">
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>Saved UPI: <strong id="lbl-upi" class="text-white"></strong></span>
+                        </div>
+                        <input type="number" id="withdraw-amt" placeholder="Enter Amount to Withdraw" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+                        <button onclick="submitWithdrawal()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg">Submit Withdrawal Request</button>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- MODALS -->
-    <div id="deposit-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
-        <div class="bg-cardBg border border-borderClr p-6 rounded-2xl max-w-sm w-full space-y-4">
-            <h3 class="text-lg font-bold text-btc">Add Funds (Min ₹100)</h3>
-            <p class="text-xs text-gray-400">Pay via Google Pay / Paytm / UPI to admin ID below:</p>
-            <div class="bg-darkBg p-3 rounded-lg border border-borderClr text-center">
-                <span class="text-xs text-gray-400 block">Admin UPI ID</span>
-                <span class="text-sm font-bold text-white select-all">laxmihi@ptyes</span>
-            </div>
-            <div class="flex space-x-2">
-                <a href="upi://pay?pa=laxmihi@ptyes&pn=BitCap&am=100&cu=INR" class="flex-1 py-2 text-center bg-blue-600 text-white rounded-lg text-xs font-bold">Pay via GPay/Paytm</a>
-            </div>
-            <div class="space-y-2 pt-2">
-                <input type="number" id="dep-amount" min="100" placeholder="Enter Paid Amount (Min 100)" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
-                <input type="text" id="dep-utr" placeholder="Enter 12-digit UTR / Transaction ID" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
-                <input type="file" id="dep-screenshot" class="w-full text-xs text-gray-400">
-            </div>
-            <div id="deposit-timer-box" class="hidden text-center text-yellow-500 font-mono font-bold text-sm">
-                Verification in Progress: <span id="dep-countdown">10:00</span> mins left
-            </div>
-            <div class="flex space-x-2 pt-2">
-                <button id="submit-dep-btn" onclick="submitDeposit()" class="flex-1 py-2 bg-btc text-darkBg text-xs font-bold rounded-lg">Submit UTR</button>
-                <button onclick="closeModal('deposit-modal')" class="px-4 py-2 bg-borderClr text-gray-300 text-xs rounded-lg">Cancel</button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="p2p-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
-        <div class="bg-cardBg border border-borderClr p-6 rounded-2xl max-w-sm w-full space-y-4">
-            <h3 class="text-lg font-bold text-btc">P2P Balance Transfer</h3>
-            <p class="text-xs text-gray-400">Transfer funds instantly to another member ID.</p>
-            <div class="space-y-2">
-                <input type="text" id="p2p-recipient" placeholder="Recipient User ID (e.g. BTC1002)" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
-                <input type="number" id="p2p-amount" placeholder="Transfer Amount (₹)" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+    <!-- ADMIN PANEL SECTION -->
+    <section id="page-admin" class="view-page hidden space-y-6">
+        <div class="flex justify-between items-center bg-cardBg border border-borderClr p-4 rounded-xl">
+            <div>
+                <h2 class="text-xl font-bold text-btc"><i class="fa-solid fa-shield-halved mr-2"></i>Admin Control Panel</h2>
+                <p class="text-xs text-gray-400">Manage users, approve/reject deposits, support tickets & withdrawals globally.</p>
             </div>
-            <div class="flex space-x-2 pt-2">
-                <button onclick="executeP2PTransfer()" class="flex-1 py-2 bg-btc text-darkBg text-xs font-bold rounded-lg">Send Transfer</button>
-                <button onclick="closeModal('p2p-modal')" class="px-4 py-2 bg-borderClr text-gray-300 text-xs rounded-lg">Cancel</button>
+            <button onclick="router('home')" class="px-4 py-2 bg-red-600/20 text-red-400 text-xs font-bold rounded-lg border border-red-500/30">Exit Admin</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+                <span class="text-xs text-gray-400">Total System Users</span>
+                <h3 id="admin-total-users" class="text-2xl font-bold text-white mt-1">0</h3>
+            </div>
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+                <span class="text-xs text-gray-400">Pending Deposits</span>
+                <h3 id="admin-pending-deps" class="text-2xl font-bold text-yellow-500 mt-1">0</h3>
+            </div>
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+                <span class="text-xs text-gray-400">Pending Withdrawals</span>
+                <h3 id="admin-pending-wds" class="text-2xl font-bold text-btc mt-1">0</h3>
+            </div>
+            <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+                <span class="text-xs text-gray-400">Support Tickets</span>
+                <h3 id="admin-pending-tickets" class="text-2xl font-bold text-blue-400 mt-1">0</h3>
             </div>
         </div>
+
+        <!-- Admin Management Tables Data -->
+        <div class="space-y-6">
+            <!-- Users Control Table -->
+            <div class="bg-cardBg border border-borderClr p-6 rounded-2xl overflow-x-auto">
+                <h3 class="text-sm font-bold text-white mb-4">All Registered Users & Controls</h3>
+                <table class="w-full text-left text-xs text-gray-300">
+                    <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
+                        <tr>
+                            <th class="p-3">UID</th>
+                            <th class="p-3">Name / Gmail</th>
+                            <th class="p-3">Balance</th>
+                            <th class="p-3">Upline</th>
+                            <th class="p-3">Status</th>
+                            <th class="p-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-users-tbody">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Support Tickets Table -->
+            <div class="bg-cardBg border border-borderClr p-6 rounded-2xl overflow-x-auto">
+                <h3 class="text-sm font-bold text-white mb-4">Support Tickets & Problems</h3>
+                <table class="w-full text-left text-xs text-gray-300">
+                    <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
+                        <tr>
+                            <th class="p-3">Ticket ID</th>
+                            <th class="p-3">UID</th>
+                            <th class="p-3">Message</th>
+                            <th class="p-3">Screenshot</th>
+                            <th class="p-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-tickets-tbody">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Deposits Verification Table -->
+            <div class="bg-cardBg border border-borderClr p-6 rounded-2xl overflow-x-auto">
+                <h3 class="text-sm font-bold text-white mb-4">Deposit Verification Requests (UTR / Screenshot)</h3>
+                <table class="w-full text-left text-xs text-gray-300">
+                    <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
+                        <tr>
+                            <th class="p-3">UID</th>
+                            <th class="p-3">Amount</th>
+                            <th class="p-3">UTR ID</th>
+                            <th class="p-3">Proof</th>
+                            <th class="p-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-deposits-tbody">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Withdrawals Verification Table -->
+            <div class="bg-cardBg border border-borderClr p-6 rounded-2xl overflow-x-auto">
+                <h3 class="text-sm font-bold text-white mb-4">Withdrawal Requests</h3>
+                <table class="w-full text-left text-xs text-gray-300">
+                    <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
+                        <tr>
+                            <th class="p-3">UID</th>
+                            <th class="p-3">Amount</th>
+                            <th class="p-3">Destination UPI/QR</th>
+                            <th class="p-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-withdrawals-tbody">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- MODALS -->
+<!-- Add Money / Deposit Modal -->
+<div id="deposit-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
+    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl max-w-sm w-full space-y-4">
+        <h3 class="text-lg font-bold text-btc">Add Funds (Min ₹100)</h3>
+        <p class="text-xs text-gray-400">Pay via Google Pay / Paytm / UPI to admin ID below:</p>
+        <div class="bg-darkBg p-3 rounded-lg border border-borderClr text-center">
+            <span class="text-xs text-gray-400 block">Admin UPI ID</span>
+            <span class="text-sm font-bold text-white select-all">laxmihi@ptyes</span>
+        </div>
+        <div class="flex space-x-2">
+            <a href="upi://pay?pa=laxmihi@ptyes&pn=BitCap&am=100&cu=INR" class="flex-1 py-2 text-center bg-blue-600 text-white rounded-lg text-xs font-bold">Pay via GPay/Paytm</a>
+        </div>
+        <div class="space-y-2 pt-2">
+            <input type="number" id="dep-amount" min="100" placeholder="Enter Paid Amount (Min 100)" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+            <input type="text" id="dep-utr" placeholder="Enter UTR / Transaction ID" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+            <div>
+                <label class="text-[10px] text-gray-400 block mb-1">Upload Payment Screenshot</label>
+                <input type="file" id="dep-screenshot" accept="image/*" class="w-full text-xs text-gray-400">
+            </div>
+        </div>
+        <!-- 10 Minutes Verification Timer Notice -->
+        <div id="dep-timer-box" class="hidden bg-yellow-500/10 border border-yellow-500/30 p-3 rounded-lg text-center space-y-1">
+            <span class="text-[11px] text-yellow-400 font-semibold block"><i class="fa-solid fa-clock mr-1"></i> Verification Pending (10 Mins)</span>
+            <div id="dep-countdown" class="text-lg font-mono text-btc font-bold">10:00</div>
+        </div>
+        <div id="dep-btn-container" class="flex space-x-2 pt-2">
+            <button onclick="submitDeposit()" class="flex-1 py-2 bg-btc text-darkBg text-xs font-bold rounded-lg">Submit UTR</button>
+            <button onclick="closeModal('deposit-modal')" class="px-4 py-2 bg-borderClr text-gray-300 text-xs rounded-lg">Cancel</button>
+        </div>
     </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="bg-cardBg border-t border-borderClr py-4 mt-12 text-center text-xs text-gray-400">
-        <p>&copy; 2026 BitCap Platform. All Rights Reserved. Telegram Bot Support ID: <span class="text-btc">7742143795</span></p>
-    </footer>
+<!-- Support Ticket Modal -->
+<div id="support-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
+    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl max-w-sm w-full space-y-4">
+        <h3 class="text-lg font-bold text-btc">Raise Support Ticket</h3>
+        <p class="text-xs text-gray-400">Describe your problem. Screenshots will be sent directly to admin Telegram.</p>
+        <div class="space-y-2">
+            <textarea id="support-msg" rows="3" placeholder="Describe your problem here..." class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-btc"></textarea>
+            <div>
+                <label class="text-[10px] text-gray-400 block mb-1">Upload Problem Screenshot</label>
+                <input type="file" id="support-screenshot" accept="image/*" class="w-full text-xs text-gray-400">
+            </div>
+        </div>
+        <div class="flex space-x-2 pt-2">
+            <button onclick="submitSupportTicket()" class="flex-1 py-2 bg-btc text-darkBg text-xs font-bold rounded-lg">Send Ticket</button>
+            <button onclick="closeModal('support-modal')" class="px-4 py-2 bg-borderClr text-gray-300 text-xs rounded-lg">Cancel</button>
+        </div>
+    </div>
+</div>
 
-    <!-- App Script -->
-    <script>
-        const TG_BOT_TOKEN = '8947143631:AAG-HUtTtWgPmAtlqwE09LuWdnk8ecnlEAE';
-        const TG_CHAT_ID = '7742143795';
+<!-- P2P Transfer Modal -->
+<div id="p2p-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
+    <div class="bg-cardBg border border-borderClr p-6 rounded-2xl max-w-sm w-full space-y-4">
+        <h3 class="text-lg font-bold text-btc">P2P Balance Transfer</h3>
+        <p class="text-xs text-gray-400">Transfer funds instantly to another member ID.</p>
+        <div class="space-y-2">
+            <input type="text" id="p2p-recipient" placeholder="Recipient User ID (e.g. BTC1002)" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+            <input type="number" id="p2p-amount" placeholder="Transfer Amount (₹)" class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+        </div>
+        <div class="flex space-x-2 pt-2">
+            <button onclick="executeP2PTransfer()" class="flex-1 py-2 bg-btc text-darkBg text-xs font-bold rounded-lg">Send Transfer</button>
+            <button onclick="closeModal('p2p-modal')" class="px-4 py-2 bg-borderClr text-gray-300 text-xs rounded-lg">Cancel</button>
+        </div>
+    </div>
+</div>
 
-        let db = JSON.parse(localStorage.getItem('bitcap_db')) || {
-            users: [
-                { uid: 'BTC1001', name: 'Admin Boss', phone: '9999999999', email: 'admin@bitcap.com', pass: 'admin123', balance: 5000, upline: '', status: 'Active', planActive: true, upi: '', addr: '', qr: '' }
-            ],
-            deposits: [],
-            withdrawals: [],
-            currentUser: null
-        };
+<!-- Footer -->
+<footer class="bg-cardBg border-t border-borderClr py-4 mt-12 text-center text-xs text-gray-400">
+    <p>&copy; 2026 BitCap Platform. All Rights Reserved. Telegram Bot Support ID: <span class="text-btc">7742143795</span></p>
+</footer>
 
-        function saveDB() {
-            localStorage.setItem('bitcap_db', JSON.stringify(db));
+<!-- Frontend Core Application Script -->
+<script>
+    const TG_TOKEN = "8947143631:AAG-HUtTtWgPmAtlqwE09LuWdnk8ecnlEAE";
+    const ADMIN_TG_CHAT_ID = "7742143795";
+    const ADMIN_UPI = "laxmihi@ptyes";
+
+    // Database State Simulator (LocalStorage Persistent)
+    let db = JSON.parse(localStorage.getItem('bitcap_db')) || {
+        users: [
+            { uid: 'BTC1001', name: 'Admin Boss', phone: '9999999999', email: 'admin@bitcap.com', pass: 'admin123', balance: 5000, upline: '', status: 'Active', planActive: true, upi: '', addr: '', qr: '' }
+        ],
+        deposits: [],
+        withdrawals: [],
+        tickets: [],
+        currentUser: null
+    };
+
+    function saveDB() {
+        localStorage.setItem('bitcap_db', JSON.stringify(db));
+    }
+
+    // Router View Controller
+    function router(pageId) {
+        if(window.location.hash === '#admin' || pageId === 'admin') {
+            pageId = 'admin';
+            loadAdminPanel();
         }
 
-        function router(pageId) {
-            if(window.location.hash === '#admin' || pageId === 'admin') {
-                pageId = 'admin';
-                loadAdminPanel();
-            }
+        document.querySelectorAll('.view-page').forEach(el => el.classList.add('hidden'));
+        const target = document.getElementById(`page-${pageId}`);
+        if(target) target.classList.remove('hidden');
 
-            document.querySelectorAll('.view-page').forEach(el => el.classList.add('hidden'));
-            const target = document.getElementById(`page-${pageId}`);
-            if(target) target.classList.remove('hidden');
-
-            if(db.currentUser) {
-                document.getElementById('nav-auth-buttons').classList.add('hidden');
-                document.getElementById('nav-user-info').classList.remove('hidden');
-                document.getElementById('nav-username').innerText = `${db.currentUser.name} (${db.currentUser.uid})`;
-                if(pageId === 'dashboard') loadDashboardData();
-            } else {
-                document.getElementById('nav-auth-buttons').classList.remove('hidden');
-                document.getElementById('nav-user-info').classList.add('hidden');
-            }
-            window.scrollTo(0,0);
+        if(db.currentUser) {
+            document.getElementById('nav-auth-buttons').classList.add('hidden');
+            document.getElementById('nav-user-info').classList.remove('hidden');
+            document.getElementById('nav-username').innerText = `${db.currentUser.name} (${db.currentUser.uid})`;
+            if(pageId === 'dashboard') loadDashboardData();
+        } else {
+            document.getElementById('nav-auth-buttons').classList.remove('hidden');
+            document.getElementById('nav-user-info').classList.add('hidden');
         }
+        window.scrollTo(0,0);
+    }
 
-        window.addEventListener('load', () => {
-            if(window.location.hash === '#admin') {
-                router('admin');
-            } else if(db.currentUser) {
-                router('dashboard');
-            } else {
-                router('home');
+    window.addEventListener('load', () => {
+        // Auto-detect referral code in URL hash (e.g. #ref=BTC1001)
+        const hash = window.location.hash;
+        if(hash.includes('ref=')) {
+            const refCode = hash.split('ref=')[1];
+            if(refCode) {
+                localStorage.setItem('bitcap_temp_ref', refCode);
+                router('register');
             }
-        });
-
-        function handleRegister(e) {
-            e.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            const phone = document.getElementById('reg-phone').value;
-            const email = document.getElementById('reg-email').value;
-            const pass = document.getElementById('reg-pass').value;
-            const ref = document.getElementById('reg-ref').value.trim();
-
-            if(db.users.some(u => u.phone === phone || u.email === email)) {
-                alert('User with this mobile number or email already exists!');
-                return;
-            }
-
-            if(ref && !db.users.some(u => u.uid === ref)) {
-                alert('Invalid Upline Referral Code!');
-                return;
-            }
-
-            const newUid = 'BTC' + Math.floor(1000 + Math.random() * 9000);
-            const newUser = {
-                uid: newUid,
-                name,
-                phone,
-                email,
-                pass,
-                balance: 0,
-                upline: ref || '',
-                status: 'Active',
-                planActive: false,
-                upi: '',
-                addr: '',
-                qr: ''
-            };
-
-            db.users.push(newUser);
-            saveDB();
-            alert(`Registration Successful! Your Member ID is: ${newUid}`);
-            router('login');
         }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const identifier = document.getElementById('login-identifier').value.trim();
-            const pass = document.getElementById('login-password').value;
-
-            const user = db.users.find(u => (u.phone === identifier || u.email === identifier || u.uid === identifier) && u.pass === pass);
-            
-            if(!user) {
-                alert('Invalid login credentials or user not found.');
-                return;
+        
+        // Auto-fill referral field if present
+        setTimeout(() => {
+            const savedRef = localStorage.getItem('bitcap_temp_ref');
+            if(savedRef && document.getElementById('reg-ref')) {
+                document.getElementById('reg-ref').value = savedRef;
             }
-            if(user.status === 'Paused') {
-                alert('Your account has been paused by the admin.');
-                return;
-            }
+        }, 100);
 
-            db.currentUser = user;
-            saveDB();
+        if(hash === '#admin') {
+            router('admin');
+        } else if(db.currentUser) {
             router('dashboard');
-        }
-
-        function logout() {
-            db.currentUser = null;
-            saveDB();
+        } else {
             router('home');
         }
+    });
 
-        function loadDashboardData() {
-            const user = db.users.find(u => u.uid === db.currentUser.uid);
-            db.currentUser = user;
+    // Authentication Handlers
+    function handleRegister(e) {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value;
+        const phone = document.getElementById('reg-phone').value;
+        const email = document.getElementById('reg-email').value;
+        const pass = document.getElementById('reg-pass').value;
+        const ref = document.getElementById('reg-ref').value.trim();
 
-            document.getElementById('dash-uid').innerText = user.uid;
-            document.getElementById('dash-balance').innerText = `₹${user.balance.toFixed(2)}`;
-            document.getElementById('dash-ref-link').value = `${window.location.origin}${window.location.pathname}#ref=${user.uid}`;
+        if(db.users.some(u => u.phone === phone || u.email === email)) {
+            alert('User with this mobile number or email already exists!');
+            return;
+        }
 
-            const statusEl = document.getElementById('dash-status');
-            const actionContainer = document.getElementById('plan-action-container');
-
-            if(user.planActive) {
-                statusEl.className = 'px-2 py-0.5 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded uppercase font-bold';
-                statusEl.innerText = 'Active Plan';
-                actionContainer.innerHTML = `<span class="text-xs text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Plan Active (₹50 Daily Earning Enabled)</span>`;
+        // Fixed Referral Validation: If referral code exists in system, assign it. Otherwise ignore/leave blank without blocking registration.
+        let validUpline = '';
+        if(ref) {
+            const uplineExists = db.users.some(u => u.uid === ref);
+            if(uplineExists) {
+                validUpline = ref;
             } else {
-                statusEl.className = 'px-2 py-0.5 text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 rounded uppercase font-bold';
-                statusEl.innerText = 'Inactive Plan';
-                actionContainer.innerHTML = `<button onclick="activatePlan()" class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">Activate Plan (₹250)</button>`;
+                // Ignore invalid upline code smoothly instead of throwing error blocking sign up
+                validUpline = '';
             }
+        }
 
-            const downlineUsers = db.users.filter(u => u.upline === user.uid);
-            document.getElementById('downline-count').innerText = `${downlineUsers.length} Users`;
-            const listEl = document.getElementById('downline-list');
-            if(downlineUsers.length > 0) {
-                listEl.innerHTML = downlineUsers.map(d => `
-                    <div class="flex justify-between items-center bg-darkBg p-2.5 rounded border border-borderClr">
-                        <div>
-                            <span class="font-bold text-btc">${d.name}</span>
-                            <span class="block text-[10px] text-gray-400">ID: ${d.uid} | Ph: ${d.phone}</span>
-                        </div>
-                        <span class="text-[10px] text-gray-400">${d.planActive ? 'Active' : 'Inactive'}</span>
+        const newUid = 'BTC' + Math.floor(1000 + Math.random() * 9000);
+        const newUser = {
+            uid: newUid,
+            name,
+            phone,
+            email,
+            pass,
+            balance: 0,
+            upline: validUpline,
+            status: 'Active',
+            planActive: false,
+            upi: '',
+            addr: '',
+            qr: ''
+        };
+
+        db.users.push(newUser);
+        saveDB();
+        localStorage.removeItem('bitcap_temp_ref');
+        alert(`Registration Successful! Your Member ID is: ${newUid}`);
+        router('login');
+    }
+
+    function handleLogin(e) {
+        e.preventDefault();
+        const identifier = document.getElementById('login-identifier').value.trim();
+        const pass = document.getElementById('login-password').value;
+
+        const user = db.users.find(u => (u.phone === identifier || u.email === identifier || u.uid === identifier) && u.pass === pass);
+        
+        if(!user) {
+            alert('Invalid login credentials or user not found.');
+            return;
+        }
+        if(user.status === 'Paused') {
+            alert('Your account has been paused by the admin.');
+            return;
+        }
+
+        db.currentUser = user;
+        saveDB();
+        router('dashboard');
+    }
+
+    function logout() {
+        db.currentUser = null;
+        saveDB();
+        router('home');
+    }
+
+    // Dashboard Data and Actions
+    function loadDashboardData() {
+        const user = db.users.find(u => u.uid === db.currentUser.uid);
+        db.currentUser = user;
+
+        document.getElementById('dash-uid').innerText = user.uid;
+        document.getElementById('dash-balance').innerText = `₹${user.balance.toFixed(2)}`;
+        document.getElementById('dash-ref-link').value = `${window.location.origin}${window.location.pathname}#ref=${user.uid}`;
+
+        const statusEl = document.getElementById('dash-status');
+        const actionContainer = document.getElementById('plan-action-container');
+
+        if(user.planActive) {
+            statusEl.className = 'px-2 py-0.5 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded uppercase font-bold';
+            statusEl.innerText = 'Active Plan';
+            actionContainer.innerHTML = `<span class="text-xs text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Plan Active (₹50 Daily Earning Enabled)</span>`;
+        } else {
+            statusEl.className = 'px-2 py-0.5 text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 rounded uppercase font-bold';
+            statusEl.innerText = 'Inactive Plan';
+            actionContainer.innerHTML = `<button onclick="activatePlan()" class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">Activate Plan (₹250)</button>`;
+        }
+
+        const downlineUsers = db.users.filter(u => u.upline === user.uid);
+        document.getElementById('downline-count').innerText = `${downlineUsers.length} Users`;
+        const listEl = document.getElementById('downline-list');
+        if(downlineUsers.length > 0) {
+            listEl.innerHTML = downlineUsers.map(d => `
+                <div class="flex justify-between items-center bg-darkBg p-2.5 rounded border border-borderClr">
+                    <div>
+                        <span class="font-bold text-btc">${d.name}</span>
+                        <span class="block text-[10px] text-gray-400">ID: ${d.uid} | Ph: ${d.phone}</span>
                     </div>
-                `).join('');
-            } else {
-                listEl.innerHTML = `<p class="text-gray-500 text-center py-4">No referrals found under your code.</p>`;
-            }
-
-            if(user.upi) {
-                document.getElementById('withdrawal-setup-box').classList.add('hidden');
-                document.getElementById('withdrawal-request-box').classList.remove('hidden');
-                document.getElementById('lbl-upi').innerText = user.upi;
-            }
+                    <span class="text-[10px] text-gray-400">${d.planActive ? 'Active' : 'Inactive'}</span>
+                </div>
+            `).join('');
+        } else {
+            listEl.innerHTML = `<p class="text-gray-500 text-center py-4">No referrals found under your code.</p>`;
         }
 
-        function activatePlan() {
-            const user = db.currentUser;
-            if(user.balance < 250) {
-                alert('Insufficient balance! Please add at least ₹250 to activate this plan.');
-                openModal('deposit-modal');
-                return;
+        if(user.upi) {
+            document.getElementById('withdrawal-setup-box').classList.add('hidden');
+            document.getElementById('withdrawal-request-box').classList.remove('hidden');
+            document.getElementById('lbl-upi').innerText = user.upi;
+        }
+    }
+
+    function activatePlan() {
+        const user = db.currentUser;
+        if(user.balance < 250) {
+            alert('Insufficient balance! Please add at least ₹250 to activate this plan.');
+            openModal('deposit-modal');
+            return;
+        }
+        user.balance -= 250;
+        user.planActive = true;
+        saveDB();
+        loadDashboardData();
+        alert('Plan activated successfully!');
+    }
+
+    // Ad Task Timer
+    function startAdTask() {
+        const user = db.currentUser;
+        if(!user.planActive) {
+            alert('Please activate your plan first!');
+            return;
+        }
+        document.getElementById('watch-ad-btn').classList.add('hidden');
+        const timerEl = document.getElementById('ad-timer');
+        timerEl.classList.remove('hidden');
+        let timeLeft = 60;
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            let mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+            let secs = String(timeLeft % 60).padStart(2, '0');
+            timerEl.innerText = `${mins}:${secs}`;
+
+            if(timeLeft <= 0) {
+                clearInterval(countdown);
+                timerEl.classList.add('hidden');
+                document.getElementById('watch-ad-btn').classList.remove('hidden');
+                user.balance += 50;
+                saveDB();
+                loadDashboardData();
+                alert('Task completed! ₹50 added to your balance.');
             }
-            user.balance -= 250;
-            user.planActive = true;
-            saveDB();
-            loadDashboardData();
-            alert('Plan activated successfully!');
+        }, 1000);
+    }
+
+    // Deposit submission
+    function submitDeposit() {
+        const amt = parseFloat(document.getElementById('dep-amount').value);
+        const utr = document.getElementById('dep-utr').value.trim();
+        const fileInput = document.getElementById('dep-screenshot');
+        
+        if(!amt || amt < 100 || !utr) {
+            alert('Please enter valid amount (min 100) and UTR transaction number.');
+            return;
         }
 
-        function startAdTask() {
-            const user = db.currentUser;
-            if(!user.planActive) {
-                alert('Please activate your plan first!');
-                return;
+        const depId = 'DEP' + Date.now();
+        db.deposits.push({
+            id: depId,
+            uid: db.currentUser.uid,
+            amount: amt,
+            utr: utr,
+            hasProof: fileInput.files.length > 0,
+            status: 'Pending'
+        });
+        saveDB();
+
+        // Trigger 10 minutes verification timer UI
+        document.getElementById('dep-btn-container').classList.add('hidden');
+        document.getElementById('dep-timer-box').classList.remove('hidden');
+        
+        let timeLeft = 600; // 10 minutes in seconds
+        const timerInterval = setInterval(() => {
+            timeLeft--;
+            let m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+            let s = String(timeLeft % 60).padStart(2, '0');
+            document.getElementById('dep-countdown').innerText = `${m}:${s}`;
+
+            if(timeLeft <= 0) {
+                clearInterval(timerInterval);
+                closeModal('deposit-modal');
+                document.getElementById('dep-btn-container').classList.remove('hidden');
+                document.getElementById('dep-timer-box').classList.add('hidden');
+                loadDashboardData();
             }
-            document.getElementById('watch-ad-btn').classList.add('hidden');
-            const timerEl = document.getElementById('ad-timer');
-            timerEl.classList.remove('hidden');
-            let timeLeft = 60;
+        }, 1000);
 
-            const countdown = setInterval(() => {
-                timeLeft--;
-                let mins = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-                let secs = String(timeLeft % 60).padStart(2, '0');
-                timerEl.innerText = `${mins}:${secs}`;
+        alert('UTR submitted successfully! It is now pending admin verification and will show up in the Admin Panel.');
+    }
 
-                if(timeLeft <= 0) {
-                    clearInterval(countdown);
-                    timerEl.classList.add('hidden');
-                    document.getElementById('watch-ad-btn').classList.remove('hidden');
-                    user.balance += 50;
-                    saveDB();
-                    loadDashboardData();
-                    alert('Task completed! ₹50 added to your balance.');
-                }
-            }, 1000);
+    // Support Ticket Submission
+    function submitSupportTicket() {
+        const msg = document.getElementById('support-msg').value.trim();
+        const fileInput = document.getElementById('support-screenshot');
+        if(!msg) {
+            alert('Please describe your problem.');
+            return;
         }
 
-        function submitDeposit() {
-            const amt = parseFloat(document.getElementById('dep-amount').value);
-            const utr = document.getElementById('dep-utr').value.trim();
-            if(!amt || amt < 100 || !utr) {
-                alert('Please enter valid amount (min 100) and UTR transaction number.');
-                return;
-            }
+        const ticketId = 'TKT' + Date.now();
+        db.tickets.push({
+            id: ticketId,
+            uid: db.currentUser.uid,
+            message: msg,
+            hasScreenshot: fileInput.files.length > 0,
+            status: 'Open'
+        });
+        saveDB();
+        closeModal('support-modal');
+        document.getElementById('support-msg').value = '';
+        alert('Support ticket created successfully and forwarded to admin!');
+    }
 
-            db.deposits.push({
-                id: 'DEP' + Date.now(),
-                uid: db.currentUser.uid,
-                amount: amt,
-                utr: utr,
-                status: 'Pending'
-            });
-            saveDB();
+    function saveWithdrawalInfo() {
+        const upi = document.getElementById('withdraw-upi').value.trim();
+        const addr = document.getElementById('withdraw-addr').value.trim();
+        if(!upi) {
+            alert('UPI ID is required.');
+            return;
+        }
+        const user = db.currentUser;
+        user.upi = upi;
+        user.addr = addr;
+        saveDB();
+        loadDashboardData();
+        alert('Withdrawal credentials locked successfully!');
+    }
 
-            // Trigger 10-minute timer display
-            document.getElementById('deposit-timer-box').classList.remove('hidden');
-            document.getElementById('submit-dep-btn').classList.add('hidden');
-            
-            let timeLeft = 600; // 10 minutes
-            const timerInterval = setInterval(() => {
-                timeLeft--;
-                let m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-                let s = String(timeLeft % 60).padStart(2, '0');
-                document.getElementById('dep-countdown').innerText = `${m}:${s}`;
-                if(timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                }
-            }, 1000);
-
-            // Send notification via Telegram Bot API
-            const msg = `🔔 *New Deposit Request*\nUser ID: ${db.currentUser.uid}\nAmount: ₹${amt}\nUTR ID: ${utr}\nUPI: laxmihi@ptyes`;
-            fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?chat_id=${TG_CHAT_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`)
-            .catch(err => console.log('TG Error:', err));
-
-            alert('Deposit submitted successfully! 10-minute verification timer started.');
+    function submitWithdrawal() {
+        const amt = parseFloat(document.getElementById('withdraw-amt').value);
+        const user = db.currentUser;
+        if(!amt || amt <= 0 || amt > user.balance) {
+            alert('Invalid withdrawal amount or insufficient balance.');
+            return;
         }
 
-        function saveWithdrawalInfo() {
-            const upi = document.getElementById('withdraw-upi').value.trim();
-            if(!upi) {
-                alert('UPI ID is required.');
-                return;
-            }
-            const user = db.currentUser;
-            user.upi = upi;
-            saveDB();
-            loadDashboardData();
-            alert('Withdrawal credentials locked successfully!');
+        db.withdrawals.push({
+            id: 'WD' + Date.now(),
+            uid: user.uid,
+            amount: amt,
+            upi: user.upi,
+            status: 'Pending'
+        });
+        user.balance -= amt;
+        saveDB();
+        loadDashboardData();
+        alert('Withdrawal request submitted successfully! Pending admin approval.');
+    }
+
+    function executeP2PTransfer() {
+        const recipientId = document.getElementById('p2p-recipient').value.trim();
+        const amt = parseFloat(document.getElementById('p2p-amount').value);
+        const sender = db.currentUser;
+
+        if(!amt || amt <= 0 || amt > sender.balance) {
+            alert('Invalid amount or insufficient balance for P2P transfer.');
+            return;
         }
 
-        function submitWithdrawal() {
-            const amt = parseFloat(document.getElementById('withdraw-amt').value);
-            const user = db.currentUser;
-            if(!amt || amt <= 0 || amt > user.balance) {
-                alert('Invalid withdrawal amount or insufficient balance.');
-                return;
-            }
-
-            db.withdrawals.push({
-                id: 'WD' + Date.now(),
-                uid: user.uid,
-                amount: amt,
-                upi: user.upi,
-                status: 'Pending'
-            });
-            user.balance -= amt;
-            saveDB();
-            loadDashboardData();
-            alert('Withdrawal request submitted successfully!');
+        const recipient = db.users.find(u => u.uid === recipientId);
+        if(!recipient) {
+            alert('Recipient Member ID not found.');
+            return;
+        }
+        if(recipient.uid === sender.uid) {
+            alert('Cannot transfer to yourself.');
+            return;
         }
 
-        function executeP2PTransfer() {
-            const recipientId = document.getElementById('p2p-recipient').value.trim();
-            const amt = parseFloat(document.getElementById('p2p-amount').value);
-            const sender = db.currentUser;
+        sender.balance -= amt;
+        recipient.balance += amt;
+        saveDB();
+        closeModal('p2p-modal');
+        loadDashboardData();
+        alert(`Successfully transferred ₹${amt} to ${recipient.name} (${recipient.uid})`);
+    }
 
-            if(!amt || amt <= 0 || amt > sender.balance) {
-                alert('Invalid amount or insufficient balance for P2P transfer.');
-                return;
-            }
+    // Admin Panel Controls
+    function loadAdminPanel() {
+        document.getElementById('admin-total-users').innerText = db.users.length;
+        document.getElementById('admin-pending-deps').innerText = db.deposits.filter(d => d.status === 'Pending').length;
+        document.getElementById('admin-pending-wds').innerText = db.withdrawals.filter(w => w.status === 'Pending').length;
+        document.getElementById('admin-pending-tickets').innerText = db.tickets.filter(t => t.status === 'Open').length;
 
-            const recipient = db.users.find(u => u.uid === recipientId);
-            if(!recipient) {
-                alert('Recipient Member ID not found.');
-                return;
-            }
-            if(recipient.uid === sender.uid) {
-                alert('Cannot transfer to yourself.');
-                return;
-            }
+        // Users Table
+        const usersTbody = document.getElementById('admin-users-tbody');
+        usersTbody.innerHTML = db.users.map(u => `
+            <tr class="border-b border-borderClr">
+                <td class="p-3 font-bold text-btc">${u.uid}</td>
+                <td class="p-3">${u.name}<br><span class="text-[10px] text-gray-400">${u.email}</span></td>
+                <td class="p-3">₹${u.balance.toFixed(2)}</td>
+                <td class="p-3">${u.upline || 'None'}</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] ${u.status === 'Active' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}">${u.status}</span></td>
+                <td class="p-3">
+                    <button onclick="toggleUserStatus('${u.uid}')" class="px-2 py-1 bg-borderClr rounded hover:bg-gray-700">${u.status === 'Active' ? 'Pause' : 'Activate'}</button>
+                </td>
+            </tr>
+        `).join('');
 
-            sender.balance -= amt;
-            recipient.balance += amt;
-            saveDB();
-            closeModal('p2p-modal');
-            loadDashboardData();
-            alert(`Successfully transferred ₹${amt} to ${recipient.name} (${recipient.uid})`);
-        }
-
-        function sendSupportTicket() {
-            const text = document.getElementById('support-msg').value.trim();
-            if(!text) {
-                alert('Please enter your support message.');
-                return;
-            }
-            const msg = `🛠 *Support Ticket*\nUser ID: ${db.currentUser.uid}\nMessage: ${text}`;
-            fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?chat_id=${TG_CHAT_ID}&text=${encodeURIComponent(msg)}&parse_mode=Markdown`)
-            .then(() => {
-                alert('Support ticket sent successfully to Telegram admin!');
-                document.getElementById('support-msg').value = '';
-            })
-            .catch(() => alert('Failed to send support ticket.'));
-        }
-
-        function loadAdminPanel() {
-            document.getElementById('admin-total-users').innerText = db.users.length;
-            document.getElementById('admin-pending-deps').innerText = db.deposits.filter(d => d.status === 'Pending').length;
-            document.getElementById('admin-pending-wds').innerText = db.withdrawals.filter(w => w.status === 'Pending').length;
-
-            const usersTbody = document.getElementById('admin-users-tbody');
-            usersTbody.innerHTML = db.users.map(u => `
+        // Tickets Table
+        const ticketTbody = document.getElementById('admin-tickets-tbody');
+        const openTickets = db.tickets.filter(t => t.status === 'Open');
+        if(openTickets.length > 0) {
+            ticketTbody.innerHTML = openTickets.map(t => `
                 <tr class="border-b border-borderClr">
-                    <td class="p-3 font-bold text-btc">${u.uid}</td>
-                    <td class="p-3">${u.name}<br><span class="text-[10px] text-gray-400">${u.email}</span></td>
-                    <td class="p-3">₹${u.balance.toFixed(2)}</td>
-                    <td class="p-3">${u.upline || 'None'}</td>
-                    <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] ${u.status === 'Active' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}">${u.status}</span></td>
+                    <td class="p-3 font-bold">${t.id}</td>
+                    <td class="p-3 text-btc">${t.uid}</td>
+                    <td class="p-3">${t.message}</td>
+                    <td class="p-3 text-gray-400">${t.hasScreenshot ? 'Attached' : 'None'}</td>
                     <td class="p-3">
-                        <button onclick="toggleUserStatus('${u.uid}')" class="px-2 py-1 bg-borderClr rounded hover:bg-gray-700">${u.status === 'Active' ? 'Pause' : 'Activate'}</button>
+                        <button onclick="resolveTicket('${t.id}')" class="px-2 py-1 bg-emerald-600 text-white rounded">Close Ticket</button>
                     </td>
                 </tr>
             `).join('');
-
-            const depTbody = document.getElementById('admin-deposits-tbody');
-            const pendingDeps = db.deposits.filter(d => d.status === 'Pending');
-            if(pendingDeps.length > 0) {
-                depTbody.innerHTML = pendingDeps.map(d => `
-                    <tr class="border-b border-borderClr">
-                        <td class="p-3 font-bold">${d.uid}</td>
-                        <td class="p-3 text-emerald-400 font-bold">₹${d.amount}</td>
-                        <td class="p-3">${d.utr}</td>
-                        <td class="p-3 space-x-2">
-                            <button onclick="resolveDeposit('${d.id}', true)" class="px-2 py-1 bg-emerald-600 text-white rounded">Approve</button>
-                            <button onclick="resolveDeposit('${d.id}', false)" class="px-2 py-1 bg-red-600 text-white rounded">Reject</button>
-                        </td>
-                    </tr>
-                `).join('');
-            } else {
-                depTbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No pending deposits.</td></tr>`;
-            }
-
-            const wdTbody = document.getElementById('admin-withdrawals-tbody');
-            const pendingWds = db.withdrawals.filter(w => w.status === 'Pending');
-            if(pendingWds.length > 0) {
-                wdTbody.innerHTML = pendingWds.map(w => `
-                    <tr class="border-b border-borderClr">
-                        <td class="p-3 font-bold">${w.uid}</td>
-                        <td class="p-3 text-btc font-bold">₹${w.amount}</td>
-                        <td class="p-3">${w.upi}</td>
-                        <td class="p-3 space-x-2">
-                            <button onclick="resolveWithdrawal('${w.id}', true)" class="px-2 py-1 bg-emerald-600 text-white rounded">Approve</button>
-                            <button onclick="resolveWithdrawal('${w.id}', false)" class="px-2 py-1 bg-red-600 text-white rounded">Reject</button>
-                        </td>
-                    </tr>
-                `).join('');
-            } else {
-                wdTbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No pending withdrawals.</td></tr>`;
-            }
+        } else {
+            ticketTbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No open support tickets.</td></tr>`;
         }
 
-        function toggleUserStatus(uid) {
-            const user = db.users.find(u => u.uid === uid);
-            if(user) {
-                user.status = user.status === 'Active' ? 'Paused' : 'Active';
-                saveDB();
-                loadAdminPanel();
-            }
+        // Deposits Table
+        const depTbody = document.getElementById('admin-deposits-tbody');
+        const pendingDeps = db.deposits.filter(d => d.status === 'Pending');
+        if(pendingDeps.length > 0) {
+            depTbody.innerHTML = pendingDeps.map(d => `
+                <tr class="border-b border-borderClr">
+                    <td class="p-3 font-bold">${d.uid}</td>
+                    <td class="p-3 text-emerald-400 font-bold">₹${d.amount}</td>
+                    <td class="p-3">${d.utr}</td>
+                    <td class="p-3 text-gray-400">${d.hasProof ? 'Uploaded' : 'None'}</td>
+                    <td class="p-3 space-x-2">
+                        <button onclick="resolveDeposit('${d.id}', true)" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-bold shadow">Approve</button>
+                        <button onclick="resolveDeposit('${d.id}', false)" class="px-2 py-1 bg-red-600 hover:bg-red-500 text-white rounded font-bold shadow">Reject</button>
+                    </td>
+                </tr>
+            `).join('');
+        } else {
+            depTbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No pending deposits found.</td></tr>`;
         }
 
-        function resolveDeposit(depId, isApproved) {
-            const dep = db.deposits.find(d => d.id === depId);
-            if(dep && dep.status === 'Pending') {
-                dep.status = isApproved ? 'Approved' : 'Rejected';
-                if(isApproved) {
-                    const user = db.users.find(u => u.uid === dep.uid);
-                    if(user) user.balance += dep.amount;
+        // Withdrawals Table
+        const wdTbody = document.getElementById('admin-withdrawals-tbody');
+        const pendingWds = db.withdrawals.filter(w => w.status === 'Pending');
+        if(pendingWds.length > 0) {
+            wdTbody.innerHTML = pendingWds.map(w => `
+                <tr class="border-b border-borderClr">
+                    <td class="p-3 font-bold">${w.uid}</td>
+                    <td class="p-3 text-btc font-bold">₹${w.amount}</td>
+                    <td class="p-3">${w.upi}</td>
+                    <td class="p-3 space-x-2">
+                        <button onclick="resolveWithdrawal('${w.id}', true)" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-bold shadow">Approve</button>
+                        <button onclick="resolveWithdrawal('${w.id}', false)" class="px-2 py-1 bg-red-600 hover:bg-red-500 text-white rounded font-bold shadow">Reject</button>
+                    </td>
+                </tr>
+            `).join('');
+        } else {
+            wdTbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No pending withdrawals found.</td></tr>`;
+        }
+    }
+
+    function toggleUserStatus(uid) {
+        const user = db.users.find(u => u.uid === uid);
+        if(user) {
+            user.status = user.status === 'Active' ? 'Paused' : 'Active';
+            saveDB();
+            loadAdminPanel();
+        }
+    }
+
+    function resolveTicket(ticketId) {
+        const ticket = db.tickets.find(t => t.id === ticketId);
+        if(ticket) {
+            ticket.status = 'Closed';
+            saveDB();
+            loadAdminPanel();
+        }
+    }
+
+    function resolveDeposit(depId, isApproved) {
+        const dep = db.deposits.find(d => d.id === depId);
+        if(dep && dep.status === 'Pending') {
+            dep.status = isApproved ? 'Approved' : 'Rejected';
+            if(isApproved) {
+                const user = db.users.find(u => u.uid === dep.uid);
+                if(user) {
+                    user.balance += dep.amount;
                 }
-                saveDB();
-                loadAdminPanel();
             }
+            saveDB();
+            loadAdminPanel();
+            alert(`Deposit request ${dep.status} successfully!`);
         }
+    }
 
-        function resolveWithdrawal(wdId, isApproved) {
-            const wd = db.withdrawals.find(w => w.id === wdId);
-            if(wd && wd.status === 'Pending') {
-                wd.status = isApproved ? 'Approved' : 'Rejected';
-                if(!isApproved) {
-                    const user = db.users.find(u => u.uid === wd.uid);
-                    if(user) user.balance += wd.amount;
+    function resolveWithdrawal(wdId, isApproved) {
+        const wd = db.withdrawals.find(w => w.id === wdId);
+        if(wd && wd.status === 'Pending') {
+            wd.status = isApproved ? 'Approved' : 'Rejected';
+            if(!isApproved) {
+                // Refund amount back to user if rejected
+                const user = db.users.find(u => u.uid === wd.uid);
+                if(user) {
+                    user.balance += wd.amount;
                 }
-                saveDB();
-                loadAdminPanel();
             }
+            saveDB();
+            loadAdminPanel();
+            alert(`Withdrawal request ${wd.status} successfully!`);
         }
+    }
 
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
-        }
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-        }
-        function copyRefLink() {
-            const copyText = document.getElementById('dash-ref-link');
-            copyText.select();
-            navigator.clipboard.writeText(copyText.value);
-            alert('Referral link copied to clipboard!');
-        }
-    </script>
+    // Modal Helpers
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.remove('hidden');
+    }
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+    }
+    function copyRefLink() {
+        const copyText = document.getElementById('dash-ref-link');
+        copyText.select();
+        navigator.clipboard.writeText(copyText.value);
+        alert('Referral link copied to clipboard!');
+    }
+</script>
 </body>
 </html>
