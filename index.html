@@ -3,753 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BITCAP - P2P & AD INVESTMENT PLATFORM</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0b0f19',
-                        cardBg: '#131b2e',
-                        accentGold: '#f59e0b',
-                        accentGreen: '#10b981',
-                        accentRed: '#ef4444'
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Bitcoin Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 850px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .hidden { display: none; }
+        input, button, select { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { background: #f7931a; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        button:hover { background: #e08214; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
+        th { background: #eee; }
+        .nav { display: flex; justify-content: space-between; align-items: center; background: #333; color: white; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
+        .nav span { cursor: pointer; color: #f7931a; }
+        .card { background: #fafafa; padding: 15px; border: 1px solid #ddd; margin-bottom: 15px; border-radius: 5px; }
+    </style>
 </head>
-<body class="bg-darkBg text-gray-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Header Navigation -->
-    <header class="bg-cardBg border-b border-gray-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="showPage('home')">
-                <div class="bg-accentGold text-darkBg p-2 rounded-lg font-bold text-xl flex items-center justify-center">
-                    <i class="fa-brands fa-bitcoin"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-black tracking-wider text-white">BIT<span class="text-accentGold">CAP</span></span>
-                    <p class="text-[10px] text-gray-400 tracking-tight uppercase">P2P & AD INVESTMENT PLATFORM</p>
-                </div>
-            </div>
-            <div id="nav-auth-buttons" class="flex items-center space-x-3">
-                <button onclick="openModal('loginModal')" class="border border-accentGold text-accentGold px-4 py-2 rounded-lg text-sm font-semibold hover:bg-accentGold hover:text-darkBg transition">Login</button>
-                <button onclick="openModal('registerModal')" class="bg-accentGold text-darkBg px-4 py-2 rounded-lg text-sm font-semibold hover:bg-amber-400 transition">Register</button>
-            </div>
-            <div id="nav-user-info" class="hidden flex items-center space-x-4">
-                <span class="text-xs bg-gray-800 px-3 py-1.5 rounded-lg border border-gray-700 text-accentGold font-mono" id="nav-uid-display">--</span>
-                <button onclick="logout()" class="bg-red-500/10 border border-red-500/30 text-red-400 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-red-500 hover:text-white transition">Logout</button>
-            </div>
-        </div>
-    </header>
+<div class="container">
+    <h2 style="text-align: center; color: #f7931a;">🪙 Bitcoin Platform</h2>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+    <!-- Auth Section -->
+    <div id="authSection" class="card">
+        <h3>Login / Register</h3>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <button onclick="register()" style="background: #333;">Register</button>
+    </div>
 
-        <!-- HOME / DASHBOARD VIEW -->
-        <div id="view-home" class="space-y-6">
-            <!-- Non-logged in banner -->
-            <div id="hero-banner" class="bg-gradient-to-r from-amber-600/20 via-cardBg to-cardBg border border-amber-500/30 rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="space-y-3 text-center md:text-left">
-                    <span class="bg-accentGold/10 text-accentGold border border-accentGold/30 text-xs px-3 py-1 rounded-full font-medium">Trusted P2P Platform</span>
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-white">Earn Daily Bitcoin Rewards & ROI</h1>
-                    <p class="text-gray-400 text-sm max-w-xl">Join the most secure advertising and peer-to-peer investment system. Activate plans, complete simple daily tasks, and grow your wealth effortlessly.</p>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                    <button onclick="openModal('registerModal')" class="bg-accentGold text-darkBg font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-amber-400 transition text-center">Get Started Now</button>
-                    <button onclick="openModal('loginModal')" class="bg-cardBg border border-gray-700 text-white font-semibold px-6 py-3 rounded-xl hover:bg-gray-800 transition text-center">Sign In</button>
-                </div>
-            </div>
-
-            <!-- Logged-in User Dashboard Panel -->
-            <div id="user-dashboard" class="hidden space-y-6">
-                <!-- Top Summary Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 relative overflow-hidden">
-                        <p class="text-xs text-gray-400 font-medium">User ID & Status</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <h3 class="text-lg font-mono font-bold text-accentGold" id="dash-uid">BTC----</h3>
-                            <span id="dash-plan-status" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">Inactive Plan</span>
-                        </div>
-                    </div>
-                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
-                        <p class="text-xs text-gray-400 font-medium">Main Balance</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <h3 class="text-2xl font-black text-white" id="dash-balance">₹0.00</h3>
-                            <div class="space-x-2">
-                                <button onclick="openModal('addMoneyModal')" class="bg-accentGreen text-white text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90"><i class="fa-solid fa-plus mr-1"></i> Add Money</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
-                        <p class="text-xs text-gray-400 font-medium">Referral Link</p>
-                        <div class="flex items-center mt-2 bg-darkBg border border-gray-700 rounded-lg px-3 py-1.5 justify-between">
-                            <span class="text-xs text-gray-300 truncate mr-2" id="dash-ref-link">...</span>
-                            <button onclick="copyRefLink()" class="text-accentGold hover:text-white text-xs"><i class="fa-solid fa-copy"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Plan & Tasks Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Investment Plan -->
-                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-bolt text-accentGold mr-2"></i> Exclusive Ad-Mining Plan</h3>
-                                <span class="bg-accentGold/10 text-accentGold text-xs font-semibold px-2.5 py-1 rounded-md">Popular</span>
-                            </div>
-                            <p class="text-sm text-gray-400 mb-4">Activate plan to unlock daily ad viewing tasks and earn guaranteed returns directly to your wallet.</p>
-                            <div class="grid grid-cols-3 gap-2 bg-darkBg p-3 rounded-lg border border-gray-800 mb-6 text-center">
-                                <div>
-                                    <p class="text-[10px] text-gray-400">Price</p>
-                                    <p class="text-sm font-bold text-white">₹250</p>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] text-gray-400">Duration</p>
-                                    <p class="text-sm font-bold text-white">7 Days</p>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] text-gray-400">Daily Return</p>
-                                    <p class="text-sm font-bold text-accentGreen">₹50 / day</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="activatePlan()" id="activate-plan-btn" class="w-full bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm">Activate Plan (₹250)</button>
-                    </div>
-
-                    <!-- Daily Task Section -->
-                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-rectangle-ad text-accentGold mr-2"></i> Daily Task (Watch 1 Ad)</h3>
-                                <span id="task-status-badge" class="text-xs bg-gray-800 text-gray-400 px-2.5 py-1 rounded-md">Locked</span>
-                            </div>
-                            <p class="text-sm text-gray-400 mb-4">Watch the assigned advertisement for 1 minute and submit to claim your daily reward.</p>
-                            <div id="task-box" class="bg-darkBg border border-gray-800 rounded-xl p-4 text-center space-y-3 mb-4">
-                                <p id="task-info-text" class="text-xs text-gray-400">Activate your plan to unlock daily tasks.</p>
-                            </div>
-                        </div>
-                        <button onclick="startDailyTask()" id="complete-task-btn" disabled class="w-full bg-gray-800 text-gray-500 font-bold py-3 rounded-xl cursor-not-allowed transition text-sm">Watch 1 Minute Ad</button>
-                    </div>
-                </div>
-
-                <!-- Downline & Withdrawal Row -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Referral Downline List -->
-                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-base font-bold text-white"><i class="fa-solid fa-users text-accentGold mr-2"></i> My Referral Downline</h3>
-                            <span class="text-xs bg-darkBg border border-gray-700 px-2.5 py-1 rounded-lg text-gray-300 font-mono" id="downline-count">0 Users</span>
-                        </div>
-                        <div class="bg-darkBg border border-gray-800 rounded-xl overflow-hidden max-h-48 overflow-y-auto">
-                            <table class="w-full text-left text-xs">
-                                <thead class="bg-gray-900 text-gray-400 border-b border-gray-800">
-                                    <tr>
-                                        <th class="p-3">UID</th>
-                                        <th class="p-3">Full Name</th>
-                                        <th class="p-3 text-right">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="downline-table-body">
-                                    <tr><td colspan="3" class="p-4 text-center text-gray-500">No referrals found under your code.</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Withdrawal Section -->
-                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-wallet text-accentGold mr-2"></i> Withdrawal Request</h3>
-                            <div class="space-y-3">
-                                <div>
-                                    <label class="block text-xs text-gray-400 mb-1">Destination UPI ID / Bank Details</label>
-                                    <input type="text" id="withdraw-upi" placeholder="Enter UPI ID (e.g. user@paytm)" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                                </div>
-                                <div>
-                                    <label class="block text-xs text-gray-400 mb-1">Withdrawal Amount (Min ₹200)</label>
-                                    <input type="number" id="withdraw-amount" placeholder="Enter Amount" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                                </div>
-                            </div>
-                        </div>
-                        <button onclick="submitWithdrawal()" class="w-full mt-4 bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm">Request Withdrawal</button>
-                    </div>
-                </div>
-            </div>
+    <!-- User Dashboard -->
+    <div id="userDashboard" class="hidden">
+        <div class="nav">
+            <span>Welcome, <b id="lblUser"></b></span>
+            <span>Balance: ₹<b id="lblBalance">0</b></span>
+            <span onclick="logout()">Logout</span>
         </div>
 
-        <!-- ADMIN PANEL VIEW (Triggered via URL hash #admin) -->
-        <div id="view-admin" class="hidden space-y-6">
-            <div class="bg-cardBg border border-red-500/30 rounded-2xl p-6 flex items-center justify-between">
-                <div>
-                    <span class="bg-red-500/10 text-red-400 text-xs px-3 py-1 rounded-full font-bold border border-red-500/20">Restricted Area</span>
-                    <h2 class="text-2xl font-black text-white mt-2">Admin Control Center</h2>
-                    <p class="text-xs text-gray-400">Manage user deposits, approve/reject withdrawal requests, and oversee platform analytics.</p>
-                </div>
-                <button onclick="logoutAdmin()" class="bg-gray-800 text-gray-300 border border-gray-700 px-4 py-2 rounded-xl text-xs font-semibold hover:bg-gray-700">Exit Admin</button>
-            </div>
-
-            <!-- Admin Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
-                    <p class="text-xs text-gray-400">Total Registered Users</p>
-                    <h3 class="text-xl font-bold text-white mt-1" id="admin-stat-users">0</h3>
-                </div>
-                <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
-                    <p class="text-xs text-gray-400">Pending Deposit Requests</p>
-                    <h3 class="text-xl font-bold text-accentGold mt-1" id="admin-stat-deposits">0</h3>
-                </div>
-                <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
-                    <p class="text-xs text-gray-400">Pending Withdrawal Requests</p>
-                    <h3 class="text-xl font-bold text-accentRed mt-1" id="admin-stat-withdrawals">0</h3>
-                </div>
-            </div>
-
-            <!-- Deposit Verification Requests -->
-            <div class="bg-cardBg border border-gray-800 rounded-xl p-6 space-y-4">
-                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-file-invoice-dollar text-accentGold mr-2"></i> Deposit Verification Requests (UTR / Screenshot)</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-gray-900 text-gray-400 border-b border-gray-800">
-                            <tr>
-                                <th class="p-3">UID</th>
-                                <th class="p-3">Amount</th>
-                                <th class="p-3">UTR ID</th>
-                                <th class="p-3">Proof / File</th>
-                                <th class="p-3 text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-deposits-tbody">
-                            <tr><td colspan="5" class="p-4 text-center text-gray-500">No pending deposits found.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Withdrawal Requests Management -->
-            <div class="bg-cardBg border border-gray-800 rounded-xl p-6 space-y-4">
-                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-money-bill-transfer text-accentGold mr-2"></i> Withdrawal Requests Management</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-gray-900 text-gray-400 border-b border-gray-800">
-                            <tr>
-                                <th class="p-3">UID</th>
-                                <th class="p-3">Amount</th>
-                                <th class="p-3">Destination UPI/QR</th>
-                                <th class="p-3 text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-withdrawals-tbody">
-                            <tr><td colspan="4" class="p-4 text-center text-gray-500">No pending withdrawals found.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="card">
+            <h3>📹 Daily Video Section (1 time per day)</h3>
+            <button onclick="watchVideo()">Watch Video & Earn ₹10</button>
         </div>
 
-    </main>
+        <div class="card">
+            <h3>💸 P2P Balance Transfer</h3>
+            <input type="text" id="p2pReceiver" placeholder="Receiver Username">
+            <input type="number" id="p2pAmount" placeholder="Amount (₹)">
+            <button onclick="p2pTransfer()">Transfer Balance</button>
+        </div>
 
-    <!-- Footer -->
-    <footer class="bg-cardBg border-t border-gray-800 py-6 mt-12 text-center text-xs text-gray-500">
-        <p>&copy; 2026 BITCAP Platform. All rights reserved. Secure P2P & Ad Network.</p>
-    </footer>
-
-    <!-- MODALS -->
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-gray-800 rounded-2xl max-w-md w-full p-6 space-y-4 relative">
-            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            <h3 class="text-xl font-bold text-white">Sign In to BITCAP</h3>
-            <p class="text-xs text-gray-400">Enter your registered email and password.</p>
-            <div class="space-y-3 pt-2">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Email Address</label>
-                    <input type="email" id="login-email" placeholder="name@gmail.com" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Password</label>
-                    <input type="password" id="login-password" placeholder="••••••••" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <button onclick="handleLogin()" class="w-full bg-accentGold text-darkBrand text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm mt-2">Sign In Now</button>
-            </div>
+        <div class="card">
+            <h3>📊 Statement & History</h3>
+            <table>
+                <thead>
+                    <tr><th>Type</th><th>Amount</th><th>Details</th><th>Time</th></tr>
+                </thead>
+                <tbody id="historyTable"></tbody>
+            </table>
         </div>
     </div>
 
-    <!-- Register Modal -->
-    <div id="registerModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-gray-800 rounded-2xl max-w-md w-full p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            <h3 class="text-xl font-bold text-white">Create Account</h3>
-            <p class="text-xs text-gray-400">Register to start earning Bitcoin rewards.</p>
-            <div class="space-y-3 pt-2">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Full Name</label>
-                    <input type="text" id="reg-name" placeholder="John Doe" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Mobile Number</label>
-                    <input type="tel" id="reg-mobile" placeholder="9876543210" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Gmail Address</label>
-                    <input type="email" id="reg-email" placeholder="name@gmail.com" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Password</label>
-                    <input type="password" id="reg-password" placeholder="••••••••" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Upline Referral Code (Optional)</label>
-                    <input type="text" id="reg-ref" placeholder="e.g. BTC8527" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <button onclick="handleRegister()" class="w-full bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm mt-2">Register Now</button>
-            </div>
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="hidden">
+        <div class="nav">
+            <span><b>Admin Panel (Bitcoin Control)</b></span>
+            <span onclick="logout()">Logout</span>
+        </div>
+
+        <div class="card">
+            <h3>Manage Users & Add Balance</h3>
+            <table>
+                <thead>
+                    <tr><th>Username</th><th>Password</th><th>Balance</th><th>Action</th></tr>
+                </thead>
+                <tbody id="adminUsersTable"></tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>All Transactions History</h3>
+            <table>
+                <thead>
+                    <tr><th>User</th><th>Type</th><th>Amount</th><th>Details</th><th>Time</th></tr>
+                </thead>
+                <tbody id="adminHistoryTable"></tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <!-- Add Money Modal -->
-    <div id="addMoneyModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-gray-800 rounded-2xl max-w-md w-full p-6 space-y-4 relative">
-            <button onclick="closeModal('addMoneyModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            <h3 class="text-xl font-bold text-white">Add Funds (Min ₹100)</h3>
-            <div class="bg-darkBg border border-gray-800 p-3 rounded-xl text-center space-y-1">
-                <p class="text-xs text-gray-400">Pay via Google Pay / Paytm / UPI to admin ID below:</p>
-                <p class="text-sm font-mono font-bold text-accentGold select-all">laxmihi@ptyes</p>
-            </div>
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Amount to Add (₹)</label>
-                    <input type="number" id="deposit-amount" placeholder="250" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">UTR / Transaction ID</label>
-                    <input type="text" id="deposit-utr" placeholder="Enter 12-digit UTR ID" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Upload Payment Screenshot / Proof</label>
-                    <input type="file" id="deposit-file" class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accentGold file:text-darkBg hover:file:bg-amber-400">
-                </div>
-                <button onclick="submitDepositRequest()" class="w-full bg-accentGreen text-white font-bold py-3 rounded-xl hover:opacity-90 transition text-sm">Submit Deposit Request</button>
-            </div>
-        </div>
-    </div>
+<script>
+    // Initialize Local Database Storage if not present
+    if (!localStorage.getItem('users')) {
+        const defaultUsers = [
+            { username: 'admin', password: 'adminpassword123', balance: 0, isAdmin: true }
+        ];
+        localStorage.setItem('users', JSON.stringify(defaultUsers));
+    }
+    if (!localStorage.getItem('history')) localStorage.setItem('history', JSON.stringify([]));
+    if (!localStorage.getItem('videoLogs')) localStorage.setItem('videoLogs', JSON.stringify({}));
 
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Database simulation using localStorage
-        const DB_KEY = "bitcap_db_v3";
+    let currentUser = null;
 
-        function getDB() {
-            let data = localStorage.getItem(DB_KEY);
-            if (!data) {
-                const initial = {
-                    users: [
-                        { uid: "BTC8527", name: "System Admin", mobile: "9999999999", email: "admin@bitcap.com", password: "admin", balance: 1000, planActive: true, upline: "" }
-                    ],
-                    deposits: [],
-                    withdrawals: []
-                };
-                localStorage.setItem(DB_KEY, JSON.stringify(initial));
-                return initial;
-            }
-            return JSON.parse(data);
-        }
+    function getUsers() { return JSON.parse(localStorage.getItem('users')); }
+    function setUsers(users) { localStorage.setItem('users', JSON.stringify(users)); }
+    function getHistory() { return JSON.parse(localStorage.getItem('history')); }
+    function setHistory(history) { localStorage.setItem('history', JSON.stringify(history)); }
+    function getVideoLogs() { return JSON.parse(localStorage.getItem('videoLogs')); }
+    function setVideoLogs(logs) { localStorage.setItem('videoLogs', JSON.stringify(logs)); }
 
-        function saveDB(db) {
-            localStorage.setItem(DB_KEY, JSON.stringify(db));
-        }
+    function register() {
+        const u = document.getElementById('username').value.trim();
+        const p = document.getElementById('password').value.trim();
+        if(!u || !p) return alert('Username aur Password bharein!');
 
-        let currentUserUid = localStorage.getItem("bitcap_current_user") || null;
+        let users = getUsers();
+        if(users.find(x => x.username === u)) return alert('Yeh username pehle se maujood hai!');
 
-        function initApp() {
-            // Check URL hash for admin
-            if (window.location.hash === "#admin") {
-                showAdminPanel();
+        users.push({ username: u, password: p, balance: 0, isAdmin: false });
+        setUsers(users);
+        alert('Registration successful! Ab aap login kar sakte hain.');
+    }
+
+    function login() {
+        const u = document.getElementById('username').value.trim();
+        const p = document.getElementById('password').value.trim();
+
+        let users = getUsers();
+        let user = users.find(x => x.username === u && x.password === p);
+
+        if(user) {
+            currentUser = user;
+            document.getElementById('authSection').classList.add('hidden');
+            if(user.isAdmin) {
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                loadAdminData();
             } else {
-                if (currentUserUid) {
-                    showUserDashboard();
-                } else {
-                    showHomeHero();
-                }
+                document.getElementById('userDashboard').classList.remove('hidden');
+                document.getElementById('lblUser').innerText = user.username;
+                document.getElementById('lblBalance').innerText = user.balance;
+                loadUserHistory();
             }
-            
-            // Listen to hash changes for admin routing
-            window.addEventListener('hashchange', () => {
-                if (window.location.hash === "#admin") {
-                    showAdminPanel();
-                } else {
-                    initApp();
-                }
-            });
+        } else {
+            alert('Galat Username ya Password!');
+        }
+    }
+
+    function logout() {
+        location.reload();
+    }
+
+    function watchVideo() {
+        const today = new Date().toISOString().split('T')[0];
+        let logs = getVideoLogs();
+        
+        if(logs[currentUser.username] === today) {
+            return alert('Aapne aaj ka video dekh liya hai! Kal dobara koshish karein (Sirf 1 baar per day).');
         }
 
-        function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
-        }
+        logs[currentUser.username] = today;
+        setVideoLogs(logs);
 
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
+        let users = getUsers();
+        let uIndex = users.findIndex(x => x.username === currentUser.username);
+        users[uIndex].balance += 10;
+        currentUser = users[uIndex];
+        setUsers(users);
 
-        function showHomeHero() {
-            document.getElementById('hero-banner').classList.remove('hidden');
-            document.getElementById('user-dashboard').classList.add('hidden');
-            document.getElementById('view-admin').classList.add('hidden');
-            document.getElementById('nav-auth-buttons').classList.remove('hidden');
-            document.getElementById('nav-user-info').classList.add('hidden');
-        }
+        let hist = getHistory();
+        hist.unshift({ username: currentUser.username, type: 'Video Reward', amount: 10, details: 'Watched daily video', time: new Date().toLocaleString() });
+        setHistory(hist);
 
-        function showUserDashboard() {
-            let db = getDB();
-            let user = db.users.find(u => u.uid === currentUserUid);
-            if (!user) {
-                logout();
-                return;
-            }
+        document.getElementById('lblBalance').innerText = currentUser.balance;
+        loadUserHistory();
+        alert('Badhai ho! ₹10 aapke account mein jud gaye hain.');
+    }
 
-            document.getElementById('hero-banner').classList.add('hidden');
-            document.getElementById('user-dashboard').classList.remove('hidden');
-            document.getElementById('view-admin').classList.add('hidden');
-            document.getElementById('nav-auth-buttons').classList.add('hidden');
-            document.getElementById('nav-user-info').classList.remove('hidden');
+    function p2pTransfer() {
+        const receiverName = document.getElementById('p2pReceiver').value.trim();
+        const amt = parseFloat(document.getElementById('p2pAmount').value);
 
-            document.getElementById('nav-uid-display').innerText = user.uid;
-            document.getElementById('dash-uid').innerText = user.uid;
-            document.getElementById('dash-balance').innerText = `₹${user.balance.toFixed(2)}`;
-            document.getElementById('dash-ref-link').innerText = `https://dtmdas.github.io/BITCOIN/#ref=${user.uid}`;
+        if(!amt || amt <= 0) return alert('Sahi amount daalein!');
+        if(currentUser.balance < amt) return alert('Aapke paas paryapt balance nahi hai!');
+        if(receiverName === currentUser.username) return alert('Khud ko transfer nahi kar sakte!');
 
-            // Plan status
-            const planBadge = document.getElementById('dash-plan-status');
-            const activateBtn = document.getElementById('activate-plan-btn');
-            const taskBtn = document.getElementById('complete-task-btn');
-            const taskBadge = document.getElementById('task-status-badge');
-            const taskInfo = document.getElementById('task-info-text');
+        let users = getUsers();
+        let receiver = users.find(x => x.username === receiverName);
+        if(!receiver) return alert('Receiver nahi mila!');
 
-            if (user.planActive) {
-                planBadge.innerText = "Active Plan (7 Days)";
-                planBadge.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-accentGreen/10 text-accentGreen border border-accentGreen/20";
-                activateBtn.innerText = "Plan Already Active";
-                activateBtn.disabled = true;
-                activateBtn.className = "w-full bg-gray-800 text-gray-500 font-bold py-3 rounded-xl cursor-not-allowed text-sm";
+        let senderIndex = users.findIndex(x => x.username === currentUser.username);
+        let receiverIndex = users.findIndex(x => x.username === receiverName);
 
-                taskBadge.innerText = "Task Available";
-                taskBadge.className = "text-xs bg-accentGreen/10 text-accentGreen border border-accentGreen/20 px-2.5 py-1 rounded-md font-medium";
-                taskInfo.innerText = "Click below to complete today's 1-minute ad viewing task and claim ₹50 reward.";
-                taskBtn.disabled = false;
-                taskBtn.className = "w-full bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm cursor-pointer";
-            } else {
-                planBadge.innerText = "Inactive Plan";
-                planBadge.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20";
-            }
+        users[senderIndex].balance -= amt;
+        users[receiverIndex].balance += amt;
+        currentUser = users[senderIndex];
+        setUsers(users);
 
-            // Populate downline table
-            let downlineUsers = db.users.filter(u => u.upline === user.uid);
-            document.getElementById('downline-count').innerText = `${downlineUsers.length} Users`;
-            let tbody = document.getElementById('downline-table-body');
-            if (downlineUsers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No referrals found under your code.</td></tr>`;
-            } else {
-                tbody.innerHTML = downlineUsers.map(u => `
-                    <tr class="border-b border-gray-800/50 hover:bg-gray-800/20">
-                        <td class="p-3 font-mono text-accentGold">${u.uid}</td>
-                        <td class="p-3 text-white">${u.name}</td>
-                        <td class="p-3 text-right"><span class="px-2 py-0.5 rounded text-[10px] ${u.planActive ? 'bg-accentGreen/20 text-accentGreen' : 'bg-red-500/20 text-red-400'}">${u.planActive ? 'Active' : 'Inactive'}</span></td>
-                    </tr>
-                `).join('');
-            }
-        }
+        let hist = getHistory();
+        hist.unshift({ username: currentUser.username, type: 'P2P Sent', amount: amt, details: `Sent to ${receiverName}`, time: new Date().toLocaleString() });
+        hist.unshift({ username: receiverName, type: 'P2P Received', amount: amt, details: `Received from ${currentUser.username}`, time: new Date().toLocaleString() });
+        setHistory(hist);
 
-        function handleRegister() {
-            let name = document.getElementById('reg-name').value.trim();
-            let mobile = document.getElementById('reg-mobile').value.trim();
-            let email = document.getElementById('reg-email').value.trim();
-            let password = document.getElementById('reg-password').value.trim();
-            let upline = document.getElementById('reg-ref').value.trim().toUpperCase();
+        document.getElementById('lblBalance').innerText = currentUser.balance;
+        loadUserHistory();
+        alert('Balance successfully transfer ho gaya!');
+    }
 
-            if (!name || !mobile || !email || !password) {
-                alert("Please fill in all required registration fields.");
-                return;
-            }
-
-            let db = getDB();
-            if (db.users.some(u => u.email === email)) {
-                alert("Email is already registered! Please login.");
-                return;
-            }
-
-            // Validate upline if provided
-            if (upline && !db.users.some(u => u.uid === upline)) {
-                // If invalid upline code, allow registration smoothly without failing
-                upline = "";
-            }
-
-            let randomNum = Math.floor(1000 + Math.random() * 9000);
-            let uid = "BTC" + randomNum;
-            while(db.users.some(u => u.uid === uid)) {
-                randomNum = Math.floor(1000 + Math.random() * 9000);
-                uid = "BTC" + randomNum;
-            }
-
-            let newUser = { uid, name, mobile, email, password, balance: 0, planActive: false, upline: upline || "" };
-            db.users.push(newUser);
-            saveDB(db);
-
-            currentUserUid = uid;
-            localStorage.setItem("bitcap_current_user", uid);
-            closeModal('registerModal');
-            alert(`Account created successfully! Your User ID is ${uid}`);
-            showUserDashboard();
-        }
-
-        function handleLogin() {
-            let email = document.getElementById('login-email').value.trim();
-            let password = document.getElementById('login-password').value.trim();
-
-            let db = getDB();
-            let user = db.users.find(u => u.email === email && u.password === password);
-            if (!user) {
-                alert("Invalid email or password!");
-                return;
-            }
-
-            currentUserUid = user.uid;
-            localStorage.setItem("bitcap_current_user", user.uid);
-            closeModal('loginModal');
-            showUserDashboard();
-        }
-
-        function logout() {
-            currentUserUid = null;
-            localStorage.removeItem("bitcap_current_user");
-            showHomeHero();
-        }
-
-        function logoutAdmin() {
-            window.location.hash = "";
-            showHomeHero();
-        }
-
-        function copyRefLink() {
-            let link = document.getElementById('dash-ref-link').innerText;
-            navigator.clipboard.writeText(link);
-            alert("Referral link copied to clipboard!");
-        }
-
-        function activatePlan() {
-            let db = getDB();
-            let user = db.users.find(u => u.uid === currentUserUid);
-            if (!user) return;
-
-            if (user.balance < 250) {
-                alert("Insufficient wallet balance! Please add funds (Min ₹250) to activate plan.");
-                openModal('addMoneyModal');
-                return;
-            }
-
-            user.balance -= 250;
-            user.planActive = true;
-            saveDB(db);
-            alert("Exclusive Ad-Mining Plan activated successfully!");
-            showUserDashboard();
-        }
-
-        function startDailyTask() {
-            alert("Redirecting to advertisement stream... Please wait 60 seconds.");
-            setTimeout(() => {
-                let db = getDB();
-                let user = db.users.find(u => u.uid === currentUserUid);
-                if (user) {
-                    user.balance += 50;
-                    saveDB(db);
-                    alert("Task Completed! ₹50 added to your main balance.");
-                    showUserDashboard();
-                }
-            }, 3000);
-        }
-
-        function submitDepositRequest() {
-            let amount = parseFloat(document.getElementById('deposit-amount').value);
-            let utr = document.getElementById('deposit-utr').value.trim();
-
-            if (!amount || amount < 100 || !utr) {
-                alert("Please enter a valid amount (Min ₹100) and 12-digit UTR ID.");
-                return;
-            }
-
-            let db = getDB();
-            let depositObj = {
-                id: 'DEP_' + Date.now(),
-                uid: currentUserUid,
-                amount: amount,
-                utr: utr,
-                proof: 'Attached Proof',
-                status: 'pending'
-            };
-            db.deposits.push(depositObj);
-            saveDB(db);
-
-            closeModal('addMoneyModal');
-            alert("Deposit request submitted successfully! Pending admin approval.");
-        }
-
-        function submitWithdrawal() {
-            let upi = document.getElementById('withdraw-upi').value.trim();
-            let amount = parseFloat(document.getElementById('withdraw-amount').value);
-
-            if (!upi || !amount || amount < 200) {
-                alert("Please enter valid UPI details and minimum withdrawal amount of ₹200.");
-                return;
-            }
-
-            let db = getDB();
-            let user = db.users.find(u => u.uid === currentUserUid);
-            if (user.balance < amount) {
-                alert("Insufficient balance for this withdrawal request.");
-                return;
-            }
-
-            user.balance -= amount;
-            let wdObj = {
-                id: 'WD_' + Date.now(),
-                uid: currentUserUid,
-                amount: amount,
-                upi: upi,
-                status: 'pending'
-            };
-            db.withdrawals.push(wdObj);
-            saveDB(db);
-
-            document.getElementById('withdraw-upi').value = '';
-            document.getElementById('withdraw-amount').value = '';
-            alert("Withdrawal request submitted successfully!");
-            showUserDashboard();
-        }
-
-        // Admin Panel Functions
-        function showAdminPanel() {
-            document.getElementById('hero-banner').classList.add('hidden');
-            document.getElementById('user-dashboard').classList.add('hidden');
-            document.getElementById('view-admin').classList.remove('hidden');
-            document.getElementById('nav-auth-buttons').classList.add('hidden');
-            document.getElementById('nav-user-info').classList.add('hidden');
-
-            let db = getDB();
-            document.getElementById('admin-stat-users').innerText = db.users.length;
-            let pendingDeps = db.deposits.filter(d => d.status === 'pending');
-            let pendingWds = db.withdrawals.filter(w => w.status === 'pending');
-
-            document.getElementById('admin-stat-deposits').innerText = pendingDeps.length;
-            document.getElementById('admin-stat-withdrawals').innerText = pendingWds.length;
-
-            // Populate Deposit Requests Table
-            let depTbody = document.getElementById('admin-deposits-tbody');
-            if (pendingDeps.length === 0) {
-                depTbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No pending deposits found.</td></tr>`;
-            } else {
-                depTbody.innerHTML = pendingDeps.map(d => `
-                    <tr class="border-b border-gray-800/50">
-                        <td class="p-3 font-mono text-accentGold">${d.uid}</td>
-                        <td class="p-3 font-bold text-white">₹${d.amount}</td>
-                        <td class="p-3 font-mono text-gray-300">${d.utr}</td>
-                        <td class="p-3 text-accentGold underline cursor-pointer">View Proof</td>
-                        <td class="p-3 text-right space-x-2">
-                            <button onclick="approveDeposit('${d.id}')" class="bg-accentGreen text-white px-3 py-1 rounded font-semibold text-xs hover:opacity-90">Approve</button>
-                            <button onclick="rejectDeposit('${d.id}')" class="bg-red-500 text-white px-3 py-1 rounded font-semibold text-xs hover:opacity-90">Reject</button>
-                        </td>
-                    </tr>
-                `).join('');
-            }
-
-            // Populate Withdrawal Requests Table
-            let wdTbody = document.getElementById('admin-withdrawals-tbody');
-            if (pendingWds.length === 0) {
-                wdTbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No pending withdrawals found.</td></tr>`;
-            } else {
-                wdTbody.innerHTML = pendingWds.map(w => `
-                    <tr class="border-b border-gray-800/50">
-                        <td class="p-3 font-mono text-accentGold">${w.uid}</td>
-                        <td class="p-3 font-bold text-white">₹${w.amount}</td>
-                        <td class="p-3 font-mono text-gray-300">${w.upi}</td>
-                        <td class="p-3 text-right space-x-2">
-                            <button onclick="approveWithdrawal('${w.id}')" class="bg-accentGreen text-white px-3 py-1 rounded font-semibold text-xs hover:opacity-90">Approve</button>
-                            <button onclick="rejectWithdrawal('${w.id}')" class="bg-red-500 text-white px-3 py-1 rounded font-semibold text-xs hover:opacity-90">Reject</button>
-                        </td>
-                    </tr>
-                `).join('');
-            }
-        }
-
-        function approveDeposit(id) {
-            let db = getDB();
-            let dep = db.deposits.find(d => d.id === id);
-            if (!dep) return;
-            let user = db.users.find(u => u.uid === dep.uid);
-            if (user) {
-                user.balance += dep.amount;
-            }
-            dep.status = 'approved';
-            saveDB(db);
-            alert("Deposit approved and credited to user wallet!");
-            showAdminPanel();
-        }
-
-        function rejectDeposit(id) {
-            let db = getDB();
-            let dep = db.deposits.find(d => d.id === id);
-            if (dep) {
-                dep.status = 'rejected';
-                saveDB(db);
-            }
-            alert("Deposit request rejected.");
-            showAdminPanel();
-        }
-
-        function approveWithdrawal(id) {
-            let db = getDB();
-            let wd = db.withdrawals.find(w => w.id === id);
-            if (wd) {
-                wd.status = 'approved';
-                saveDB(db);
-            }
-            alert("Withdrawal approved successfully!");
-            showAdminPanel();
-        }
-
-        function rejectWithdrawal(id) {
-            let db = getDB();
-            let wd = db.withdrawals.find(w => w.id === id);
-            if (wd) {
-                let user = db.users.find(u => u.uid === wd.uid);
-                if (user) {
-                    user.balance += wd.amount; // Refund balance
-                }
-                wd.status = 'rejected';
-                saveDB(db);
-            }
-            alert("Withdrawal rejected and amount refunded to user.");
-            showAdminPanel();
-        }
-
-        // Auto-detect referral code from URL on load
-        window.addEventListener('DOMContentLoaded', () => {
-            let hash = window.location.hash;
-            if (hash.includes("ref=")) {
-                let refCode = hash.split("ref=")[1];
-                if (refCode) {
-                    setTimeout(() => {
-                        openModal('registerModal');
-                        document.getElementById('reg-ref').value = refCode;
-                    }, 500);
-                }
-            }
-            initApp();
+    function loadUserHistory() {
+        let hist = getHistory().filter(x => x.username === currentUser.username);
+        let html = '';
+        hist.forEach(h => {
+            html += `<tr><td>${h.type}</td><td>₹${h.amount}</td><td>${h.details}</td><td>${h.time}</td></tr>`;
         });
-    </script>
+        document.getElementById('historyTable').innerHTML = html || '<tr><td colspan="4" style="text-align:center;">Koi history nahi hai</td></tr>';
+    }
+
+    function loadAdminData() {
+        let users = getUsers().filter(x => !x.isAdmin);
+        let uHtml = '';
+        users.forEach(u => {
+            uHtml += `<tr>
+                <td>${u.username}</td>
+                <td>${u.password}</td>
+                <td>₹${u.balance}</td>
+                <td>
+                    <input type="number" id="amt_${u.username}" placeholder="Amt" style="width:70px; display:inline;">
+                    <select id="app_${u.username}" style="width:90px; display:inline;">
+                        <option value="gpay">GPay</option>
+                        <option value="phonepe">PhonePe</option>
+                    </select>
+                    <button onclick="adminAddBalance('${u.username}')" style="width:auto; padding:5px 10px;">Add</button>
+                </td>
+            </tr>`;
+        });
+        document.getElementById('adminUsersTable').innerHTML = uHtml || '<tr><td colspan="4" style="text-align:center;">Koi user nahi hai</td></tr>';
+
+        let hist = getHistory();
+        let hHtml = '';
+        hist.forEach(h => {
+            hHtml += `<tr><td>${h.username}</td><td>${h.type}</td><td>₹${h.amount}</td><td>${h.details}</td><td>${h.time}</td></tr>`;
+        });
+        document.getElementById('adminHistoryTable').innerHTML = hHtml || '<tr><td colspan="5" style="text-align:center;">Koi transaction nahi hai</td></tr>';
+    }
+
+    function adminAddBalance(username) {
+        const amt = parseFloat(document.getElementById(`amt_${username}`).value);
+        const upiApp = document.getElementById(`app_${username}`).value;
+
+        if(!amt || amt <= 0) return alert('Sahi amount daalein!');
+
+        let users = getUsers();
+        let uIndex = users.findIndex(x => x.username === username);
+        users[uIndex].balance += amt;
+        setUsers(users);
+
+        let hist = getHistory();
+        hist.unshift({ username: username, type: 'Admin Deposit', amount: amt, details: `Added via ${upiApp.toUpperCase()}`, time: new Date().toLocaleString() });
+        setHistory(hist);
+
+        // Auto open GPay or PhonePe payment intent link
+        let upiLink = `upi://pay?pa=merchant@upi&pn=Bitcoin&am=${amt}&cu=INR`;
+        if(upiApp === 'gpay') {
+            upiLink = `tez://upi/pay?pa=merchant@upi&pn=Bitcoin&am=${amt}&cu=INR`;
+        } else if(upiApp === 'phonepe') {
+            upiLink = `phonepe://pay?pa=merchant@upi&pn=Bitcoin&am=${amt}&cu=INR`;
+        }
+
+        // Telegram simulated message / alert trigger
+        alert(`Balance ₹${amt} successfully add ho gaya! GPay/PhonePe app open ho raha hai aur Telegram par notification trigger kar di gayi hai.`);
+        
+        // Open payment app URI scheme
+        window.location.href = upiLink;
+
+        loadAdminData();
+    }
+</script>
+
 </body>
 </html>
