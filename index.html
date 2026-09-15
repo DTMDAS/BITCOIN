@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BITCOIN - P2P & Investment Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#131b2e',
+                        accentGold: '#f59e0b',
+                        accentGreen: '#10b981',
+                        accentRed: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darkBg text-gray-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="bg-cardBg border-b border-gray-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="showPage('home')">
+                <div class="bg-accentGold text-darkBg p-2 rounded-lg font-bold text-xl flex items-center justify-center">
+                    <i class="fa-brands fa-bitcoin"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider text-white">BIT<span class="text-accentGold">COIN</span></span>
+                    <p class="text-[10px] text-gray-400 tracking-tight uppercase">P2P & AD INVESTMENT PLATFORM</p>
+                </div>
+            </div>
+            <div id="nav-auth-buttons" class="flex items-center space-x-3">
+                <button onclick="openModal('loginModal')" class="border border-accentGold text-accentGold px-4 py-2 rounded-lg text-sm font-semibold hover:bg-accentGold hover:text-darkBg transition">Login</button>
+                <button onclick="openModal('registerModal')" class="bg-accentGold text-darkBg px-4 py-2 rounded-lg text-sm font-semibold hover:bg-amber-400 transition">Register</button>
+            </div>
+            <div id="nav-user-info" class="hidden flex items-center space-x-3">
+                <button id="admin-panel-btn" onclick="openModal('adminModal')" class="hidden bg-purple-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold">Admin Panel</button>
+                <span class="text-xs bg-gray-800 px-3 py-1.5 rounded-lg border border-gray-700 text-accentGold font-mono" id="nav-uid-display">--</span>
+                <button onclick="logout()" class="bg-red-500/10 border border-red-500/30 text-red-400 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-red-500 hover:text-white transition">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+
+        <!-- HOME / DASHBOARD VIEW -->
+        <div id="view-home" class="space-y-6">
+            <!-- Non-logged in banner -->
+            <div id="hero-banner" class="bg-gradient-to-r from-amber-600/20 via-cardBg to-cardBg border border-amber-500/30 rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-3 text-center md:text-left">
+                    <span class="bg-accentGold/10 text-accentGold border border-accentGold/30 text-xs px-3 py-1 rounded-full font-medium">Trusted P2P Platform</span>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-white">Earn Daily Bitcoin Rewards & ROI</h1>
+                    <p class="text-gray-400 text-sm max-w-xl">Join the secure peer-to-peer investment and ad network system. Complete tasks once daily, transfer balance securely, and grow.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <button onclick="openModal('registerModal')" class="bg-accentGold text-darkBg font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-amber-400 transition text-center">Get Started Now</button>
+                    <button onclick="openModal('loginModal')" class="bg-cardBg border border-gray-700 text-white font-semibold px-6 py-3 rounded-xl hover:bg-gray-800 transition text-center">Sign In</button>
+                </div>
+            </div>
+
+            <!-- Logged-in User Dashboard Panel -->
+            <div id="user-dashboard" class="hidden space-y-6">
+                <!-- Top Summary Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
+                        <p class="text-xs text-gray-400 font-medium">User ID & Status</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <h3 class="text-lg font-mono font-bold text-accentGold" id="dash-uid">BTC----</h3>
+                            <span id="dash-plan-status" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">Inactive Plan</span>
+                        </div>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
+                        <p class="text-xs text-gray-400 font-medium">Main Balance</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <h3 class="text-2xl font-black text-white" id="dash-balance">₹0.00</h3>
+                            <button onclick="openModal('addMoneyModal')" class="bg-accentGreen text-white text-xs px-3 py-1.5 rounded-lg font-semibold hover:opacity-90"><i class="fa-solid fa-plus mr-1"></i> Add Money</button>
+                        </div>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5">
+                        <p class="text-xs text-gray-400 font-medium">Referral Link</p>
+                        <div class="flex items-center mt-2 bg-darkBg border border-gray-700 rounded-lg px-3 py-1.5 justify-between">
+                            <span class="text-xs text-gray-300 truncate mr-2" id="dash-ref-link">...</span>
+                            <button onclick="copyRefLink()" class="text-accentGold hover:text-white text-xs"><i class="fa-solid fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan & Tasks Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Investment Plan -->
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-bolt text-accentGold mr-2"></i> Exclusive Ad-Mining Plan</h3>
+                                <span class="bg-accentGold/10 text-accentGold text-xs font-semibold px-2.5 py-1 rounded-md">Popular</span>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">Activate plan to unlock daily video ad viewing and earn guaranteed returns.</p>
+                            <div class="grid grid-cols-3 gap-2 bg-darkBg p-3 rounded-lg border border-gray-800 mb-6 text-center">
+                                <div>
+                                    <p class="text-[10px] text-gray-400">Price</p>
+                                    <p class="text-sm font-bold text-white">₹250</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400">Duration</p>
+                                    <p class="text-sm font-bold text-white">7 Days</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400">Daily Return</p>
+                                    <p class="text-sm font-bold text-accentGreen">₹50 / day</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="activatePlan()" id="activate-plan-btn" class="w-full bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm">Activate Plan (₹250)</button>
+                    </div>
+
+                    <!-- Daily Task Section -->
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-video text-accentGold mr-2"></i> Daily Video Task (1x / Day)</h3>
+                                <span id="task-status-badge" class="text-xs bg-gray-800 text-gray-400 px-2.5 py-1 rounded-md">Locked</span>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">Watch the video ad for 1 minute once daily to claim your ₹50 reward.</p>
+                            <div id="task-box" class="bg-darkBg border border-gray-800 rounded-xl p-4 text-center space-y-3 mb-4">
+                                <p id="task-info-text" class="text-xs text-gray-400">Activate your plan to unlock daily video tasks.</p>
+                            </div>
+                        </div>
+                        <button onclick="completeDailyTask()" id="complete-task-btn" disabled class="w-full bg-gray-800 text-gray-500 font-bold py-3 rounded-xl cursor-not-allowed transition text-sm">Watch Video & Claim ₹50</button>
+                    </div>
+                </div>
+
+                <!-- P2P Transfer & Withdrawal Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- P2P Transfer Section -->
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-right-left text-accentGold mr-2"></i> P2P Balance Transfer</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Receiver User ID (UID)</label>
+                                    <input type="text" id="p2p-receiver" placeholder="e.g. BTC1234" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold uppercase">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Transfer Amount (₹)</label>
+                                    <input type="number" id="p2p-amount" placeholder="Enter Amount" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="submitP2PTransfer()" class="w-full mt-4 bg-purple-600 text-white font-bold py-3 rounded-xl hover:bg-purple-500 transition text-sm">Transfer Balance</button>
+                    </div>
+
+                    <!-- Withdrawal Section -->
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-wallet text-accentGold mr-2"></i> Withdrawal Request</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Destination UPI ID</label>
+                                    <input type="text" id="withdraw-upi" placeholder="e.g. user@paytm" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">Amount (Min ₹200)</label>
+                                    <input type="number" id="withdraw-amount" placeholder="Enter Amount" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="submitWithdrawal()" class="w-full mt-4 bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm">Request Withdrawal</button>
+                    </div>
+                </div>
+
+                <!-- History / Statements Section -->
+                <div class="bg-cardBg border border-gray-800 rounded-xl p-6 space-y-4">
+                    <h3 class="text-base font-bold text-white"><i class="fa-solid fa-clock-rotate-left text-accentGold mr-2"></i> My Transaction Statements & History</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Deposit History -->
+                        <div class="bg-darkBg border border-gray-800 rounded-xl p-4 max-h-48 overflow-y-auto">
+                            <h4 class="text-xs font-bold text-accentGreen mb-2">Deposits</h4>
+                            <div id="history-deposits" class="space-y-2 text-xs text-gray-300">
+                                <p class="text-gray-500">No deposits found.</p>
+                            </div>
+                        </div>
+                        <!-- Withdrawal History -->
+                        <div class="bg-darkBg border border-gray-800 rounded-xl p-4 max-h-48 overflow-y-auto">
+                            <h4 class="text-xs font-bold text-accentGold mb-2">Withdrawals</h4>
+                            <div id="history-withdrawals" class="space-y-2 text-xs text-gray-300">
+                                <p class="text-gray-500">No withdrawals found.</p>
+                            </div>
+                        </div>
+                        <!-- P2P History -->
+                        <div class="bg-darkBg border border-gray-800 rounded-xl p-4 max-h-48 overflow-y-auto">
+                            <h4 class="text-xs font-bold text-purple-400 mb-2">P2P Transfers</h4>
+                            <div id="history-p2p" class="space-y-2 text-xs text-gray-300">
+                                <p class="text-gray-500">No transfers found.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-cardBg border-t border-gray-800 py-6 mt-12 text-center text-xs text-gray-500">
+        <p>&copy; 2026 BITCOIN Platform. All rights reserved. Secure P2P Network.</p>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-gray-800 rounded-2xl max-w-md w-full p-6 space-y-4 relative">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xl font-bold text-white">Sign In to BITCOIN</h3>
+            <div class="space-y-3 pt-2">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Email Address</label>
+                    <input type="email" id="login-email" placeholder="name@gmail.com" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <button onclick="handleLogin()" class="w-full bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm mt-2">Sign In Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-gray-800 rounded-2xl max-w-md w-full p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xl font-bold text-white">Create Account</h3>
+            <div class="space-y-3 pt-2">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Full Name</label>
+                    <input type="text" id="reg-name" placeholder="John Doe" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Mobile Number</label>
+                    <input type="tel" id="reg-mobile" placeholder="9876543210" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Gmail Address</label>
+                    <input type="email" id="reg-email" placeholder="name@gmail.com" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Password</label>
+                    <input type="password" id="reg-password" placeholder="••••••••" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Upline Referral Code (Optional)</label>
+                    <input type="text" id="reg-ref" placeholder="e.g. BTC8527" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold uppercase">
+                </div>
+                <button onclick="handleRegister()" class="w-full bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm mt-2">Register Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Money Modal (GPay / PhonePe UPI intent trigger) -->
+    <div id="addMoneyModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-gray-800 rounded-2xl max-w-md w-full p-6 space-y-4 relative">
+            <button onclick="closeModal('addMoneyModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xl font-bold text-white">Add Funds (Auto UPI Apps)</h3>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Amount to Add (₹)</label>
+                    <input type="number" id="deposit-amount" placeholder="250" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <a id="gpay-link" href="#" onclick="prepareUpiIntent('gpay')" class="bg-blue-600/20 border border-blue-500 text-blue-400 font-bold py-3 rounded-xl text-center text-xs hover:bg-blue-600 hover:text-white transition flex items-center justify-center space-x-1"><i class="fa-brands fa-google-pay text-lg"></i> <span>Google Pay</span></a>
+                    <a id="phonepe-link" href="#" onclick="prepareUpiIntent('phonepe')" class="bg-purple-600/20 border border-purple-500 text-purple-400 font-bold py-3 rounded-xl text-center text-xs hover:bg-purple-600 hover:text-white transition flex items-center justify-center space-x-1"><i class="fa-solid fa-mobile-screen text-base"></i> <span>PhonePe</span></a>
+                </div>
+                <div class="pt-2 border-t border-gray-800">
+                    <label class="block text-xs text-gray-400 mb-1">After Payment, Enter UTR / Transaction ID</label>
+                    <input type="text" id="deposit-utr" placeholder="12-digit UTR Number" class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-accentGold">
+                </div>
+                <button onclick="submitDeposit()" class="w-full bg-accentGreen text-white font-bold py-3 rounded-xl hover:opacity-90 transition text-sm">Verify & Credit Balance</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-purple-500/40 rounded-2xl max-w-4xl w-full p-6 space-y-4 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('adminModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xl font-bold text-purple-400"><i class="fa-solid fa-user-shield mr-2"></i> Admin Panel - All Users & Records</h3>
+            
+            <div class="space-y-4 pt-2">
+                <div class="bg-darkBg border border-gray-800 rounded-xl overflow-x-auto">
+                    <h4 class="text-xs font-bold text-gray-400 p-3 border-b border-gray-800">Registered Users (ID, Passwords & Balances)</h4>
+                    <table class="w-full text-left text-xs whitespace-nowrap">
+                        <thead class="bg-gray-900 text-gray-400 border-b border-gray-800">
+                            <tr>
+                                <th class="p-3">UID</th>
+                                <th class="p-3">Name</th>
+                                <th class="p-3">Email</th>
+                                <th class="p-3">Mobile</th>
+                                <th class="p-3">Balance</th>
+                                <th class="p-3">Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-users-tbody">
+                            <tr><td colspan="6" class="p-4 text-center text-gray-500">Loading users...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        let currentUserUid = localStorage.getItem("bitcoin_current_user") || null;
+        const ADMIN_UPI = "laxmihi@ptyes";
+        const ADMIN_NAME = "BITCOIN Admin";
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const refCode = urlParams.get('ref');
+            if (refCode) {
+                document.getElementById('reg-ref').value = refCode;
+                openModal('registerModal');
+            }
+
+            if (currentUserUid) {
+                loadUserData();
+            } else {
+                showHomeHero();
+            }
+        };
+
+        function openModal(id) { 
+            document.getElementById(id).classList.remove('hidden'); 
+            if(id === 'adminModal') loadAdminData();
+        }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function showHomeHero() {
+            document.getElementById('hero-banner').classList.remove('hidden');
+            document.getElementById('user-dashboard').classList.add('hidden');
+            document.getElementById('nav-auth-buttons').classList.remove('hidden');
+            document.getElementById('nav-user-info').classList.add('hidden');
+        }
+
+        function loadUserData() {
+            if (!currentUserUid) return;
+            fetch(`api.php?action=get_user&uid=${currentUserUid}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    let user = data.user;
+                    
+                    document.getElementById('hero-banner').classList.add('hidden');
+                    document.getElementById('user-dashboard').classList.remove('hidden');
+                    document.getElementById('nav-auth-buttons').classList.add('hidden');
+                    document.getElementById('nav-user-info').classList.remove('hidden');
+
+                    if (user.uid === 'BTC8527') {
+                        document.getElementById('admin-panel-btn').classList.remove('hidden');
+                    }
+
+                    document.getElementById('nav-uid-display').innerText = user.uid;
+                    document.getElementById('dash-uid').innerText = user.uid;
+                    document.getElementById('dash-balance').innerText = `₹${parseFloat(user.balance).toFixed(2)}`;
+                    document.getElementById('dash-ref-link').innerText = `${window.location.origin}${window.location.pathname}?ref=${user.uid}`;
+
+                    const planBadge = document.getElementById('dash-plan-status');
+                    const activateBtn = document.getElementById('activate-plan-btn');
+                    const taskBtn = document.getElementById('complete-task-btn');
+                    const taskBadge = document.getElementById('task-status-badge');
+                    const taskInfo = document.getElementById('task-info-text');
+
+                    const today = new Date().toISOString().split('T')[0];
+
+                    if (user.plan_active == 1) {
+                        planBadge.innerText = "Active Plan (7 Days)";
+                        planBadge.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-accentGreen/10 text-accentGreen border border-accentGreen/20";
+                        activateBtn.innerText = "Plan Already Active";
+                        activateBtn.disabled = true;
+                        activateBtn.className = "w-full bg-gray-800 text-gray-500 font-bold py-3 rounded-xl cursor-not-allowed text-sm";
+
+                        if (user.last_task_date === today) {
+                            taskBadge.innerText = "Completed Today";
+                            taskBadge.className = "text-xs bg-gray-800 text-gray-400 px-2.5 py-1 rounded-md";
+                            taskInfo.innerText = "You have already completed today's video task. Come back tomorrow!";
+                            taskBtn.disabled = true;
+                            taskBtn.className = "w-full bg-gray-800 text-gray-500 font-bold py-3 rounded-xl cursor-not-allowed text-sm";
+                        } else {
+                            taskBadge.innerText = "Task Available";
+                            taskBadge.className = "text-xs bg-accentGreen/10 text-accentGreen border border-accentGreen/20 px-2.5 py-1 rounded-md font-medium";
+                            taskInfo.innerText = "Watch today's 1-minute video ad to claim ₹50 reward.";
+                            taskBtn.disabled = false;
+                            taskBtn.className = "w-full bg-accentGold text-darkBg font-bold py-3 rounded-xl hover:bg-amber-400 transition text-sm cursor-pointer";
+                        }
+                    }
+
+                    document.getElementById('history-deposits').innerHTML = data.deposits.length ? data.deposits.map(d => `<div class="border-b border-gray-800 pb-1 flex justify-between"><span>₹${d.amount} (UTR: ${d.utr})</span><span class="text-accentGreen">Success</span></div>`).join('') : '<p class="text-gray-500">No deposits found.</p>';
+                    
+                    document.getElementById('history-withdrawals').innerHTML = data.withdrawals.length ? data.withdrawals.map(w => `<div class="border-b border-gray-800 pb-1 flex justify-between"><span>₹${w.amount} to ${w.upi}</span><span class="text-amber-400">${w.status}</span></div>`).join('') : '<p class="text-gray-500">No withdrawals found.</p>';
+                    
+                    document.getElementById('history-p2p').innerHTML = data.p2p.length ? data.p2p.map(p => `<div class="border-b border-gray-800 pb-1 flex justify-between"><span>${p.sender_uid === currentUserUid ? 'Sent ₹'+p.amount+' to '+p.receiver_uid : 'Recv ₹'+p.amount+' from '+p.sender_uid}</span></div>`).join('') : '<p class="text-gray-500">No transfers found.</p>';
+
+                } else {
+                    logout();
+                }
+            });
+        }
+
+        function prepareUpiIntent(app) {
+            let amt = document.getElementById('deposit-amount').value;
+            if(!amt || amt <= 0) {
+                alert('Please enter a valid amount first.');
+                return;
+            }
+            let upiUrl = `upi://pay?pa=${ADMIN_UPI}&pn=${encodeURIComponent(ADMIN_NAME)}&am=${amt}&cu=INR`;
+            if(app === 'gpay') {
+                document.getElementById('gpay-link').href = upiUrl;
+            } else {
+                document.getElementById('phonepe-link').href = upiUrl;
+            }
+        }
+
+        function submitDeposit() {
+            let amount = document.getElementById('deposit-amount').value;
+            let utr = document.getElementById('deposit-utr').value.trim();
+
+            if(!amount || !utr) {
+                alert('Please fill amount and UTR number.');
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append('uid', currentUserUid);
+            formData.append('amount', amount);
+            formData.append('utr', utr);
+
+            fetch('api.php?action=deposit', {method: 'POST', body: formData})
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 'success') {
+                    alert('Deposit verified and credited successfully!');
+                    closeModal('addMoneyModal');
+                    loadUserData();
+                } else {
+                    alert(res.message);
+                }
+            });
+        }
+
+        function handleRegister() {
+            let data = {
+                name: document.getElementById('reg-name').value.trim(),
+                mobile: document.getElementById('reg-mobile').value.trim(),
+                email: document.getElementById('reg-email').value.trim(),
+                password: document.getElementById('reg-password').value.trim(),
+                upline: document.getElementById('reg-ref').value.trim().toUpperCase()
+            };
+
+            fetch('api.php?action=register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.status === 'success') {
+                    currentUserUid = response.uid;
+                    localStorage.setItem("bitcoin_current_user", currentUserUid);
+                    closeModal('registerModal');
+                    alert(`Account created successfully! Your UID is ${currentUserUid}`);
+                    loadUserData();
+                } else {
+                    alert(response.message);
+                }
+            });
+        }
+
+        function handleLogin() {
+            let data = {
+                email: document.getElementById('login-email').value.trim(),
+                password: document.getElementById('login-password').value.trim()
+            };
+
+            fetch('api.php?action=login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(response => {
+                if (response.status === 'success') {
+                    currentUserUid = response.uid;
+                    localStorage.setItem("bitcoin_current_user", currentUserUid);
+                    closeModal('loginModal');
+                    loadUserData();
+                } else {
+                    alert(response.message);
+                }
+            });
+        }
+
+        function activatePlan() {
+            fetch('api.php?action=activate_plan', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({uid: currentUserUid})
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 'success') {
+                    alert('Plan activated successfully!');
+                    loadUserData();
+                } else {
+                    alert(res.message);
+                }
+            });
+        }
+
+        function completeDailyTask() {
+            fetch('api.php?action=complete_task', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({uid: currentUserUid})
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 'success') {
+                    alert(`Video task completed! Earned ₹${res.reward}`);
+                    loadUserData();
+                } else {
+                    alert(res.message);
+                }
+            });
+        }
+
+        function submitP2PTransfer() {
+            let receiver_uid = document.getElementById('p2p-receiver').value.trim().toUpperCase();
+            let amount = document.getElementById('p2p-amount').value;
+
+            fetch('api.php?action=p2p_transfer', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sender_uid: currentUserUid, receiver_uid, amount})
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 'success') {
+                    alert('P2P Transfer successful!');
+                    loadUserData();
+                } else {
+                    alert(res.message);
+                }
+            });
+        }
+
+        function submitWithdrawal() {
+            let upi = document.getElementById('withdraw-upi').value;
+            let amount = document.getElementById('withdraw-amount').value;
+
+            fetch('api.php?action=withdraw', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({uid: currentUserUid, upi, amount})
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 'success') {
+                    alert('Withdrawal request submitted successfully!');
+                    loadUserData();
+                } else {
+                    alert(res.message);
+                }
+            });
+        }
+
+        function loadAdminData() {
+            fetch('api.php?action=admin_get_all')
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 'success') {
+                    let tbody = document.getElementById('admin-users-tbody');
+                    tbody.innerHTML = res.users.map(u => `
+                        <tr class="border-b border-gray-800">
+                            <td class="p-3 font-mono text-accentGold">${u.uid}</td>
+                            <td class="p-3 text-white">${u.name}</td>
+                            <td class="p-3 text-gray-300">${u.email}</td>
+                            <td class="p-3 text-gray-300">${u.mobile}</td>
+                            <td class="p-3 text-accentGreen font-bold">₹${u.balance}</td>
+                            <td class="p-3">${u.plan_active == 1 ? 'Active' : 'Inactive'}</td>
+                        </tr>
+                    `).join('');
+                }
+            });
+        }
+
+        function copyRefLink() {
+            let link = document.getElementById('dash-ref-link').innerText;
+            navigator.clipboard.writeText(link);
+            alert('Referral link copied!');
+        }
+
+        function logout() {
+            localStorage.removeItem("bitcoin_current_user");
+            currentUserUid = null;
+            showHomeHero();
+        }
+    </script>
+</body>
+</html>
