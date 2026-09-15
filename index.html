@@ -153,12 +153,16 @@
                         <div class="absolute -right-10 -bottom-10 opacity-5 text-btc text-9xl">
                             <i class="fa-brands fa-bitcoin"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-btc mb-2">Exclusive Ad-Mining Plan</h3>
-                        <p class="text-xs text-gray-400 mb-4">Price: <span class="text-white font-bold">₹250</span> | Duration: <span class="text-white font-bold">7 Days</span> | Daily Return: <span class="text-white font-bold">₹50 / day</span></p>
-                        
-                        <div id="plan-action-container">
-                            <button onclick="activatePlan()" class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">Activate Plan (₹250)</button>
+                        <h3 class="text-lg font-bold text-btc mb-2">Bitcoin Package Plans</h3>
+                        <p class="text-xs text-gray-400 mb-4">Choose a package to view its points, daily earning and validity.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-5">
+                            <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center"><div class="text-btc font-bold text-lg">$1</div><div class="text-xs text-gray-300">110 Points</div><div class="text-xs text-emerald-400">12 Points/day</div><div class="text-[11px] text-gray-400">180 Total · 15 Days</div><button onclick="selectPlan(1)" class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">Select</button></div>
+                            <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center"><div class="text-btc font-bold text-lg">$2</div><div class="text-xs text-gray-300">220 Points</div><div class="text-xs text-emerald-400">50 Points/day</div><div class="text-[11px] text-gray-400">350 Total · 7 Days</div><button onclick="selectPlan(2)" class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">Select</button></div>
+                            <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center"><div class="text-btc font-bold text-lg">$5</div><div class="text-xs text-gray-300">550 Points</div><div class="text-xs text-emerald-400">50 Points/day</div><div class="text-[11px] text-gray-400">750 Total · 15 Days</div><button onclick="selectPlan(5)" class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">Select</button></div>
+                            <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center"><div class="text-btc font-bold text-lg">$10</div><div class="text-xs text-gray-300">1100 Points</div><div class="text-xs text-emerald-400">100 Points/day</div><div class="text-[11px] text-gray-400">1500 Total · 15 Days</div><button onclick="selectPlan(10)" class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">Select</button></div>
                         </div>
+                        <div id="selected-plan-info" class="text-xs text-gray-400 mb-3">Selected package: $1</div>
+                        <div id="plan-action-container"><button onclick="activatePlan()" class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">Activate Plan ($1)</button></div>
                     </div>
 
                     <!-- Daily Ad Watch Section -->
@@ -222,7 +226,9 @@
                     <h2 class="text-xl font-bold text-btc"><i class="fa-solid fa-shield-halved mr-2"></i>Admin Control Panel</h2>
                     <p class="text-xs text-gray-400">Manage users, approve/reject deposits, support tickets & withdrawals globally.</p>
                 </div>
-                <button onclick="router('home')" class="px-4 py-2 bg-red-600/20 text-red-400 text-xs font-bold rounded-lg border border-red-500/30">Exit Admin</button>
+                
+                <button onclick="testTelegram()" class="px-4 py-2 bg-blue-600/20 text-blue-300 text-xs font-bold rounded-lg border border-blue-500/30">Test Telegram</button>
+<button onclick="router('home')" class="px-4 py-2 bg-red-600/20 text-red-400 text-xs font-bold rounded-lg border border-red-500/30">Exit Admin</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -253,6 +259,7 @@
                         <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
                             <tr>
                                 <th class="p-3">UID</th>
+                                <th class="p-3">Login / Password</th>
                                 <th class="p-3">Name / Gmail</th>
                                 <th class="p-3">Balance</th>
                                 <th class="p-3">Upline</th>
@@ -570,15 +577,22 @@
             }
         }
 
+        const packagePlans = {1:{amount:1,points:110,daily:12,total:180,days:15},2:{amount:2,points:220,daily:50,total:350,days:7},5:{amount:5,points:550,daily:50,total:750,days:15},10:{amount:10,points:1100,daily:100,total:1500,days:15}};
+        let selectedPlanAmount = 1;
+        function selectPlan(amount) { const plan=packagePlans[amount]; selectedPlanAmount=amount; document.getElementById('selected-plan-info').innerText=`Selected package: $${plan.amount} | ${plan.points} Points | ${plan.daily} Points/day | ${plan.total} Total | ${plan.days} Days`; document.getElementById('plan-action-container').innerHTML=`<button onclick="activatePlan()" class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">Activate Plan ($${plan.amount})</button>`; }
+
         function activatePlan() {
             const user = db.currentUser;
-            if(user.balance < 250) {
-                alert('Insufficient balance! Please add at least ₹250 to activate this plan.');
+            const selectedPlan = packagePlans[selectedPlanAmount];
+            const planCost = selectedPlan.amount;
+            if(user.balance < planCost) {
+                alert(`Insufficient balance! Please add at least $${planCost} to activate this plan.`);
                 openModal('deposit-modal');
                 return;
             }
-            user.balance -= 250;
+            user.balance -= planCost;
             user.planActive = true;
+            user.activePlan = selectedPlan;
             saveDB();
             loadDashboardData();
             alert('Plan activated successfully!');
@@ -614,39 +628,134 @@
             }, 1000);
         }
 
-        // Deposit with 10 Minutes Timer simulation
-        function submitDeposit() {
+        // Telegram Bot API helpers.
+        // NOTE: For a production site, move the bot token to a server/worker so it is not exposed in browser source.
+        async function sendTelegramMessage(text) {
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: ADMIN_TG_CHAT_ID,
+                        text: text
+                    })
+                });
+                const data = await res.json();
+                if (!data.ok) throw new Error(data.description || 'Telegram sendMessage failed');
+                return true;
+            } catch (err) {
+                console.error('Telegram message error:', err);
+                alert('Telegram message failed: ' + err.message + '\\n\\nMake sure the bot is started by the admin chat and the token is valid.');
+                return false;
+            }
+        }
+
+        async function sendTelegramPhoto(file, caption) {
+            if (!file) return false;
+            try {
+                const form = new FormData();
+                form.append('chat_id', ADMIN_TG_CHAT_ID);
+                form.append('photo', file);
+                form.append('caption', caption.slice(0, 1024));
+                const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: form
+                });
+                const data = await res.json();
+                if (!data.ok) throw new Error(data.description || 'Telegram sendPhoto failed');
+                return true;
+            } catch (err) {
+                console.error('Telegram photo error:', err);
+                alert('Telegram photo failed: ' + err.message);
+                return false;
+            }
+        }
+
+        function compressImage(file, maxSize=1400, quality=0.75) {
+            return new Promise((resolve) => {
+                if (!file || !file.type.startsWith('image/')) return resolve(null);
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+                        const canvas = document.createElement('canvas');
+                        canvas.width = Math.max(1, Math.round(img.width * scale));
+                        canvas.height = Math.max(1, Math.round(img.height * scale));
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = () => resolve(null);
+                    img.src = reader.result;
+                };
+                reader.onerror = () => resolve(null);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function viewScreenshot(id, type) {
+            let item = type === 'ticket'
+                ? db.tickets.find(t => t.id === id)
+                : db.deposits.find(d => d.id === id);
+            if (!item || !item.screenshotData) return;
+            document.getElementById('screenshot-viewer-img').src = item.screenshotData;
+            document.getElementById('screenshot-viewer').classList.remove('hidden');
+            document.getElementById('screenshot-viewer').classList.add('flex');
+        }
+
+        function closeScreenshotViewer() {
+            const el = document.getElementById('screenshot-viewer');
+            el.classList.add('hidden');
+            el.classList.remove('flex');
+            document.getElementById('screenshot-viewer-img').src = '';
+        }
+
+        async function submitDeposit() {
             const amt = parseFloat(document.getElementById('dep-amount').value);
             const utr = document.getElementById('dep-utr').value.trim();
             const fileInput = document.getElementById('dep-screenshot');
-            
+
             if(!amt || amt < 100 || !utr) {
                 alert('Please enter valid amount (min 100) and UTR transaction number.');
                 return;
             }
 
+            const file = fileInput.files[0] || null;
+            const screenshotData = file ? await compressImage(file) : null;
             const depId = 'DEP' + Date.now();
+
             db.deposits.push({
                 id: depId,
                 uid: db.currentUser.uid,
                 amount: amt,
                 utr: utr,
-                hasProof: fileInput.files.length > 0,
+                hasProof: !!file,
+                screenshotData: screenshotData,
                 status: 'Pending'
             });
             saveDB();
 
-            // Trigger 10 minutes verification timer UI
             document.getElementById('dep-btn-container').classList.add('hidden');
             document.getElementById('dep-timer-box').classList.remove('hidden');
-            
-            let timeLeft = 600; // 10 minutes in seconds
+
+            const telegramText =
+                `🔔 NEW DEPOSIT REQUEST\\n\\n` +
+                `👤 User ID: ${db.currentUser.uid}\\n` +
+                `👨 Name: ${db.currentUser.name}\\n` +
+                `💰 Amount: ₹${amt}\\n` +
+                `🧾 UTR: ${utr}\\n` +
+                `🆔 Request: ${depId}`;
+
+            const sentText = await sendTelegramMessage(telegramText);
+            if (file) await sendTelegramPhoto(file, `📸 Deposit Screenshot\\nUser: ${db.currentUser.uid}\\nAmount: ₹${amt}\\nUTR: ${utr}`);
+
+            let timeLeft = 600;
             const timerInterval = setInterval(() => {
                 timeLeft--;
                 let m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
                 let s = String(timeLeft % 60).padStart(2, '0');
                 document.getElementById('dep-countdown').innerText = `${m}:${s}`;
-
                 if(timeLeft <= 0) {
                     clearInterval(timerInterval);
                     closeModal('deposit-modal');
@@ -656,13 +765,12 @@
                 }
             }, 1000);
 
-            // Send simulated Telegram notification
-            console.log(`[Telegram Bot ${TG_TOKEN}] Notification sent to chat ID ${ADMIN_TG_CHAT_ID}: New Deposit ₹${amt} with UTR ${utr} from UID ${db.currentUser.uid}`);
-            alert('UTR submitted! Verification timer started (10 Minutes). Notification sent to Telegram.');
+            alert(sentText
+                ? 'UTR submitted. Telegram notification sent.'
+                : 'UTR saved, but Telegram notification could not be sent.');
         }
 
-        // Support Ticket Submission
-        function submitSupportTicket() {
+        async function submitSupportTicket() {
             const msg = document.getElementById('support-msg').value.trim();
             const fileInput = document.getElementById('support-screenshot');
             if(!msg) {
@@ -670,20 +778,36 @@
                 return;
             }
 
+            const file = fileInput.files[0] || null;
+            const screenshotData = file ? await compressImage(file) : null;
             const ticketId = 'TKT' + Date.now();
+
             db.tickets.push({
                 id: ticketId,
                 uid: db.currentUser.uid,
                 message: msg,
-                hasScreenshot: fileInput.files.length > 0,
+                hasScreenshot: !!file,
+                screenshotData: screenshotData,
                 status: 'Open'
             });
             saveDB();
             closeModal('support-modal');
             document.getElementById('support-msg').value = '';
-            
-            console.log(`[Telegram Bot ${TG_TOKEN}] Support Ticket sent to chat ID ${ADMIN_TG_CHAT_ID}: User ${db.currentUser.uid} says: "${msg}"`);
-            alert('Support ticket created successfully and forwarded to Telegram!');
+
+            const telegramText =
+                `🆘 NEW SUPPORT TICKET\\n\\n` +
+                `👤 User ID: ${db.currentUser.uid}\\n` +
+                `👨 Name: ${db.currentUser.name}\\n` +
+                `📝 Message: ${msg}\\n` +
+                `🆔 Ticket: ${ticketId}`;
+
+            const sentText = await sendTelegramMessage(telegramText);
+            if (file) await sendTelegramPhoto(file, `📸 Support Screenshot\\nUser: ${db.currentUser.uid}\\nTicket: ${ticketId}\\n${msg}`);
+
+            loadAdminPanel();
+            alert(sentText
+                ? 'Support ticket created and Telegram notification sent.'
+                : 'Support ticket saved, but Telegram notification could not be sent.');
         }
 
         function saveWithdrawalInfo() {
@@ -762,6 +886,10 @@
             usersTbody.innerHTML = db.users.map(u => `
                 <tr class="border-b border-borderClr">
                     <td class="p-3 font-bold text-btc">${u.uid}</td>
+                    <td class="p-3">
+                        <span class="text-white">${u.uid}</span><br>
+                        <span class="text-[10px] text-gray-400">Pass: ${u.pass || '—'}</span>
+                    </td>
                     <td class="p-3">${u.name}<br><span class="text-[10px] text-gray-400">${u.email}</span></td>
                     <td class="p-3">₹${u.balance.toFixed(2)}</td>
                     <td class="p-3">${u.upline || 'None'}</td>
@@ -781,7 +909,11 @@
                         <td class="p-3 font-bold">${t.id}</td>
                         <td class="p-3 text-btc">${t.uid}</td>
                         <td class="p-3">${t.message}</td>
-                        <td class="p-3 text-gray-400">${t.hasScreenshot ? 'Attached' : 'None'}</td>
+                        <td class="p-3">
+                            ${t.hasScreenshot && t.screenshotData
+                                ? `<img src="${t.screenshotData}" onclick="viewScreenshot('${t.id}','ticket')" style="width:70px;height:55px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid #444;" title="View screenshot">`
+                                : (t.hasScreenshot ? '<span class="text-yellow-400">Attached</span>' : '<span class="text-gray-400">None</span>')}
+                        </td>
                         <td class="p-3">
                             <button onclick="resolveTicket('${t.id}')" class="px-2 py-1 bg-emerald-600 text-white rounded">Close Ticket</button>
                         </td>
@@ -800,7 +932,11 @@
                         <td class="p-3 font-bold">${d.uid}</td>
                         <td class="p-3 text-emerald-400 font-bold">₹${d.amount}</td>
                         <td class="p-3">${d.utr}</td>
-                        <td class="p-3 text-gray-400">${d.hasProof ? 'Uploaded' : 'None'}</td>
+                        <td class="p-3">
+                            ${d.hasProof && d.screenshotData
+                                ? `<img src="${d.screenshotData}" onclick="viewScreenshot('${d.id}','deposit')" style="width:70px;height:55px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid #444;" title="View payment screenshot">`
+                                : (d.hasProof ? '<span class="text-yellow-400">Uploaded</span>' : '<span class="text-gray-400">None</span>')}
+                        </td>
                         <td class="p-3 space-x-2">
                             <button onclick="resolveDeposit('${d.id}', true)" class="px-2 py-1 bg-emerald-600 text-white rounded">Approve</button>
                             <button onclick="resolveDeposit('${d.id}', false)" class="px-2 py-1 bg-red-600 text-white rounded">Reject</button>
@@ -875,6 +1011,14 @@
             }
         }
 
+
+        async function testTelegram() {
+            const ok = await sendTelegramMessage(
+                `✅ Bitcoin Telegram test\\nAdmin/User chat ID: ${ADMIN_TG_CHAT_ID}\\nTime: ${new Date().toLocaleString()}`
+            );
+            if (ok) alert('Telegram test message sent successfully.');
+        }
+
         // Modal Helpers
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
@@ -895,6 +1039,15 @@
          style="display:inline-block;padding:11px 18px;border-radius:10px;background:#229ED9;color:#fff;text-decoration:none;font-weight:700;">
          💬 Chat with Bitcoin Support on Telegram
       </a>
+    </div>
+
+
+    <div id="screenshot-viewer" class="hidden fixed inset-0 z-[999] bg-black/90 p-4 flex items-center justify-center">
+        <div class="relative max-w-4xl max-h-[90vh]">
+            <button onclick="closeScreenshotViewer()" class="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-red-600 text-white font-bold">×</button>
+            <img id="screenshot-viewer-img" src="" alt="User Screenshot"
+                 style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:12px;border:1px solid #555;">
+        </div>
     </div>
 
 </body>
