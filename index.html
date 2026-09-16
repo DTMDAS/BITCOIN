@@ -6,6 +6,7 @@
     <title>BitCap - Crypto & P2P Ecosystem</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -40,6 +41,10 @@
         .green-glow {
             box-shadow: 0 0 25px rgba(0, 210, 106, 0.12);
         }
+
+        button:disabled {
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -59,13 +64,16 @@
                 <span class="text-xl font-bold tracking-wider text-btc">
                     BIT<span class="text-white">CAP</span>
                 </span>
+
                 <span class="block text-[10px] text-gray-400">
                     P2P & AD INVESTMENT PLATFORM
                 </span>
             </div>
+
         </div>
 
         <div id="nav-auth-buttons" class="flex items-center space-x-3">
+
             <button onclick="router('login')"
                     class="px-4 py-2 text-sm font-semibold text-btc border border-btc rounded-lg hover:bg-btc/10 transition">
                 Login
@@ -75,15 +83,19 @@
                     class="px-4 py-2 text-sm font-semibold bg-btc text-darkBg rounded-lg hover:bg-btc/90 transition">
                 Register
             </button>
+
         </div>
 
         <div id="nav-user-info" class="hidden flex items-center space-x-4">
-            <span id="nav-username" class="text-sm font-medium text-gray-300"></span>
+
+            <span id="nav-username"
+                  class="text-sm font-medium text-gray-300"></span>
 
             <button onclick="logout()"
                     class="px-3 py-1.5 text-xs bg-red-600/20 text-red-400 border border-red-500/30 rounded-md hover:bg-red-600/30 transition">
                 Logout
             </button>
+
         </div>
 
     </div>
@@ -91,6 +103,7 @@
 
 
 <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+
 
 <!-- HOME -->
 
@@ -128,9 +141,8 @@
 
         </div>
 
-       
-
     </div>
+
 </section>
 
 
@@ -150,6 +162,7 @@
     <form onsubmit="handleLogin(event)" class="space-y-4">
 
         <div>
+
             <label class="block text-xs font-semibold text-gray-400 mb-1">
                 Mobile Number, Gmail, or User ID
             </label>
@@ -159,9 +172,11 @@
                    required
                    class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2.5 text-sm focus:outline-none"
                    placeholder="e.g. jiobhart or 9999999999">
+
         </div>
 
         <div>
+
             <label class="block text-xs font-semibold text-gray-400 mb-1">
                 Password
             </label>
@@ -170,6 +185,7 @@
                    id="login-password"
                    required
                    class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2.5 text-sm focus:outline-none">
+
         </div>
 
         <button type="submit"
@@ -181,6 +197,7 @@
 
     <p class="text-xs text-center text-gray-400 mt-6">
         Don't have an account?
+
         <span onclick="router('register')"
               class="text-btc cursor-pointer font-semibold">
             Register here
@@ -209,7 +226,10 @@
             <label class="block text-xs font-semibold text-gray-400 mb-1">
                 Full Name
             </label>
-            <input type="text" id="reg-name" required
+
+            <input type="text"
+                   id="reg-name"
+                   required
                    class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm">
         </div>
 
@@ -217,7 +237,10 @@
             <label class="block text-xs font-semibold text-gray-400 mb-1">
                 Mobile Number
             </label>
-            <input type="tel" id="reg-phone" required
+
+            <input type="tel"
+                   id="reg-phone"
+                   required
                    class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm">
         </div>
 
@@ -225,7 +248,10 @@
             <label class="block text-xs font-semibold text-gray-400 mb-1">
                 Gmail Address
             </label>
-            <input type="email" id="reg-email" required
+
+            <input type="email"
+                   id="reg-email"
+                   required
                    class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm">
         </div>
 
@@ -233,7 +259,10 @@
             <label class="block text-xs font-semibold text-gray-400 mb-1">
                 Password
             </label>
-            <input type="password" id="reg-pass" required
+
+            <input type="password"
+                   id="reg-pass"
+                   required
                    class="w-full bg-darkBg border border-borderClr rounded-lg px-4 py-2 text-sm">
         </div>
 
@@ -256,11 +285,14 @@
     </form>
 
     <p class="text-xs text-center text-gray-400 mt-6">
+
         Already registered?
+
         <span onclick="router('login')"
               class="text-btc cursor-pointer font-semibold">
             Login here
         </span>
+
     </p>
 
 </section>
@@ -271,11 +303,13 @@
 <section id="page-dashboard"
          class="view-page hidden space-y-6">
 
+
 <!-- ACCOUNT OVERVIEW -->
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
     <div class="bg-cardBg border border-borderClr p-4 rounded-xl green-glow">
+
         <span class="text-xs text-gray-400">
             User ID & Status
         </span>
@@ -293,10 +327,12 @@
             </span>
 
         </div>
+
     </div>
 
 
     <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
+
         <span class="text-xs text-gray-400">
             Main Balance
         </span>
@@ -305,6 +341,7 @@
             class="text-xl font-bold text-white mt-1">
             ₹0.00
         </h3>
+
     </div>
 
 
@@ -327,6 +364,7 @@
             </button>
 
         </div>
+
     </div>
 
 
@@ -334,14 +372,18 @@
 
         <button onclick="openModal('deposit-modal')"
                 class="w-full py-2 bg-btc hover:bg-btc/80 text-darkBg font-bold text-xs rounded-lg transition">
+
             <i class="fa-solid fa-wallet mr-1"></i>
-            Add Money (Min ₹100)
+            Add Money (Min ₹110)
+
         </button>
 
         <button onclick="openModal('p2p-modal')"
                 class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-lg transition">
+
             <i class="fa-solid fa-right-left mr-1"></i>
             P2P Transfer
+
         </button>
 
     </div>
@@ -351,9 +393,11 @@
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
+
 <!-- LEFT -->
 
 <div class="lg:col-span-2 space-y-6">
+
 
 <!-- PLANS -->
 
@@ -374,78 +418,144 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3 mb-5">
 
+
         <!-- 110 -->
 
         <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center">
-            <div class="text-btc font-bold text-lg">₹110</div>
-            <div class="text-xs text-gray-300">₹12 / Day</div>
-            <div class="text-xs text-emerald-400">₹180 Total</div>
-            <div class="text-[11px] text-gray-400">15 Days</div>
+
+            <div class="text-btc font-bold text-lg">
+                ₹110
+            </div>
+
+            <div class="text-xs text-gray-300">
+                ₹12 / Day
+            </div>
+
+            <div class="text-xs text-emerald-400">
+                ₹180 Total
+            </div>
+
+            <div class="text-[11px] text-gray-400">
+                15 Days
+            </div>
 
             <button onclick="selectPlan(110)"
                     class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">
                 Select
             </button>
+
         </div>
 
 
         <!-- 220 -->
 
         <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center">
-            <div class="text-btc font-bold text-lg">₹220</div>
-            <div class="text-xs text-gray-300">₹50 / Day</div>
-            <div class="text-xs text-emerald-400">₹350 Total</div>
-            <div class="text-[11px] text-gray-400">7 Days</div>
+
+            <div class="text-btc font-bold text-lg">
+                ₹220
+            </div>
+
+            <div class="text-xs text-gray-300">
+                ₹50 / Day
+            </div>
+
+            <div class="text-xs text-emerald-400">
+                ₹350 Total
+            </div>
+
+            <div class="text-[11px] text-gray-400">
+                7 Days
+            </div>
 
             <button onclick="selectPlan(220)"
                     class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">
                 Select
             </button>
+
         </div>
 
 
         <!-- 550 -->
 
         <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center">
-            <div class="text-btc font-bold text-lg">₹550</div>
-            <div class="text-xs text-gray-300">₹50 / Day</div>
-            <div class="text-xs text-emerald-400">₹750 Total</div>
-            <div class="text-[11px] text-gray-400">15 Days</div>
+
+            <div class="text-btc font-bold text-lg">
+                ₹550
+            </div>
+
+            <div class="text-xs text-gray-300">
+                ₹50 / Day
+            </div>
+
+            <div class="text-xs text-emerald-400">
+                ₹750 Total
+            </div>
+
+            <div class="text-[11px] text-gray-400">
+                15 Days
+            </div>
 
             <button onclick="selectPlan(550)"
                     class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">
                 Select
             </button>
+
         </div>
 
 
         <!-- 1100 -->
 
         <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center">
-            <div class="text-btc font-bold text-lg">₹1100</div>
-            <div class="text-xs text-gray-300">₹100 / Day</div>
-            <div class="text-xs text-emerald-400">₹1500 Total</div>
-            <div class="text-[11px] text-gray-400">15 Days</div>
+
+            <div class="text-btc font-bold text-lg">
+                ₹1100
+            </div>
+
+            <div class="text-xs text-gray-300">
+                ₹100 / Day
+            </div>
+
+            <div class="text-xs text-emerald-400">
+                ₹1500 Total
+            </div>
+
+            <div class="text-[11px] text-gray-400">
+                15 Days
+            </div>
 
             <button onclick="selectPlan(1100)"
                     class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">
                 Select
             </button>
+
         </div>
 
 
         <!-- 2200 -->
 
         <div class="bg-darkBg border border-btc/40 rounded-xl p-3 text-center">
-            <div class="text-btc font-bold text-lg">₹2200</div>
-            <div class="text-xs text-gray-300">₹200 / Day</div>
-            <div class="text-xs text-emerald-400">₹3000 Total</div>
-            <div class="text-[11px] text-gray-400">15 Days</div>
+
+            <div class="text-btc font-bold text-lg">
+                ₹2200
+            </div>
+
+            <div class="text-xs text-gray-300">
+                ₹200 / Day
+            </div>
+
+            <div class="text-xs text-emerald-400">
+                ₹3000 Total
+            </div>
+
+            <div class="text-[11px] text-gray-400">
+                15 Days
+            </div>
 
             <button onclick="selectPlan(2200)"
                     class="mt-2 w-full py-1.5 bg-btc text-darkBg rounded-lg text-xs font-bold">
                 Select
             </button>
+
         </div>
 
     </div>
@@ -457,10 +567,12 @@
     </div>
 
     <div id="plan-action-container">
+
         <button onclick="activatePlan()"
                 class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">
             Activate Plan (₹110)
         </button>
+
     </div>
 
 </div>
@@ -509,6 +621,7 @@
 
 <div class="space-y-6">
 
+
 <!-- DOWNLINE -->
 
 <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
@@ -543,8 +656,10 @@
 <div class="bg-cardBg border border-borderClr p-6 rounded-2xl">
 
     <h3 class="text-sm font-bold text-gray-300 mb-3">
+
         <i class="fa-solid fa-headset mr-1 text-btc"></i>
         Help & Support
+
     </h3>
 
     <p class="text-[11px] text-gray-400 mb-3">
@@ -626,6 +741,7 @@
 </div>
 
 </div>
+
 </div>
 
 </section>
@@ -636,17 +752,22 @@
 <section id="page-admin"
          class="view-page hidden space-y-6">
 
+
 <div class="flex justify-between items-center bg-cardBg border border-borderClr p-4 rounded-xl">
 
     <div>
+
         <h2 class="text-xl font-bold text-btc">
+
             <i class="fa-solid fa-shield-halved mr-2"></i>
             Admin Control Panel
+
         </h2>
 
         <p class="text-xs text-gray-400">
             Manage users, deposits, support tickets & withdrawals.
         </p>
+
     </div>
 
     <div class="flex gap-2">
@@ -662,41 +783,65 @@
         </button>
 
     </div>
+
 </div>
 
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
     <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-        <span class="text-xs text-gray-400">Total System Users</span>
+
+        <span class="text-xs text-gray-400">
+            Total System Users
+        </span>
+
         <h3 id="admin-total-users"
             class="text-2xl font-bold text-white mt-1">
             0
         </h3>
+
     </div>
 
+
     <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-        <span class="text-xs text-gray-400">Pending Deposits</span>
+
+        <span class="text-xs text-gray-400">
+            Pending Deposits
+        </span>
+
         <h3 id="admin-pending-deps"
             class="text-2xl font-bold text-yellow-500 mt-1">
             0
         </h3>
+
     </div>
 
+
     <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-        <span class="text-xs text-gray-400">Pending Withdrawals</span>
+
+        <span class="text-xs text-gray-400">
+            Pending Withdrawals
+        </span>
+
         <h3 id="admin-pending-wds"
             class="text-2xl font-bold text-btc mt-1">
             0
         </h3>
+
     </div>
 
+
     <div class="bg-cardBg border border-borderClr p-4 rounded-xl">
-        <span class="text-xs text-gray-400">Support Tickets</span>
+
+        <span class="text-xs text-gray-400">
+            Support Tickets
+        </span>
+
         <h3 id="admin-pending-tickets"
             class="text-2xl font-bold text-blue-400 mt-1">
             0
         </h3>
+
     </div>
 
 </div>
@@ -718,13 +863,43 @@
         <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
 
         <tr>
-            <th class="p-3">UID</th>
-            <th class="p-3">Login / Password</th>
-            <th class="p-3">Name / Gmail</th>
-            <th class="p-3">Balance</th>
-            <th class="p-3">Upline</th>
-            <th class="p-3">Status</th>
-            <th class="p-3">Actions</th>
+
+            <th class="p-3">
+                UID
+            </th>
+
+            <th class="p-3">
+                Login / Password
+            </th>
+
+            <th class="p-3">
+                Name / Gmail
+            </th>
+
+            <th class="p-3">
+                Balance
+            </th>
+
+            <th class="p-3">
+                Upline
+            </th>
+
+            <th class="p-3">
+                IP Address
+            </th>
+
+            <th class="p-3">
+                Status
+            </th>
+
+            <th class="p-3">
+                History
+            </th>
+
+            <th class="p-3">
+                Actions
+            </th>
+
         </tr>
 
         </thead>
@@ -749,11 +924,27 @@
         <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
 
         <tr>
-            <th class="p-3">Ticket ID</th>
-            <th class="p-3">UID</th>
-            <th class="p-3">Message</th>
-            <th class="p-3">Screenshot</th>
-            <th class="p-3">Action</th>
+
+            <th class="p-3">
+                Ticket ID
+            </th>
+
+            <th class="p-3">
+                UID
+            </th>
+
+            <th class="p-3">
+                Message
+            </th>
+
+            <th class="p-3">
+                Screenshot
+            </th>
+
+            <th class="p-3">
+                Action
+            </th>
+
         </tr>
 
         </thead>
@@ -778,11 +969,31 @@
         <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
 
         <tr>
-            <th class="p-3">UID</th>
-            <th class="p-3">Amount</th>
-            <th class="p-3">UTR ID</th>
-            <th class="p-3">Proof</th>
-            <th class="p-3">Action</th>
+
+            <th class="p-3">
+                UID
+            </th>
+
+            <th class="p-3">
+                Amount
+            </th>
+
+            <th class="p-3">
+                UTR ID
+            </th>
+
+            <th class="p-3">
+                IP
+            </th>
+
+            <th class="p-3">
+                Proof
+            </th>
+
+            <th class="p-3">
+                Action
+            </th>
+
         </tr>
 
         </thead>
@@ -807,10 +1018,27 @@
         <thead class="bg-darkBg text-gray-400 border-b border-borderClr">
 
         <tr>
-            <th class="p-3">UID</th>
-            <th class="p-3">Amount</th>
-            <th class="p-3">Destination UPI/QR</th>
-            <th class="p-3">Action</th>
+
+            <th class="p-3">
+                UID
+            </th>
+
+            <th class="p-3">
+                Amount
+            </th>
+
+            <th class="p-3">
+                Destination UPI/QR
+            </th>
+
+            <th class="p-3">
+                IP
+            </th>
+
+            <th class="p-3">
+                Action
+            </th>
+
         </tr>
 
         </thead>
@@ -836,12 +1064,13 @@
     <div class="bg-cardBg border border-borderClr p-6 rounded-2xl max-w-sm w-full space-y-4">
 
         <h3 class="text-lg font-bold text-btc">
-            Add Funds (Min ₹100)
+            Add Funds (Min ₹110)
         </h3>
 
         <p class="text-xs text-gray-400">
-            Pay via Google Pay / Paytm / UPI to admin ID below:
+            Enter the amount you want to add. The payment button will use the same amount.
         </p>
+
 
         <div class="bg-darkBg p-3 rounded-lg border border-borderClr text-center">
 
@@ -855,27 +1084,42 @@
 
         </div>
 
-        <div class="flex space-x-2">
 
-            <a href="upi://pay?pa=laxmihi@ptyes&pn=BitCap&am=100&cu=INR"
-               class="flex-1 py-2 text-center bg-blue-600 text-white rounded-lg text-xs font-bold">
-                Pay via GPay/Paytm
+        <div class="space-y-2">
+
+            <input type="number"
+                   id="payment-amount"
+                   min="110"
+                   step="1"
+                   placeholder="Enter Amount (Min ₹110)"
+                   oninput="updateUPIPayment()"
+                   class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+
+            <a id="upi-payment-btn"
+               href="#"
+               class="block w-full py-2 text-center bg-blue-600 text-white rounded-lg text-xs font-bold opacity-50 pointer-events-none">
+
+                Pay via GPay / PhonePe
+
             </a>
 
         </div>
+
 
         <div class="space-y-2 pt-2">
 
             <input type="number"
                    id="dep-amount"
-                   min="100"
-                   placeholder="Enter Paid Amount (Min 100)"
+                   min="110"
+                   placeholder="Enter Paid Amount (Min ₹110)"
+                   oninput="syncDepositAmount()"
                    class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
 
             <input type="text"
                    id="dep-utr"
                    placeholder="Enter UTR / Transaction ID"
                    class="w-full bg-darkBg border border-borderClr rounded px-3 py-2 text-xs">
+
 
             <div>
 
@@ -892,12 +1136,15 @@
 
         </div>
 
+
         <div id="dep-timer-box"
              class="hidden bg-yellow-500/10 border border-yellow-500/30 p-3 rounded-lg text-center space-y-1">
 
             <span class="text-[11px] text-yellow-400 font-semibold block">
+
                 <i class="fa-solid fa-clock mr-1"></i>
                 Verification Pending (10 Mins)
+
             </span>
 
             <div id="dep-countdown"
@@ -906,6 +1153,7 @@
             </div>
 
         </div>
+
 
         <div id="dep-btn-container"
              class="flex space-x-2 pt-2">
@@ -1034,6 +1282,7 @@
 
         <i class="fa-brands fa-telegram"></i>
         Official Channel
+
     </a>
 
 </div>
@@ -1050,6 +1299,7 @@
 
         <i class="fa-brands fa-telegram"></i>
         Chat with Bitcoin Support
+
     </a>
 
 </div>
@@ -1058,11 +1308,15 @@
 <footer class="bg-cardBg border-t border-borderClr py-4 mt-12 text-center text-xs text-gray-400">
 
     <p>
+
         &copy; 2026 BitCap Platform. All Rights Reserved.
+
         |
+
         <span class="text-btc">
             Official Telegram Channel
         </span>
+
     </p>
 
 </footer>
@@ -1090,67 +1344,243 @@
 </div>
 
 
+<!-- USER HISTORY MODAL -->
+
+<div id="history-modal"
+     class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[100] px-4">
+
+    <div class="bg-cardBg border border-borderClr rounded-2xl p-6 w-full max-w-5xl max-h-[85vh] overflow-y-auto">
+
+        <div class="flex justify-between items-center mb-5">
+
+            <div>
+
+                <h3 class="text-lg font-bold text-btc">
+                    User Complete History
+                </h3>
+
+                <p id="history-user-info"
+                   class="text-xs text-gray-400">
+                </p>
+
+            </div>
+
+            <button onclick="closeHistoryModal()"
+                    class="w-8 h-8 bg-red-600 text-white rounded-full">
+                ×
+            </button>
+
+        </div>
+
+        <div id="user-history-content"></div>
+
+    </div>
+
+</div>
+
+
 <script>
 
-const TG_TOKEN = "8508148760:AAEZsEDrQwFhUhFq3bo8-qXUIBG36kb1aM";
-const ADMIN_TG_CHAT_ID = "6911930084";
-const ADMIN_UPI = "laxmihi@ptyes";
 
-const REFERRAL_DAILY_RATE = 0.02;
+/* ================================
+   CONFIG
+================================ */
+
+const TG_TOKEN =
+    "8508148760:AAEZsEDrQwFhUhFq3bo8-qXUIBG36kb1aM";
+
+const ADMIN_TG_CHAT_ID =
+    "6911930084";
+
+const ADMIN_UPI =
+    "laxmihi@ptyes";
+
+const REFERRAL_DAILY_RATE =
+    0.02;
 
 
-/* DATABASE */
+/* ================================
+   DATABASE
+================================ */
 
-let db = JSON.parse(localStorage.getItem('bitcap_db')) || {
+let db =
+    JSON.parse(
+        localStorage.getItem('bitcap_db')
+    ) || {
 
-    users: [
-        {
-            uid: 'jiobhart',
-            name: 'Admin Boss',
-            phone: '9999999999',
-            email: 'admin@bitcap.com',
-            pass: 'djdj6363',
-            balance: 5000,
-            upline: '',
-            status: 'Active',
-            planActive: true,
-            upi: '',
-            addr: '',
-            qr: '',
-            activePlan: {
-                amount: 110,
-                daily: 12,
-                total: 180,
-                days: 15
+        users: [
+
+            {
+                uid: 'jiobhart',
+
+                name: 'Admin Boss',
+
+                phone: '9999999999',
+
+                email: 'admin@bitcap.com',
+
+                pass: 'djdj6363',
+
+                balance: 5000,
+
+                upline: '',
+
+                status: 'Active',
+
+                planActive: true,
+
+                upi: '',
+
+                addr: '',
+                qr: '',
+
+                ipAddress: 'Admin',
+                lastLoginIP: 'Admin',
+
+                registeredAt:
+                    new Date().toISOString(),
+
+                lastLoginAt:
+                    new Date().toISOString(),
+
+                lastDailyTask: null,
+
+                activePlan: {
+                    amount: 110,
+                    daily: 12,
+                    total: 180,
+                    days: 15
+                },
+
+                history: [
+                    {
+                        type: 'Account',
+                        amount: 0,
+                        details: 'Admin account created',
+                        ip: 'Admin',
+                        date: new Date().toISOString()
+                    }
+                ]
             }
-        }
-    ],
 
-    deposits: [],
-    withdrawals: [],
-    tickets: [],
-    currentUser: null
-};
+        ],
+
+        deposits: [],
+
+        withdrawals: [],
+
+        tickets: [],
+
+        currentUser: null
+    };
 
 
 function saveDB() {
-    localStorage.setItem('bitcap_db', JSON.stringify(db));
+
+    localStorage.setItem(
+        'bitcap_db',
+        JSON.stringify(db)
+    );
 }
 
 
-/* ROUTER */
+/* ================================
+   HISTORY HELPER
+================================ */
+
+function addHistory(
+    user,
+    type,
+    amount,
+    details,
+    ip = null
+) {
+
+    if (!user)
+        return;
+
+    if (!user.history)
+        user.history = [];
+
+    user.history.push({
+
+        type: type,
+
+        amount: Number(amount || 0),
+
+        details: details || '',
+
+        ip:
+            ip ||
+            user.lastLoginIP ||
+            user.ipAddress ||
+            'Unknown',
+
+        date:
+            new Date().toISOString()
+
+    });
+}
+
+
+/* ================================
+   GET IP
+================================ */
+
+async function getUserIP() {
+
+    try {
+
+        const response =
+            await fetch(
+                'https://api.ipify.org?format=json'
+            );
+
+        const data =
+            await response.json();
+
+        return data.ip || 'Unknown';
+
+    } catch (error) {
+
+        console.log(
+            'Could not get IP address'
+        );
+
+        return 'Unknown';
+    }
+}
+
+
+/* ================================
+   ROUTER
+================================ */
 
 function router(pageId) {
 
-    if (window.location.hash === '#admin' || pageId === 'admin') {
+    if (
+        window.location.hash === '#admin' ||
+        pageId === 'admin'
+    ) {
+
         pageId = 'admin';
+
         loadAdminPanel();
     }
 
-    document.querySelectorAll('.view-page')
-        .forEach(el => el.classList.add('hidden'));
+    document
+        .querySelectorAll('.view-page')
+        .forEach(
+            el =>
+                el.classList.add('hidden')
+        );
 
-    const target = document.getElementById(`page-${pageId}`);
+
+    const target =
+        document.getElementById(
+            `page-${pageId}`
+        );
+
 
     if (target)
         target.classList.remove('hidden');
@@ -1158,163 +1588,375 @@ function router(pageId) {
 
     if (db.currentUser) {
 
-        document.getElementById('nav-auth-buttons')
+        document
+            .getElementById(
+                'nav-auth-buttons'
+            )
             .classList.add('hidden');
 
-        document.getElementById('nav-user-info')
+
+        document
+            .getElementById(
+                'nav-user-info'
+            )
             .classList.remove('hidden');
 
-        document.getElementById('nav-username').innerText =
+
+        document
+            .getElementById(
+                'nav-username'
+            )
+            .innerText =
             `${db.currentUser.name} (${db.currentUser.uid})`;
+
 
         if (pageId === 'dashboard')
             loadDashboardData();
 
     } else {
 
-        document.getElementById('nav-auth-buttons')
+        document
+            .getElementById(
+                'nav-auth-buttons'
+            )
             .classList.remove('hidden');
 
-        document.getElementById('nav-user-info')
+
+        document
+            .getElementById(
+                'nav-user-info'
+            )
             .classList.add('hidden');
     }
 
-    window.scrollTo(0, 0);
+
+    window.scrollTo(
+        0,
+        0
+    );
 }
 
 
-window.addEventListener('load', () => {
+/* ================================
+   PAGE LOAD
+================================ */
 
-    if (window.location.hash === '#admin') {
+window.addEventListener(
+    'load',
+    () => {
 
-        router('admin');
+        if (
+            window.location.hash ===
+            '#admin'
+        ) {
 
-    } else if (db.currentUser) {
+            router('admin');
 
-        router('dashboard');
+        } else if (
+            db.currentUser
+        ) {
 
-    } else {
+            router('dashboard');
 
-        router('home');
+        } else {
+
+            router('home');
+        }
+
     }
+);
 
-});
 
+/* ================================
+   REGISTER
+================================ */
 
-/* REGISTER */
-
-function handleRegister(e) {
+async function handleRegister(e) {
 
     e.preventDefault();
 
-    const name = document.getElementById('reg-name').value;
-    const phone = document.getElementById('reg-phone').value;
-    const email = document.getElementById('reg-email').value;
-    const pass = document.getElementById('reg-pass').value;
-    const ref = document.getElementById('reg-ref').value.trim();
+
+    const name =
+        document
+            .getElementById(
+                'reg-name'
+            )
+            .value
+            .trim();
 
 
-    if (db.users.some(u => u.phone === phone || u.email === email)) {
+    const phone =
+        document
+            .getElementById(
+                'reg-phone'
+            )
+            .value
+            .trim();
 
-        alert('User with this mobile number or email already exists!');
+
+    const email =
+        document
+            .getElementById(
+                'reg-email'
+            )
+            .value
+            .trim();
+
+
+    const pass =
+        document
+            .getElementById(
+                'reg-pass'
+            )
+            .value;
+
+
+    const ref =
+        document
+            .getElementById(
+                'reg-ref'
+            )
+            .value
+            .trim();
+
+
+    if (
+        db.users.some(
+            u =>
+                u.phone === phone ||
+                u.email === email
+        )
+    ) {
+
+        alert(
+            'User with this mobile number or email already exists!'
+        );
+
         return;
     }
 
 
-    if (ref && !db.users.some(u => u.uid === ref)) {
+    if (
+        ref &&
+        !db.users.some(
+            u =>
+                u.uid === ref
+        )
+    ) {
 
-        alert('Invalid Upline Referral Code!');
+        alert(
+            'Invalid Upline Referral Code!'
+        );
+
         return;
     }
+
+
+    const userIP =
+        await getUserIP();
 
 
     const newUid =
-        'BTC' + Math.floor(1000 + Math.random() * 9000);
+        'BTC' +
+        Math.floor(
+            1000 +
+            Math.random() *
+            9000
+        );
 
 
     const newUser = {
 
         uid: newUid,
-        name,
-        phone,
-        email,
-        pass,
+
+        name: name,
+
+        phone: phone,
+
+        email: email,
+
+        pass: pass,
+
         balance: 0,
+
         upline: ref || '',
+
         status: 'Active',
+
         planActive: false,
+
         upi: '',
+
         addr: '',
-        qr: ''
+
+        qr: '',
+
+        ipAddress: userIP,
+
+        lastLoginIP: userIP,
+
+        registeredAt:
+            new Date().toISOString(),
+
+        lastLoginAt: null,
+
+        lastDailyTask: null,
+
+        history: []
+
     };
 
 
-    db.users.push(newUser);
+    addHistory(
+        newUser,
+        'Registration',
+        0,
+        'Account created',
+        userIP
+    );
+
+
+    db.users.push(
+        newUser
+    );
+
 
     saveDB();
 
-    alert(`Registration Successful! Your Member ID is: ${newUid}`);
+
+    alert(
+        `Registration Successful! Your Member ID is: ${newUid}`
+    );
+
 
     router('login');
 }
 
 
-/* LOGIN */
+/* ================================
+   LOGIN
+================================ */
 
-function handleLogin(e) {
+async function handleLogin(e) {
 
     e.preventDefault();
 
+
     const identifier =
-        document.getElementById('login-identifier').value.trim();
+        document
+            .getElementById(
+                'login-identifier'
+            )
+            .value
+            .trim();
+
 
     const pass =
-        document.getElementById('login-password').value;
+        document
+            .getElementById(
+                'login-password'
+            )
+            .value;
 
 
-    const user = db.users.find(u =>
-        (u.phone === identifier ||
-         u.email === identifier ||
-         u.uid === identifier) &&
-        u.pass === pass
-    );
+    const user =
+        db.users.find(
+            u =>
+                (
+                    u.phone === identifier ||
+                    u.email === identifier ||
+                    u.uid === identifier
+                ) &&
+                u.pass === pass
+        );
 
 
     if (!user) {
 
-        alert('Invalid login credentials or user not found.');
+        alert(
+            'Invalid login credentials or user not found.'
+        );
+
         return;
     }
 
 
-    if (user.status === 'Paused') {
+    if (
+        user.status ===
+        'Paused'
+    ) {
 
-        alert('Your account has been paused by the admin.');
+        alert(
+            'Your account has been paused by the admin.'
+        );
+
         return;
     }
 
 
-    db.currentUser = user;
+    const loginIP =
+        await getUserIP();
+
+
+    user.lastLoginIP =
+        loginIP;
+
+
+    user.lastLoginAt =
+        new Date().toISOString();
+
+
+    addHistory(
+        user,
+        'Login',
+        0,
+        'User login',
+        loginIP
+    );
+
+
+    db.currentUser =
+        user;
+
 
     saveDB();
+
 
     router('dashboard');
 }
 
 
-/* LOGOUT */
+/* ================================
+   LOGOUT
+================================ */
 
 function logout() {
 
-    db.currentUser = null;
+    if (db.currentUser) {
+
+        addHistory(
+            db.currentUser,
+            'Logout',
+            0,
+            'User logout'
+        );
+    }
+
+
+    db.currentUser =
+        null;
+
 
     saveDB();
+
 
     router('home');
 }
 
 
-/* PLANS */
+/* ================================
+   PLANS
+================================ */
 
 const packagePlans = {
 
@@ -1356,69 +1998,133 @@ const packagePlans = {
 };
 
 
-let selectedPlanAmount = 110;
+let selectedPlanAmount =
+    110;
 
 
 function selectPlan(amount) {
 
-    const plan = packagePlans[amount];
+    const plan =
+        packagePlans[amount];
+
 
     if (!plan)
         return;
 
-    selectedPlanAmount = amount;
 
-    document.getElementById('selected-plan-info').innerText =
+    selectedPlanAmount =
+        amount;
+
+
+    document
+        .getElementById(
+            'selected-plan-info'
+        )
+        .innerText =
         `Selected package: ₹${plan.amount} | ₹${plan.daily}/day | ₹${plan.total} Total | ${plan.days} Days`;
 
 
-    document.getElementById('plan-action-container').innerHTML = `
+    document
+        .getElementById(
+            'plan-action-container'
+        )
+        .innerHTML = `
 
-        <button onclick="activatePlan()"
-                class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">
+            <button onclick="activatePlan()"
+                    class="px-5 py-2.5 bg-btc text-darkBg font-bold text-sm rounded-xl hover:bg-btc/90 transition shadow-md shadow-btc/20">
 
-            Activate Plan (₹${plan.amount})
+                Activate Plan (₹${plan.amount})
 
-        </button>
+            </button>
 
-    `;
+        `;
 }
 
 
-/* ACTIVATE PLAN */
+/* ================================
+   ACTIVATE PLAN
+================================ */
 
 function activatePlan() {
 
-    const user = db.currentUser;
-
-    const selectedPlan =
-        packagePlans[selectedPlanAmount];
-
-    const planCost =
-        selectedPlan.amount;
-
-
-    if (user.balance < planCost) {
-
-        alert(
-            `Insufficient balance! Please add at least ₹${planCost} to activate this plan.`
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
         );
 
-        openModal('deposit-modal');
+
+    if (!user) {
+
+        alert(
+            'User session expired.'
+        );
 
         return;
     }
 
 
-    user.balance -= planCost;
+    const selectedPlan =
+        packagePlans[
+            selectedPlanAmount
+        ];
 
-    user.planActive = true;
 
-    user.activePlan = selectedPlan;
+    if (!selectedPlan)
+        return;
+
+
+    const planCost =
+        selectedPlan.amount;
+
+
+    if (
+        user.balance <
+        planCost
+    ) {
+
+        alert(
+            `Insufficient balance! Please add at least ₹${planCost} to activate this plan.`
+        );
+
+        openModal(
+            'deposit-modal'
+        );
+
+        return;
+    }
+
+
+    user.balance -=
+        planCost;
+
+
+    user.planActive =
+        true;
+
+
+    user.activePlan =
+        selectedPlan;
+
+
+    addHistory(
+        user,
+        'Plan Activated',
+        planCost,
+        `Activated ₹${selectedPlan.amount} plan - ₹${selectedPlan.daily}/day for ${selectedPlan.days} days`
+    );
+
+
+    db.currentUser =
+        user;
+
 
     saveDB();
 
+
     loadDashboardData();
+
 
     alert(
         `Plan activated successfully! ₹${selectedPlan.daily}/day for ${selectedPlan.days} days.`
@@ -1426,43 +2132,78 @@ function activatePlan() {
 }
 
 
-/* DASHBOARD */
+/* ================================
+   DASHBOARD
+================================ */
 
 function loadDashboardData() {
 
+    if (!db.currentUser)
+        return;
+
+
     const user =
-        db.users.find(u => u.uid === db.currentUser.uid);
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
+        );
 
-    db.currentUser = user;
+
+    if (!user)
+        return;
 
 
-    document.getElementById('dash-uid').innerText =
+    db.currentUser =
+        user;
+
+
+    document
+        .getElementById(
+            'dash-uid'
+        )
+        .innerText =
         user.uid;
 
 
-    document.getElementById('dash-balance').innerText =
+    document
+        .getElementById(
+            'dash-balance'
+        )
+        .innerText =
         `₹${Number(user.balance).toFixed(2)}`;
 
 
-    document.getElementById('dash-ref-link').value =
+    document
+        .getElementById(
+            'dash-ref-link'
+        )
+        .value =
         `${window.location.origin}${window.location.pathname}#ref=${user.uid}`;
 
 
     const statusEl =
-        document.getElementById('dash-status');
+        document.getElementById(
+            'dash-status'
+        );
+
 
     const actionContainer =
-        document.getElementById('plan-action-container');
+        document.getElementById(
+            'plan-action-container'
+        );
 
 
     if (user.planActive) {
 
         const active =
-            user.activePlan || packagePlans[110];
+            user.activePlan ||
+            packagePlans[110];
 
 
         statusEl.className =
             'px-2 py-0.5 text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded uppercase font-bold';
+
 
         statusEl.innerText =
             'Active Plan';
@@ -1482,13 +2223,18 @@ function loadDashboardData() {
         `;
 
 
-        document.getElementById('daily-task-description').innerText =
+        document
+            .getElementById(
+                'daily-task-description'
+            )
+            .innerText =
             `Watch the assigned advertisement for 1 minute and submit to claim your daily ₹${active.daily} reward.`;
 
     } else {
 
         statusEl.className =
             'px-2 py-0.5 text-[10px] bg-red-500/20 text-red-400 border border-red-500/30 rounded uppercase font-bold';
+
 
         statusEl.innerText =
             'Inactive Plan';
@@ -1506,49 +2252,137 @@ function loadDashboardData() {
         `;
 
 
-        document.getElementById('daily-task-description').innerText =
+        document
+            .getElementById(
+                'daily-task-description'
+            )
+            .innerText =
             'Activate a plan to unlock your daily reward.';
     }
 
 
+    /* DAILY TASK STATUS */
+
+    const today =
+        getTodayKey();
+
+
+    const watchBtn =
+        document.getElementById(
+            'watch-ad-btn'
+        );
+
+
+    const adStatus =
+        document.getElementById(
+            'ad-status-text'
+        );
+
+
+    if (
+        user.lastDailyTask ===
+        today
+    ) {
+
+        watchBtn.disabled =
+            true;
+
+        watchBtn.classList.add(
+            'opacity-50',
+            'cursor-not-allowed'
+        );
+
+        watchBtn.innerText =
+            'Completed Today';
+
+
+        adStatus.innerText =
+            'Status: Today\'s task completed';
+
+
+        adStatus.className =
+            'text-sm font-semibold text-emerald-400';
+
+    } else {
+
+        watchBtn.disabled =
+            false;
+
+        watchBtn.classList.remove(
+            'opacity-50',
+            'cursor-not-allowed'
+        );
+
+        watchBtn.innerText =
+            'Watch 1 Min Ad';
+
+
+        adStatus.innerText =
+            'Status: Task Available';
+
+
+        adStatus.className =
+            'text-sm font-semibold text-yellow-500';
+    }
+
+
+    /* DOWNLINE */
+
     const downlineUsers =
-        db.users.filter(u => u.upline === user.uid);
+        db.users.filter(
+            u =>
+                u.upline ===
+                user.uid
+        );
 
 
-    document.getElementById('downline-count').innerText =
+    document
+        .getElementById(
+            'downline-count'
+        )
+        .innerText =
         `${downlineUsers.length} Users`;
 
 
     const listEl =
-        document.getElementById('downline-list');
+        document.getElementById(
+            'downline-list'
+        );
 
 
-    if (downlineUsers.length > 0) {
+    if (
+        downlineUsers.length >
+        0
+    ) {
 
         listEl.innerHTML =
-            downlineUsers.map(d => `
+            downlineUsers
+                .map(
+                    d => `
 
-                <div class="flex justify-between items-center bg-darkBg p-2.5 rounded border border-borderClr">
+                    <div class="flex justify-between items-center bg-darkBg p-2.5 rounded border border-borderClr">
 
-                    <div>
+                        <div>
 
-                        <span class="font-bold text-btc">
-                            ${d.name}
-                        </span>
+                            <span class="font-bold text-btc">
+                                ${escapeHTML(d.name)}
+                            </span>
 
-                        <span class="block text-[10px] text-gray-400">
-                            ID: ${d.uid} | Ph: ${d.phone}
+                            <span class="block text-[10px] text-gray-400">
+                                ID: ${escapeHTML(d.uid)} | Ph: ${escapeHTML(d.phone)}
+                            </span>
+
+                        </div>
+
+                        <span class="text-[10px] text-gray-400">
+                            ${d.planActive ? 'Active' : 'Inactive'}
                         </span>
 
                     </div>
 
-                    <span class="text-[10px] text-gray-400">
-                        ${d.planActive ? 'Active' : 'Inactive'}
-                    </span>
-
-                </div>
-
-            `).join('');
+                `
+                )
+                .join('');
 
     } else {
 
@@ -1559,92 +2393,274 @@ function loadDashboardData() {
     }
 
 
+    /* WITHDRAWAL */
+
     if (user.upi) {
 
-        document.getElementById('withdrawal-setup-box')
-            .classList.add('hidden');
+        document
+            .getElementById(
+                'withdrawal-setup-box'
+            )
+            .classList.add(
+                'hidden'
+            );
 
-        document.getElementById('withdrawal-request-box')
-            .classList.remove('hidden');
 
-        document.getElementById('lbl-upi').innerText =
+        document
+            .getElementById(
+                'withdrawal-request-box'
+            )
+            .classList.remove(
+                'hidden'
+            );
+
+
+        document
+            .getElementById(
+                'lbl-upi'
+            )
+            .innerText =
             user.upi;
+
+    } else {
+
+        document
+            .getElementById(
+                'withdrawal-setup-box'
+            )
+            .classList.remove(
+                'hidden'
+            );
+
+
+        document
+            .getElementById(
+                'withdrawal-request-box'
+            )
+            .classList.add(
+                'hidden'
+            );
     }
 
+
+    saveDB();
 }
 
 
-/* AD TASK */
+/* ================================
+   TODAY KEY
+================================ */
+
+function getTodayKey() {
+
+    const now =
+        new Date();
+
+    return (
+        now.getFullYear() +
+        '-' +
+        String(
+            now.getMonth() + 1
+        ).padStart(2, '0') +
+        '-' +
+        String(
+            now.getDate()
+        ).padStart(2, '0')
+    );
+}
+
+
+/* ================================
+   AD TASK
+================================ */
 
 function startAdTask() {
 
-    const user = db.currentUser;
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
+        );
+
+
+    if (!user) {
+
+        alert(
+            'Please login first.'
+        );
+
+        return;
+    }
+
 
     if (!user.planActive) {
 
-        alert('Please activate your plan first!');
+        alert(
+            'Please activate your plan first!'
+        );
+
+        return;
+    }
+
+
+    const today =
+        getTodayKey();
+
+
+    if (
+        user.lastDailyTask ===
+        today
+    ) {
+
+        alert(
+            'Today\'s task has already been completed. Please come back tomorrow.'
+        );
+
+        loadDashboardData();
+
         return;
     }
 
 
     const active =
-        user.activePlan || packagePlans[110];
+        user.activePlan ||
+        packagePlans[110];
 
 
-    document.getElementById('watch-ad-btn')
-        .classList.add('hidden');
+    const button =
+        document.getElementById(
+            'watch-ad-btn'
+        );
+
 
     const timerEl =
-        document.getElementById('ad-timer');
+        document.getElementById(
+            'ad-timer'
+        );
 
-    timerEl.classList.remove('hidden');
 
-    let timeLeft = 60;
+    button.disabled =
+        true;
+
+
+    button.classList.add(
+        'opacity-50'
+    );
+
+
+    button.classList.add(
+        'hidden'
+    );
+
+
+    timerEl.classList.remove(
+        'hidden'
+    );
+
+
+    let timeLeft =
+        60;
+
+
+    timerEl.innerText =
+        '01:00';
 
 
     const countdown =
-        setInterval(() => {
+        setInterval(
+            () => {
 
-            timeLeft--;
-
-            let mins =
-                String(Math.floor(timeLeft / 60)).padStart(2, '0');
-
-            let secs =
-                String(timeLeft % 60).padStart(2, '0');
-
-            timerEl.innerText =
-                `${mins}:${secs}`;
+                timeLeft--;
 
 
-            if (timeLeft <= 0) {
-
-                clearInterval(countdown);
-
-                timerEl.classList.add('hidden');
-
-                document.getElementById('watch-ad-btn')
-                    .classList.remove('hidden');
-
-
-                user.balance += Number(active.daily);
-
-                saveDB();
-
-                loadDashboardData();
+                const mins =
+                    String(
+                        Math.floor(
+                            timeLeft /
+                            60
+                        )
+                    ).padStart(
+                        2,
+                        '0'
+                    );
 
 
-                alert(
-                    `Task completed! ₹${active.daily} added to your balance.`
-                );
-            }
+                const secs =
+                    String(
+                        timeLeft %
+                        60
+                    ).padStart(
+                        2,
+                        '0'
+                    );
 
-        }, 1000);
 
+                timerEl.innerText =
+                    `${mins}:${secs}`;
+
+
+                if (
+                    timeLeft <=
+                    0
+                ) {
+
+                    clearInterval(
+                        countdown
+                    );
+
+
+                    timerEl.classList.add(
+                        'hidden'
+                    );
+
+
+                    user.lastDailyTask =
+                        today;
+
+
+                    const reward =
+                        Number(
+                            active.daily
+                        );
+
+
+                    user.balance +=
+                        reward;
+
+
+                    addHistory(
+                        user,
+                        'Daily Task',
+                        reward,
+                        '1 minute advertisement completed'
+                    );
+
+
+                    db.currentUser =
+                        user;
+
+
+                    saveDB();
+
+
+                    loadDashboardData();
+
+
+                    alert(
+                        `Task completed! ₹${reward} added to your balance.`
+                    );
+                }
+
+            },
+            1000
+        );
 }
 
 
-/* TELEGRAM */
+/* ================================
+   TELEGRAM
+================================ */
 
 async function sendTelegramMessage(text) {
 
@@ -1655,24 +2671,32 @@ async function sendTelegramMessage(text) {
                 `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
                 {
                     method: 'POST',
+
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type':
+                            'application/json'
                     },
 
-                    body: JSON.stringify({
-                        chat_id: ADMIN_TG_CHAT_ID,
-                        text: text
-                    })
+                    body:
+                        JSON.stringify({
+                            chat_id:
+                                ADMIN_TG_CHAT_ID,
+
+                            text:
+                                text
+                        })
                 }
             );
 
 
-        const data = await res.json();
+        const data =
+            await res.json();
 
 
         if (!data.ok)
             throw new Error(
-                data.description || 'Telegram error'
+                data.description ||
+                'Telegram error'
             );
 
 
@@ -1682,19 +2706,19 @@ async function sendTelegramMessage(text) {
 
         console.error(err);
 
-        alert(
-            'Telegram message failed: ' + err.message
-        );
-
         return false;
     }
-
 }
 
 
-/* TELEGRAM PHOTO */
+/* ================================
+   TELEGRAM PHOTO
+================================ */
 
-async function sendTelegramPhoto(file, caption) {
+async function sendTelegramPhoto(
+    file,
+    caption
+) {
 
     if (!file)
         return false;
@@ -1705,19 +2729,25 @@ async function sendTelegramPhoto(file, caption) {
         const form =
             new FormData();
 
+
         form.append(
             'chat_id',
             ADMIN_TG_CHAT_ID
         );
+
 
         form.append(
             'photo',
             file
         );
 
+
         form.append(
             'caption',
-            caption.slice(0, 1024)
+            caption.slice(
+                0,
+                1024
+            )
         );
 
 
@@ -1737,7 +2767,8 @@ async function sendTelegramPhoto(file, caption) {
 
         if (!data.ok)
             throw new Error(
-                data.description || 'Telegram photo error'
+                data.description ||
+                'Telegram photo error'
             );
 
 
@@ -1747,142 +2778,193 @@ async function sendTelegramPhoto(file, caption) {
 
         console.error(err);
 
-        alert(
-            'Telegram photo failed: ' + err.message
-        );
-
         return false;
     }
-
 }
 
 
-/* IMAGE COMPRESS */
+/* ================================
+   IMAGE COMPRESS
+================================ */
 
-function compressImage(file, maxSize = 1400, quality = 0.75) {
+function compressImage(
+    file,
+    maxSize = 1400,
+    quality = 0.75
+) {
 
-    return new Promise((resolve) => {
+    return new Promise(
+        resolve => {
 
-        if (!file ||
-            !file.type.startsWith('image/')) {
+            if (
+                !file ||
+                !file.type.startsWith(
+                    'image/'
+                )
+            ) {
 
-            return resolve(null);
+                return resolve(
+                    null
+                );
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                () => {
+
+                    const img =
+                        new Image();
+
+
+                    img.onload =
+                        () => {
+
+                            const scale =
+                                Math.min(
+                                    1,
+                                    maxSize /
+                                    Math.max(
+                                        img.width,
+                                        img.height
+                                    )
+                                );
+
+
+                            const canvas =
+                                document.createElement(
+                                    'canvas'
+                                );
+
+
+                            canvas.width =
+                                Math.max(
+                                    1,
+                                    Math.round(
+                                        img.width *
+                                        scale
+                                    )
+                                );
+
+
+                            canvas.height =
+                                Math.max(
+                                    1,
+                                    Math.round(
+                                        img.height *
+                                        scale
+                                    )
+                                );
+
+
+                            const ctx =
+                                canvas.getContext(
+                                    '2d'
+                                );
+
+
+                            ctx.drawImage(
+                                img,
+                                0,
+                                0,
+                                canvas.width,
+                                canvas.height
+                            );
+
+
+                            resolve(
+                                canvas.toDataURL(
+                                    'image/jpeg',
+                                    quality
+                                )
+                            );
+
+                        };
+
+
+                    img.onerror =
+                        () =>
+                            resolve(
+                                null
+                            );
+
+
+                    img.src =
+                        reader.result;
+                };
+
+
+            reader.onerror =
+                () =>
+                    resolve(
+                        null
+                    );
+
+
+            reader.readAsDataURL(
+                file
+            );
+
         }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload = () => {
-
-            const img =
-                new Image();
-
-
-            img.onload = () => {
-
-                const scale =
-                    Math.min(
-                        1,
-                        maxSize /
-                        Math.max(
-                            img.width,
-                            img.height
-                        )
-                    );
-
-
-                const canvas =
-                    document.createElement('canvas');
-
-
-                canvas.width =
-                    Math.max(
-                        1,
-                        Math.round(img.width * scale)
-                    );
-
-
-                canvas.height =
-                    Math.max(
-                        1,
-                        Math.round(img.height * scale)
-                    );
-
-
-                const ctx =
-                    canvas.getContext('2d');
-
-
-                ctx.drawImage(
-                    img,
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                );
-
-
-                resolve(
-                    canvas.toDataURL(
-                        'image/jpeg',
-                        quality
-                    )
-                );
-
-            };
-
-
-            img.onerror = () =>
-                resolve(null);
-
-            img.src = reader.result;
-
-        };
-
-
-        reader.onerror = () =>
-            resolve(null);
-
-
-        reader.readAsDataURL(file);
-
-    });
-
+    );
 }
 
 
-/* SCREENSHOT */
+/* ================================
+   SCREENSHOT
+================================ */
 
-function viewScreenshot(id, type) {
+function viewScreenshot(
+    id,
+    type
+) {
 
     let item =
         type === 'ticket'
-            ? db.tickets.find(t => t.id === id)
-            : db.deposits.find(d => d.id === id);
+            ? db.tickets.find(
+                t =>
+                    t.id === id
+            )
+            : db.deposits.find(
+                d =>
+                    d.id === id
+            );
 
 
-    if (!item ||
-        !item.screenshotData)
+    if (
+        !item ||
+        !item.screenshotData
+    )
         return;
 
 
-    document.getElementById(
-        'screenshot-viewer-img'
-    ).src =
+    document
+        .getElementById(
+            'screenshot-viewer-img'
+        )
+        .src =
         item.screenshotData;
 
 
-    document.getElementById(
-        'screenshot-viewer'
-    ).classList.remove('hidden');
+    document
+        .getElementById(
+            'screenshot-viewer'
+        )
+        .classList.remove(
+            'hidden'
+        );
 
 
-    document.getElementById(
-        'screenshot-viewer'
-    ).classList.add('flex');
-
+    document
+        .getElementById(
+            'screenshot-viewer'
+        )
+        .classList.add(
+            'flex'
+        );
 }
 
 
@@ -1894,48 +2976,167 @@ function closeScreenshotViewer() {
         );
 
 
-    el.classList.add('hidden');
+    el.classList.add(
+        'hidden'
+    );
 
-    el.classList.remove('flex');
+
+    el.classList.remove(
+        'flex'
+    );
 
 
-    document.getElementById(
-        'screenshot-viewer-img'
-    ).src = '';
-
+    document
+        .getElementById(
+            'screenshot-viewer-img'
+        )
+        .src =
+        '';
 }
 
 
-/* DEPOSIT */
+/* ================================
+   PAYMENT AMOUNT
+================================ */
+
+function updateUPIPayment() {
+
+    const amount =
+        parseFloat(
+            document
+                .getElementById(
+                    'payment-amount'
+                )
+                .value
+        );
+
+
+    const button =
+        document
+            .getElementById(
+                'upi-payment-btn'
+            );
+
+
+    if (
+        !amount ||
+        amount < 110
+    ) {
+
+        button.href =
+            '#';
+
+
+        button.classList.add(
+            'opacity-50'
+        );
+
+
+        button.classList.add(
+            'pointer-events-none'
+        );
+
+
+        button.innerText =
+            'Pay via GPay / PhonePe';
+
+
+        return;
+    }
+
+
+    const upiURL =
+        `upi://pay?pa=${encodeURIComponent(ADMIN_UPI)}` +
+        `&pn=${encodeURIComponent('BitCap')}` +
+        `&am=${encodeURIComponent(amount.toFixed(2))}` +
+        `&cu=INR`;
+
+
+    button.href =
+        upiURL;
+
+
+    button.classList.remove(
+        'opacity-50'
+    );
+
+
+    button.classList.remove(
+        'pointer-events-none'
+    );
+
+
+    button.innerText =
+        `Pay ₹${amount.toFixed(2)} via GPay / PhonePe`;
+}
+
+
+/* ================================
+   SYNC PAYMENT AMOUNT
+================================ */
+
+function syncDepositAmount() {
+
+    const amount =
+        document
+            .getElementById(
+                'dep-amount'
+            )
+            .value;
+
+
+    document
+        .getElementById(
+            'payment-amount'
+        )
+        .value =
+        amount;
+
+
+    updateUPIPayment();
+}
+
+
+/* ================================
+   DEPOSIT
+================================ */
 
 async function submitDeposit() {
 
     const amt =
         parseFloat(
-            document.getElementById(
-                'dep-amount'
-            ).value
+            document
+                .getElementById(
+                    'dep-amount'
+                )
+                .value
         );
 
 
     const utr =
-        document.getElementById(
-            'dep-utr'
-        ).value.trim();
+        document
+            .getElementById(
+                'dep-utr'
+            )
+            .value
+            .trim();
 
 
     const fileInput =
-        document.getElementById(
-            'dep-screenshot'
-        );
+        document
+            .getElementById(
+                'dep-screenshot'
+            );
 
 
-    if (!amt ||
-        amt < 100 ||
-        !utr) {
+    if (
+        !amt ||
+        amt < 110 ||
+        !utr
+    ) {
 
         alert(
-            'Please enter valid amount (min 100) and UTR transaction number.'
+            'Please enter valid amount (minimum ₹110) and UTR transaction number.'
         );
 
         return;
@@ -1943,24 +3144,46 @@ async function submitDeposit() {
 
 
     const file =
-        fileInput.files[0] || null;
+        fileInput.files[0] ||
+        null;
 
 
     const screenshotData =
         file
-            ? await compressImage(file)
+            ? await compressImage(
+                file
+            )
             : null;
 
 
     const depId =
-        'DEP' + Date.now();
+        'DEP' +
+        Date.now();
+
+
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
+        );
+
+
+    if (!user)
+        return;
+
+
+    const depIP =
+        user.lastLoginIP ||
+        user.ipAddress ||
+        'Unknown';
 
 
     db.deposits.push({
 
         id: depId,
 
-        uid: db.currentUser.uid,
+        uid: user.uid,
 
         amount: amt,
 
@@ -1968,37 +3191,62 @@ async function submitDeposit() {
 
         hasProof: !!file,
 
-        screenshotData,
+        screenshotData:
+            screenshotData,
 
-        status: 'Pending'
+        status: 'Pending',
 
+        date:
+            new Date().toISOString(),
+
+        ip:
+            depIP
     });
+
+
+    addHistory(
+        user,
+        'Deposit Request',
+        amt,
+        `Deposit submitted. UTR: ${utr}`,
+        depIP
+    );
 
 
     saveDB();
 
 
-    document.getElementById(
-        'dep-btn-container'
-    ).classList.add('hidden');
+    document
+        .getElementById(
+            'dep-btn-container'
+        )
+        .classList.add(
+            'hidden'
+        );
 
 
-    document.getElementById(
-        'dep-timer-box'
-    ).classList.remove('hidden');
+    document
+        .getElementById(
+            'dep-timer-box'
+        )
+        .classList.remove(
+            'hidden'
+        );
 
 
     const telegramText =
 
         `🔔 NEW DEPOSIT REQUEST\n\n` +
 
-        `👤 User ID: ${db.currentUser.uid}\n` +
+        `👤 User ID: ${user.uid}\n` +
 
-        `👨 Name: ${db.currentUser.name}\n` +
+        `👨 Name: ${user.name}\n` +
 
         `💰 Amount: ₹${amt}\n` +
 
         `🧾 UTR: ${utr}\n` +
+
+        `🌐 IP: ${depIP}\n` +
 
         `🆔 Request: ${depId}`;
 
@@ -2009,83 +3257,124 @@ async function submitDeposit() {
         );
 
 
-    if (file)
+    if (file) {
+
         await sendTelegramPhoto(
             file,
-            `📸 Deposit Screenshot\nUser: ${db.currentUser.uid}\nAmount: ₹${amt}\nUTR: ${utr}`
+
+            `📸 Deposit Screenshot\nUser: ${user.uid}\nAmount: ₹${amt}\nUTR: ${utr}`
         );
+    }
 
 
-    let timeLeft = 600;
+    let timeLeft =
+        600;
 
 
     const timerInterval =
-        setInterval(() => {
+        setInterval(
+            () => {
 
-            timeLeft--;
+                timeLeft--;
 
-            let m =
-                String(
-                    Math.floor(
-                        timeLeft / 60
+
+                const m =
+                    String(
+                        Math.floor(
+                            timeLeft /
+                            60
+                        )
+                    ).padStart(
+                        2,
+                        '0'
+                    );
+
+
+                const s =
+                    String(
+                        timeLeft %
+                        60
+                    ).padStart(
+                        2,
+                        '0'
+                    );
+
+
+                document
+                    .getElementById(
+                        'dep-countdown'
                     )
-                ).padStart(2, '0');
+                    .innerText =
+                    `${m}:${s}`;
 
 
-            let s =
-                String(
-                    timeLeft % 60
-                ).padStart(2, '0');
+                if (
+                    timeLeft <=
+                    0
+                ) {
+
+                    clearInterval(
+                        timerInterval
+                    );
 
 
-            document.getElementById(
-                'dep-countdown'
-            ).innerText =
-                `${m}:${s}`;
+                    closeModal(
+                        'deposit-modal'
+                    );
 
 
-            if (timeLeft <= 0) {
+                    document
+                        .getElementById(
+                            'dep-btn-container'
+                        )
+                        .classList.remove(
+                            'hidden'
+                        );
 
-                clearInterval(timerInterval);
 
-                closeModal('deposit-modal');
+                    document
+                        .getElementById(
+                            'dep-timer-box'
+                        )
+                        .classList.add(
+                            'hidden'
+                        );
 
-                document.getElementById(
-                    'dep-btn-container'
-                ).classList.remove('hidden');
+                }
 
-                document.getElementById(
-                    'dep-timer-box'
-                ).classList.add('hidden');
-
-            }
-
-        }, 1000);
+            },
+            1000
+        );
 
 
     alert(
         sentText
             ? 'UTR submitted. Telegram notification sent.'
-            : 'UTR saved, but Telegram notification could not be sent.'
+            : 'UTR saved. Telegram notification could not be sent.'
     );
-
 }
 
 
-/* SUPPORT */
+/* ================================
+   SUPPORT
+================================ */
 
 async function submitSupportTicket() {
 
     const msg =
-        document.getElementById(
-            'support-msg'
-        ).value.trim();
+        document
+            .getElementById(
+                'support-msg'
+            )
+            .value
+            .trim();
 
 
     const fileInput =
-        document.getElementById(
-            'support-screenshot'
-        );
+        document
+            .getElementById(
+                'support-screenshot'
+            );
 
 
     if (!msg) {
@@ -2099,34 +3388,71 @@ async function submitSupportTicket() {
 
 
     const file =
-        fileInput.files[0] || null;
+        fileInput.files[0] ||
+        null;
 
 
     const screenshotData =
         file
-            ? await compressImage(file)
+            ? await compressImage(
+                file
+            )
             : null;
 
 
     const ticketId =
-        'TKT' + Date.now();
+        'TKT' +
+        Date.now();
+
+
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
+        );
+
+
+    if (!user)
+        return;
+
+
+    const ticketIP =
+        user.lastLoginIP ||
+        user.ipAddress ||
+        'Unknown';
 
 
     db.tickets.push({
 
         id: ticketId,
 
-        uid: db.currentUser.uid,
+        uid: user.uid,
 
         message: msg,
 
         hasScreenshot: !!file,
 
-        screenshotData,
+        screenshotData:
+            screenshotData,
 
-        status: 'Open'
+        status: 'Open',
 
+        date:
+            new Date().toISOString(),
+
+        ip:
+            ticketIP
     });
+
+
+    addHistory(
+        user,
+        'Support Ticket',
+        0,
+        `Ticket ${ticketId}: ${msg}`,
+        ticketIP
+    );
 
 
     saveDB();
@@ -2137,20 +3463,25 @@ async function submitSupportTicket() {
     );
 
 
-    document.getElementById(
-        'support-msg'
-    ).value = '';
+    document
+        .getElementById(
+            'support-msg'
+        )
+        .value =
+        '';
 
 
     const telegramText =
 
         `🆘 NEW SUPPORT TICKET\n\n` +
 
-        `👤 User ID: ${db.currentUser.uid}\n` +
+        `👤 User ID: ${user.uid}\n` +
 
-        `👨 Name: ${db.currentUser.name}\n` +
+        `👨 Name: ${user.name}\n` +
 
         `📝 Message: ${msg}\n` +
+
+        `🌐 IP: ${ticketIP}\n` +
 
         `🆔 Ticket: ${ticketId}`;
 
@@ -2161,11 +3492,14 @@ async function submitSupportTicket() {
         );
 
 
-    if (file)
+    if (file) {
+
         await sendTelegramPhoto(
             file,
-            `📸 Support Screenshot\nUser: ${db.currentUser.uid}\nTicket: ${ticketId}\n${msg}`
+
+            `📸 Support Screenshot\nUser: ${user.uid}\nTicket: ${ticketId}\n${msg}`
         );
+    }
 
 
     loadAdminPanel();
@@ -2174,26 +3508,33 @@ async function submitSupportTicket() {
     alert(
         sentText
             ? 'Support ticket created and Telegram notification sent.'
-            : 'Support ticket saved, but Telegram notification could not be sent.'
+            : 'Support ticket saved.'
     );
-
 }
 
 
-/* WITHDRAWAL INFO */
+/* ================================
+   WITHDRAWAL INFO
+================================ */
 
 function saveWithdrawalInfo() {
 
     const upi =
-        document.getElementById(
-            'withdraw-upi'
-        ).value.trim();
+        document
+            .getElementById(
+                'withdraw-upi'
+            )
+            .value
+            .trim();
 
 
     const addr =
-        document.getElementById(
-            'withdraw-addr'
-        ).value.trim();
+        document
+            .getElementById(
+                'withdraw-addr'
+            )
+            .value
+            .trim();
 
 
     if (!upi) {
@@ -2207,15 +3548,39 @@ function saveWithdrawalInfo() {
 
 
     const user =
-        db.currentUser;
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
+        );
 
 
-    user.upi = upi;
+    if (!user)
+        return;
 
-    user.addr = addr;
+
+    user.upi =
+        upi;
+
+
+    user.addr =
+        addr;
+
+
+    addHistory(
+        user,
+        'Withdrawal Settings',
+        0,
+        `UPI details saved: ${upi}`
+    );
+
+
+    db.currentUser =
+        user;
 
 
     saveDB();
+
 
     loadDashboardData();
 
@@ -2223,29 +3588,42 @@ function saveWithdrawalInfo() {
     alert(
         'Withdrawal credentials saved successfully!'
     );
-
 }
 
 
-/* WITHDRAWAL */
+/* ================================
+   WITHDRAWAL
+================================ */
 
 function submitWithdrawal() {
 
     const amt =
         parseFloat(
-            document.getElementById(
-                'withdraw-amt'
-            ).value
+            document
+                .getElementById(
+                    'withdraw-amt'
+                )
+                .value
         );
 
 
     const user =
-        db.currentUser;
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
+        );
 
 
-    if (!amt ||
+    if (!user)
+        return;
+
+
+    if (
+        !amt ||
         amt <= 0 ||
-        amt > user.balance) {
+        amt > user.balance
+    ) {
 
         alert(
             'Invalid withdrawal amount or insufficient balance.'
@@ -2255,9 +3633,20 @@ function submitWithdrawal() {
     }
 
 
+    const wdId =
+        'WD' +
+        Date.now();
+
+
+    const wdIP =
+        user.lastLoginIP ||
+        user.ipAddress ||
+        'Unknown';
+
+
     db.withdrawals.push({
 
-        id: 'WD' + Date.now(),
+        id: wdId,
 
         uid: user.uid,
 
@@ -2265,15 +3654,37 @@ function submitWithdrawal() {
 
         upi: user.upi,
 
-        status: 'Pending'
+        addr: user.addr || '',
 
+        status: 'Pending',
+
+        date:
+            new Date().toISOString(),
+
+        ip:
+            wdIP
     });
 
 
-    user.balance -= amt;
+    user.balance -=
+        amt;
+
+
+    addHistory(
+        user,
+        'Withdrawal Request',
+        amt,
+        `Withdrawal request ${wdId} to ${user.upi}`,
+        wdIP
+    );
+
+
+    db.currentUser =
+        user;
 
 
     saveDB();
+
 
     loadDashboardData();
 
@@ -2281,35 +3692,51 @@ function submitWithdrawal() {
     alert(
         'Withdrawal request submitted successfully!'
     );
-
 }
 
 
-/* P2P */
+/* ================================
+   P2P
+================================ */
 
 function executeP2PTransfer() {
 
     const recipientId =
-        document.getElementById(
-            'p2p-recipient'
-        ).value.trim();
+        document
+            .getElementById(
+                'p2p-recipient'
+            )
+            .value
+            .trim();
 
 
     const amt =
         parseFloat(
-            document.getElementById(
-                'p2p-amount'
-            ).value
+            document
+                .getElementById(
+                    'p2p-amount'
+                )
+                .value
         );
 
 
     const sender =
-        db.currentUser;
+        db.users.find(
+            u =>
+                u.uid ===
+                db.currentUser.uid
+        );
 
 
-    if (!amt ||
+    if (!sender)
+        return;
+
+
+    if (
+        !amt ||
         amt <= 0 ||
-        amt > sender.balance) {
+        amt > sender.balance
+    ) {
 
         alert(
             'Invalid amount or insufficient balance for P2P transfer.'
@@ -2321,7 +3748,9 @@ function executeP2PTransfer() {
 
     const recipient =
         db.users.find(
-            u => u.uid === recipientId
+            u =>
+                u.uid ===
+                recipientId
         );
 
 
@@ -2335,7 +3764,10 @@ function executeP2PTransfer() {
     }
 
 
-    if (recipient.uid === sender.uid) {
+    if (
+        recipient.uid ===
+        sender.uid
+    ) {
 
         alert(
             'Cannot transfer to yourself.'
@@ -2345,14 +3777,41 @@ function executeP2PTransfer() {
     }
 
 
-    sender.balance -= amt;
+    sender.balance -=
+        amt;
 
-    recipient.balance += amt;
+
+    recipient.balance +=
+        amt;
+
+
+    addHistory(
+        sender,
+        'P2P Sent',
+        amt,
+        `Sent to ${recipient.uid}`
+    );
+
+
+    addHistory(
+        recipient,
+        'P2P Received',
+        amt,
+        `Received from ${sender.uid}`
+    );
+
+
+    db.currentUser =
+        sender;
 
 
     saveDB();
 
-    closeModal('p2p-modal');
+
+    closeModal(
+        'p2p-modal'
+    );
+
 
     loadDashboardData();
 
@@ -2360,478 +3819,731 @@ function executeP2PTransfer() {
     alert(
         `Successfully transferred ₹${amt} to ${recipient.name} (${recipient.uid})`
     );
-
 }
 
 
-/* ADMIN PANEL */
+/* ================================
+   ADMIN PANEL
+================================ */
 
 function loadAdminPanel() {
 
-    document.getElementById(
-        'admin-total-users'
-    ).innerText =
+    document
+        .getElementById(
+            'admin-total-users'
+        )
+        .innerText =
         db.users.length;
 
 
-    document.getElementById(
-        'admin-pending-deps'
-    ).innerText =
+    document
+        .getElementById(
+            'admin-pending-deps'
+        )
+        .innerText =
         db.deposits.filter(
-            d => d.status === 'Pending'
+            d =>
+                d.status ===
+                'Pending'
         ).length;
 
 
-    document.getElementById(
-        'admin-pending-wds'
-    ).innerText =
+    document
+        .getElementById(
+            'admin-pending-wds'
+        )
+        .innerText =
         db.withdrawals.filter(
-            w => w.status === 'Pending'
+            w =>
+                w.status ===
+                'Pending'
         ).length;
 
 
-    document.getElementById(
-        'admin-pending-tickets'
-    ).innerText =
+    document
+        .getElementById(
+            'admin-pending-tickets'
+        )
+        .innerText =
         db.tickets.filter(
-            t => t.status === 'Open'
+            t =>
+                t.status ===
+                'Open'
         ).length;
 
 
     /* USERS */
 
     const usersTbody =
-        document.getElementById(
-            'admin-users-tbody'
-        );
+        document
+            .getElementById(
+                'admin-users-tbody'
+            );
 
 
     usersTbody.innerHTML =
-        db.users.map(u => `
-
-            <tr class="border-b border-borderClr">
-
-                <td class="p-3 font-bold text-btc">
-                    ${u.uid}
-                </td>
-
-                <td class="p-3">
-
-                    <span class="text-white">
-                        ${u.uid}
-                    </span>
-
-                    <br>
-
-                    <span class="text-[10px] text-gray-400">
-                        Pass: ${u.pass || '—'}
-                    </span>
-
-                </td>
-
-                <td class="p-3">
-                    ${u.name}
-                    <br>
-                    <span class="text-[10px] text-gray-400">
-                        ${u.email}
-                    </span>
-                </td>
-
-                <td class="p-3">
-                    ₹${Number(u.balance).toFixed(2)}
-                </td>
-
-                <td class="p-3">
-                    ${u.upline || 'None'}
-                </td>
-
-                <td class="p-3">
-
-                    <span class="px-2 py-0.5 rounded text-[10px]
-                    ${u.status === 'Active'
-                        ? 'bg-emerald-500/20 text-emerald-400'
-                        : 'bg-red-500/20 text-red-400'}">
-
-                        ${u.status}
-
-                    </span>
-
-                </td>
-
-                <td class="p-3">
-
-                    <button onclick="toggleUserStatus('${u.uid}')"
-                            class="px-2 py-1 bg-borderClr rounded hover:bg-btc/20">
-
-                        ${u.status === 'Active'
-                            ? 'Pause'
-                            : 'Activate'}
-
-                    </button>
-
-                </td>
-
-            </tr>
-
-        `).join('');
-
-
-    /* TICKETS */
-
-    const ticketTbody =
-        document.getElementById(
-            'admin-tickets-tbody'
-        );
-
-
-    const openTickets =
-        db.tickets.filter(
-            t => t.status === 'Open'
-        );
-
-
-    if (openTickets.length > 0) {
-
-        ticketTbody.innerHTML =
-            openTickets.map(t => `
+        db.users
+            .map(
+                u => `
 
                 <tr class="border-b border-borderClr">
 
-                    <td class="p-3 font-bold">
-                        ${t.id}
-                    </td>
-
-                    <td class="p-3 text-btc">
-                        ${t.uid}
-                    </td>
-
-                    <td class="p-3">
-                        ${t.message}
+                    <td class="p-3 font-bold text-btc">
+                        ${escapeHTML(u.uid)}
                     </td>
 
                     <td class="p-3">
 
+                        <span class="text-white">
+                            ${escapeHTML(u.uid)}
+                        </span>
+
+                        <br>
+
+                        <span class="text-[10px] text-gray-400">
+                            Pass: ${escapeHTML(u.pass || '—')}
+                        </span>
+
+                    </td>
+
+                    <td class="p-3">
+
+                        ${escapeHTML(u.name)}
+
+                        <br>
+
+                        <span class="text-[10px] text-gray-400">
+                            ${escapeHTML(u.email)}
+                        </span>
+
+                    </td>
+
+                    <td class="p-3">
+                        ₹${Number(u.balance).toFixed(2)}
+                    </td>
+
+                    <td class="p-3">
+                        ${escapeHTML(u.upline || 'None')}
+                    </td>
+
+                    <td class="p-3">
+
+                        <span class="text-gray-300">
+                            ${escapeHTML(u.ipAddress || 'Unknown')}
+                        </span>
+
+                        <br>
+
+                        <span class="text-[10px] text-gray-500">
+                            Login:
+                            ${escapeHTML(u.lastLoginIP || 'Unknown')}
+                        </span>
+
+                    </td>
+
+                    <td class="p-3">
+
+                        <span class="px-2 py-0.5 rounded text-[10px]
                         ${
-                            t.hasScreenshot && t.screenshotData
+                            u.status === 'Active'
+                                ? 'bg-emerald-500/20 text-emerald-400'
+                                : 'bg-red-500/20 text-red-400'
+                        }">
 
-                            ? `<img src="${t.screenshotData}"
-                                   onclick="viewScreenshot('${t.id}','ticket')"
-                                   style="width:70px;height:55px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid #444;">`
+                            ${escapeHTML(u.status)}
 
-                            : t.hasScreenshot
-
-                            ? '<span class="text-yellow-400">Attached</span>'
-
-                            : '<span class="text-gray-400">None</span>'
-                        }
+                        </span>
 
                     </td>
 
                     <td class="p-3">
 
-                        <button onclick="resolveTicket('${t.id}')"
-                                class="px-2 py-1 bg-btc text-darkBg rounded">
-                            Close Ticket
+                        <button
+                            onclick="showUserHistory('${escapeJS(u.uid)}')"
+                            class="px-2 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded">
+
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            History
+
+                        </button>
+
+                    </td>
+
+                    <td class="p-3">
+
+                        <button
+                            onclick="toggleUserStatus('${escapeJS(u.uid)}')"
+                            class="px-2 py-1 bg-borderClr rounded hover:bg-btc/20">
+
+                            ${
+                                u.status === 'Active'
+                                    ? 'Pause'
+                                    : 'Activate'
+                            }
+
                         </button>
 
                     </td>
 
                 </tr>
 
-            `).join('');
+            `
+            )
+            .join('');
+
+
+    /* TICKETS */
+
+    const ticketTbody =
+        document
+            .getElementById(
+                'admin-tickets-tbody'
+            );
+
+
+    const openTickets =
+        db.tickets.filter(
+            t =>
+                t.status ===
+                'Open'
+        );
+
+
+    if (
+        openTickets.length >
+        0
+    ) {
+
+        ticketTbody.innerHTML =
+            openTickets
+                .map(
+                    t => `
+
+                    <tr class="border-b border-borderClr">
+
+                        <td class="p-3 font-bold">
+                            ${escapeHTML(t.id)}
+                        </td>
+
+                        <td class="p-3 text-btc">
+                            ${escapeHTML(t.uid)}
+                        </td>
+
+                        <td class="p-3">
+                            ${escapeHTML(t.message)}
+                        </td>
+
+                        <td class="p-3">
+
+                            ${
+                                t.hasScreenshot &&
+                                t.screenshotData
+
+                                    ? `<img
+                                        src="${t.screenshotData}"
+                                        onclick="viewScreenshot('${escapeJS(t.id)}','ticket')"
+                                        style="width:70px;height:55px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid #444;">`
+
+                                    : t.hasScreenshot
+
+                                    ? '<span class="text-yellow-400">Attached</span>'
+
+                                    : '<span class="text-gray-400">None</span>'
+                            }
+
+                        </td>
+
+                        <td class="p-3">
+
+                            <button
+                                onclick="resolveTicket('${escapeJS(t.id)}')"
+                                class="px-2 py-1 bg-btc text-darkBg rounded">
+
+                                Close Ticket
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `
+                )
+                .join('');
 
     } else {
 
         ticketTbody.innerHTML =
             `<tr>
+
                 <td colspan="5"
                     class="p-4 text-center text-gray-500">
-                    No open support tickets.
-                </td>
-            </tr>`;
 
+                    No open support tickets.
+
+                </td>
+
+            </tr>`;
     }
 
 
     /* DEPOSITS */
 
     const depTbody =
-        document.getElementById(
-            'admin-deposits-tbody'
-        );
+        document
+            .getElementById(
+                'admin-deposits-tbody'
+            );
 
 
     const pendingDeps =
         db.deposits.filter(
-            d => d.status === 'Pending'
+            d =>
+                d.status ===
+                'Pending'
         );
 
 
-    if (pendingDeps.length > 0) {
+    if (
+        pendingDeps.length >
+        0
+    ) {
 
         depTbody.innerHTML =
-            pendingDeps.map(d => `
+            pendingDeps
+                .map(
+                    d => `
 
-                <tr class="border-b border-borderClr">
+                    <tr class="border-b border-borderClr">
 
-                    <td class="p-3 font-bold">
-                        ${d.uid}
-                    </td>
+                        <td class="p-3 font-bold">
+                            ${escapeHTML(d.uid)}
+                        </td>
 
-                    <td class="p-3 text-emerald-400 font-bold">
-                        ₹${d.amount}
-                    </td>
+                        <td class="p-3 text-emerald-400 font-bold">
+                            ₹${Number(d.amount).toFixed(2)}
+                        </td>
 
-                    <td class="p-3">
-                        ${d.utr}
-                    </td>
+                        <td class="p-3">
+                            ${escapeHTML(d.utr)}
+                        </td>
 
-                    <td class="p-3">
+                        <td class="p-3 text-gray-400">
+                            ${escapeHTML(d.ip || 'Unknown')}
+                        </td>
 
-                        ${
-                            d.hasProof && d.screenshotData
+                        <td class="p-3">
 
-                            ? `<img src="${d.screenshotData}"
-                                   onclick="viewScreenshot('${d.id}','deposit')"
-                                   style="width:70px;height:55px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid #444;">`
+                            ${
+                                d.hasProof &&
+                                d.screenshotData
 
-                            : d.hasProof
+                                    ? `<img
+                                        src="${d.screenshotData}"
+                                        onclick="viewScreenshot('${escapeJS(d.id)}','deposit')"
+                                        style="width:70px;height:55px;object-fit:cover;border-radius:6px;cursor:pointer;border:1px solid #444;">`
 
-                            ? '<span class="text-yellow-400">Uploaded</span>'
+                                    : d.hasProof
 
-                            : '<span class="text-gray-400">None</span>'
-                        }
+                                    ? '<span class="text-yellow-400">Uploaded</span>'
 
-                    </td>
+                                    : '<span class="text-gray-400">None</span>'
+                            }
 
-                    <td class="p-3 space-x-2">
+                        </td>
 
-                        <button onclick="resolveDeposit('${d.id}', true)"
+                        <td class="p-3 space-x-2">
+
+                            <button
+                                onclick="resolveDeposit('${escapeJS(d.id)}', true)"
                                 class="px-2 py-1 bg-emerald-600 text-white rounded">
-                            Approve
-                        </button>
 
-                        <button onclick="resolveDeposit('${d.id}', false)"
+                                Approve
+
+                            </button>
+
+                            <button
+                                onclick="resolveDeposit('${escapeJS(d.id)}', false)"
                                 class="px-2 py-1 bg-red-600 text-white rounded">
-                            Reject
-                        </button>
 
-                    </td>
+                                Reject
 
-                </tr>
+                            </button>
 
-            `).join('');
+                        </td>
+
+                    </tr>
+
+                `
+                )
+                .join('');
 
     } else {
 
         depTbody.innerHTML =
             `<tr>
-                <td colspan="5"
-                    class="p-4 text-center text-gray-500">
-                    No pending deposits.
-                </td>
-            </tr>`;
 
+                <td colspan="6"
+                    class="p-4 text-center text-gray-500">
+
+                    No pending deposits.
+
+                </td>
+
+            </tr>`;
     }
 
 
     /* WITHDRAWALS */
 
     const wdTbody =
-        document.getElementById(
-            'admin-withdrawals-tbody'
-        );
+        document
+            .getElementById(
+                'admin-withdrawals-tbody'
+            );
 
 
     const pendingWds =
         db.withdrawals.filter(
-            w => w.status === 'Pending'
+            w =>
+                w.status ===
+                'Pending'
         );
 
 
-    if (pendingWds.length > 0) {
+    if (
+        pendingWds.length >
+        0
+    ) {
 
         wdTbody.innerHTML =
-            pendingWds.map(w => `
+            pendingWds
+                .map(
+                    w => `
 
-                <tr class="border-b border-borderClr">
+                    <tr class="border-b border-borderClr">
 
-                    <td class="p-3 font-bold">
-                        ${w.uid}
-                    </td>
+                        <td class="p-3 font-bold">
+                            ${escapeHTML(w.uid)}
+                        </td>
 
-                    <td class="p-3 text-btc font-bold">
-                        ₹${w.amount}
-                    </td>
+                        <td class="p-3 text-btc font-bold">
+                            ₹${Number(w.amount).toFixed(2)}
+                        </td>
 
-                    <td class="p-3">
-                        ${w.upi}
-                    </td>
+                        <td class="p-3">
 
-                    <td class="p-3 space-x-2">
+                            ${escapeHTML(w.upi || '')}
 
-                        <button onclick="resolveWithdrawal('${w.id}', true)"
+                            ${
+                                w.addr
+                                    ? `<br><span class="text-[10px] text-gray-400">${escapeHTML(w.addr)}</span>`
+                                    : ''
+                            }
+
+                        </td>
+
+                        <td class="p-3 text-gray-400">
+                            ${escapeHTML(w.ip || 'Unknown')}
+                        </td>
+
+                        <td class="p-3 space-x-2">
+
+                            <button
+                                onclick="resolveWithdrawal('${escapeJS(w.id)}', true)"
                                 class="px-2 py-1 bg-emerald-600 text-white rounded">
-                            Approve
-                        </button>
 
-                        <button onclick="resolveWithdrawal('${w.id}', false)"
+                                Approve
+
+                            </button>
+
+                            <button
+                                onclick="resolveWithdrawal('${escapeJS(w.id)}', false)"
                                 class="px-2 py-1 bg-red-600 text-white rounded">
-                            Reject
-                        </button>
 
-                    </td>
+                                Reject
 
-                </tr>
+                            </button>
 
-            `).join('');
+                        </td>
+
+                    </tr>
+
+                `
+                )
+                .join('');
 
     } else {
 
         wdTbody.innerHTML =
             `<tr>
-                <td colspan="4"
+
+                <td colspan="5"
                     class="p-4 text-center text-gray-500">
+
                     No pending withdrawals.
+
                 </td>
+
             </tr>`;
-
     }
-
 }
 
 
-/* ADMIN STATUS */
+/* ================================
+   ADMIN USER STATUS
+================================ */
 
 function toggleUserStatus(uid) {
 
     const user =
         db.users.find(
-            u => u.uid === uid
+            u =>
+                u.uid ===
+                uid
         );
 
 
-    if (user) {
-
-        user.status =
-            user.status === 'Active'
-                ? 'Paused'
-                : 'Active';
+    if (!user)
+        return;
 
 
-        saveDB();
+    user.status =
+        user.status === 'Active'
+            ? 'Paused'
+            : 'Active';
 
-        loadAdminPanel();
-    }
 
+    addHistory(
+        user,
+        'Admin Action',
+        0,
+        `Account status changed to ${user.status}`,
+        'Admin'
+    );
+
+
+    saveDB();
+
+
+    loadAdminPanel();
 }
 
 
-/* CLOSE TICKET */
+/* ================================
+   CLOSE TICKET
+================================ */
 
 function resolveTicket(ticketId) {
 
     const ticket =
         db.tickets.find(
-            t => t.id === ticketId
+            t =>
+                t.id ===
+                ticketId
         );
 
 
-    if (ticket) {
+    if (!ticket)
+        return;
 
-        ticket.status = 'Closed';
 
-        saveDB();
+    ticket.status =
+        'Closed';
 
-        loadAdminPanel();
+
+    ticket.closedAt =
+        new Date().toISOString();
+
+
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                ticket.uid
+        );
+
+
+    if (user) {
+
+        addHistory(
+            user,
+            'Support Ticket Closed',
+            0,
+            `Ticket ${ticketId} closed by admin`,
+            'Admin'
+        );
     }
 
+
+    saveDB();
+
+
+    loadAdminPanel();
 }
 
 
-/* DEPOSIT RESOLVE */
+/* ================================
+   DEPOSIT RESOLVE
+================================ */
 
-function resolveDeposit(depId, isApproved) {
+function resolveDeposit(
+    depId,
+    isApproved
+) {
 
     const dep =
         db.deposits.find(
-            d => d.id === depId
+            d =>
+                d.id ===
+                depId
         );
 
 
-    if (dep &&
-        dep.status === 'Pending') {
+    if (
+        !dep ||
+        dep.status !==
+        'Pending'
+    )
+        return;
 
-        dep.status =
+
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                dep.uid
+        );
+
+
+    dep.status =
+        isApproved
+            ? 'Approved'
+            : 'Rejected';
+
+
+    dep.resolvedAt =
+        new Date().toISOString();
+
+
+    if (user) {
+
+        addHistory(
+            user,
+
             isApproved
-                ? 'Approved'
-                : 'Rejected';
+                ? 'Deposit Approved'
+                : 'Deposit Rejected',
+
+            Number(dep.amount),
+
+            `Deposit ${dep.id} ${isApproved ? 'approved' : 'rejected'} | UTR: ${dep.utr}`,
+
+            'Admin'
+        );
 
 
         if (isApproved) {
 
-            const user =
-                db.users.find(
-                    u => u.uid === dep.uid
+            user.balance +=
+                Number(
+                    dep.amount
                 );
-
-
-            if (user)
-                user.balance +=
-                    Number(dep.amount);
         }
-
-
-        saveDB();
-
-        loadAdminPanel();
     }
 
+
+    saveDB();
+
+
+    loadAdminPanel();
 }
 
 
-/* WITHDRAW RESOLVE */
+/* ================================
+   WITHDRAWAL RESOLVE
+================================ */
 
-function resolveWithdrawal(wdId, isApproved) {
+function resolveWithdrawal(
+    wdId,
+    isApproved
+) {
 
     const wd =
         db.withdrawals.find(
-            w => w.id === wdId
+            w =>
+                w.id ===
+                wdId
         );
 
 
-    if (wd &&
-        wd.status === 'Pending') {
+    if (
+        !wd ||
+        wd.status !==
+        'Pending'
+    )
+        return;
 
-        wd.status =
-            isApproved
-                ? 'Approved'
-                : 'Rejected';
 
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                wd.uid
+        );
+
+
+    wd.status =
+        isApproved
+            ? 'Approved'
+            : 'Rejected';
+
+
+    wd.resolvedAt =
+        new Date().toISOString();
+
+
+    if (user) {
 
         if (!isApproved) {
 
-            const user =
-                db.users.find(
-                    u => u.uid === wd.uid
+            user.balance +=
+                Number(
+                    wd.amount
                 );
 
 
-            if (user)
-                user.balance +=
-                    Number(wd.amount);
+            addHistory(
+                user,
+                'Withdrawal Rejected / Refund',
+                Number(wd.amount),
+                `Withdrawal ${wd.id} rejected and amount refunded`,
+                'Admin'
+            );
+
+        } else {
+
+            addHistory(
+                user,
+                'Withdrawal Approved',
+                Number(wd.amount),
+                `Withdrawal ${wd.id} approved to ${wd.upi}`,
+                'Admin'
+            );
         }
-
-
-        saveDB();
-
-        loadAdminPanel();
     }
 
+
+    saveDB();
+
+
+    loadAdminPanel();
 }
 
 
-/* TEST TELEGRAM */
+/* ================================
+   ADMIN TEST TELEGRAM
+================================ */
 
 async function testTelegram() {
 
@@ -2846,52 +4558,319 @@ async function testTelegram() {
             'Telegram test message sent successfully.'
         );
 
+    else
+        alert(
+            'Telegram test failed.'
+        );
 }
 
 
-/* MODALS */
+/* ================================
+   USER HISTORY
+================================ */
 
-function openModal(modalId) {
+function showUserHistory(uid) {
 
-    document.getElementById(
-        modalId
-    ).classList.remove('hidden');
+    const user =
+        db.users.find(
+            u =>
+                u.uid ===
+                uid
+        );
 
+
+    if (!user)
+        return;
+
+
+    const history =
+        user.history || [];
+
+
+    document
+        .getElementById(
+            'history-user-info'
+        )
+        .innerText =
+
+        `${user.name} | ${user.uid} | Registration IP: ${user.ipAddress || 'Unknown'} | Last Login IP: ${user.lastLoginIP || 'Unknown'}`;
+
+
+    const container =
+        document
+            .getElementById(
+                'user-history-content'
+            );
+
+
+    if (
+        !history.length
+    ) {
+
+        container.innerHTML = `
+
+            <div class="text-center text-gray-500 py-10">
+
+                No history available.
+
+            </div>
+
+        `;
+
+    } else {
+
+        container.innerHTML = `
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full text-left text-xs">
+
+                    <thead class="border-b border-borderClr">
+
+                        <tr>
+
+                            <th class="p-3">
+                                Date
+                            </th>
+
+                            <th class="p-3">
+                                Type
+                            </th>
+
+                            <th class="p-3">
+                                Amount
+                            </th>
+
+                            <th class="p-3">
+                                Details
+                            </th>
+
+                            <th class="p-3">
+                                IP
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${
+                            history
+                                .slice()
+                                .reverse()
+                                .map(
+                                    h => `
+
+                                    <tr class="border-b border-borderClr">
+
+                                        <td class="p-3 text-gray-400 whitespace-nowrap">
+
+                                            ${new Date(h.date).toLocaleString()}
+
+                                        </td>
+
+                                        <td class="p-3 font-bold text-btc">
+
+                                            ${escapeHTML(h.type)}
+
+                                        </td>
+
+                                        <td class="p-3">
+
+                                            ${
+                                                h.amount
+                                                    ? '₹' +
+                                                      Number(
+                                                          h.amount
+                                                      ).toFixed(
+                                                          2
+                                                      )
+                                                    : '—'
+                                            }
+
+                                        </td>
+
+                                        <td class="p-3 text-gray-300">
+
+                                            ${escapeHTML(h.details || '—')}
+
+                                        </td>
+
+                                        <td class="p-3 text-gray-400">
+
+                                            ${escapeHTML(h.ip || 'Unknown')}
+
+                                        </td>
+
+                                    </tr>
+
+                                `
+                                )
+                                .join('')
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        `;
+    }
+
+
+    const modal =
+        document.getElementById(
+            'history-modal'
+        );
+
+
+    modal.classList.remove(
+        'hidden'
+    );
+
+
+    modal.classList.add(
+        'flex'
+    );
 }
 
 
-function closeModal(modalId) {
+function closeHistoryModal() {
 
-    document.getElementById(
-        modalId
-    ).classList.add('hidden');
+    const modal =
+        document.getElementById(
+            'history-modal'
+        );
 
+
+    modal.classList.add(
+        'hidden'
+    );
+
+
+    modal.classList.remove(
+        'flex'
+    );
 }
 
 
-/* COPY */
+/* ================================
+   MODALS
+================================ */
+
+function openModal(
+    modalId
+) {
+
+    document
+        .getElementById(
+            modalId
+        )
+        .classList.remove(
+            'hidden'
+        );
+}
+
+
+function closeModal(
+    modalId
+) {
+
+    document
+        .getElementById(
+            modalId
+        )
+        .classList.add(
+            'hidden'
+        );
+}
+
+
+/* ================================
+   COPY REFERRAL
+================================ */
 
 function copyRefLink() {
 
     const copyText =
-        document.getElementById(
-            'dash-ref-link'
-        );
+        document
+            .getElementById(
+                'dash-ref-link'
+            );
 
 
     copyText.select();
 
 
-    navigator.clipboard.writeText(
-        copyText.value
-    );
+    navigator.clipboard
+        .writeText(
+            copyText.value
+        );
 
 
     alert(
         'Referral link copied to clipboard!'
     );
-
 }
+
+
+/* ================================
+   HTML ESCAPE
+================================ */
+
+function escapeHTML(value) {
+
+    return String(
+        value ?? ''
+    )
+        .replace(
+            /&/g,
+            '&amp;'
+        )
+        .replace(
+            /</g,
+            '&lt;'
+        )
+        .replace(
+            />/g,
+            '&gt;'
+        )
+        .replace(
+            /"/g,
+            '&quot;'
+        )
+        .replace(
+            /'/g,
+            '&#039;'
+        );
+}
+
+
+/* ================================
+   JS STRING ESCAPE
+================================ */
+
+function escapeJS(value) {
+
+    return String(
+        value ?? ''
+    )
+        .replace(
+            /\\/g,
+            '\\\\'
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        )
+        .replace(
+            /"/g,
+            '\\"'
+        );
+}
+
 
 </script>
 
