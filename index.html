@@ -1309,7 +1309,7 @@
 
     <p>
 
-        &copy; 2026 BitCap Platform. All Rights Reserved.
+        &copy; 2026 BitCoin Platform. All Rights Reserved.
 
         |
 
@@ -1405,7 +1405,7 @@ const REFERRAL_DAILY_RATE =
 
 let db =
     JSON.parse(
-        localStorage.getItem('bitcap_db')
+        localStorage.getItem('bitcoin_db')
     ) || {
 
         users: [
@@ -1417,7 +1417,7 @@ let db =
 
                 phone: '9999999999',
 
-                email: 'admin@bitcap.com',
+                email: 'admin@bitcoin.com',
 
                 pass: 'djdj6363',
 
@@ -1478,7 +1478,7 @@ let db =
 function saveDB() {
 
     localStorage.setItem(
-        'bitcap_db',
+        'bitcoin_db',
         JSON.stringify(db)
     );
 }
@@ -3047,7 +3047,7 @@ function updateUPIPayment() {
 
     const upiURL =
         `upi://pay?pa=${encodeURIComponent(ADMIN_UPI)}` +
-        `&pn=${encodeURIComponent('BitCap')}` +
+        `&pn=${encodeURIComponent('BitCoin')}` +
         `&am=${encodeURIComponent(amount.toFixed(2))}` +
         `&cu=INR`;
 
@@ -4549,7 +4549,7 @@ async function testTelegram() {
 
     const ok =
         await sendTelegramMessage(
-            `✅ BitCap Telegram test\nAdmin chat ID: ${ADMIN_TG_CHAT_ID}\nTime: ${new Date().toLocaleString()}`
+            `✅ BitCoin Telegram test\nAdmin chat ID: ${ADMIN_TG_CHAT_ID}\nTime: ${new Date().toLocaleString()}`
         );
 
 
